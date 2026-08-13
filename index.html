@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubo 3D Interativo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div>
+        <h1>Cubo 3D Interativo</h1>
+        <p>Arraste com o mouse para girar • Scroll para aproximar/afastar</p>
+      </div>
+      <button id="reset">Reiniciar</button>
+    </header>
+
+    <section class="viewer">
+      <div id="scene">
+        <div id="cube">
+          <div class="face front"><span>FACE 1</span></div>
+          <div class="face back"><span>FACE 2</span></div>
+          <div class="face right"><span>FACE 3</span></div>
+          <div class="face left"><span>FACE 4</span></div>
+          <div class="face top"><span>FACE 5</span></div>
+          <div class="face bottom"><span>FACE 6</span></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <label>
+        Tamanho
+        <input id="size" type="range" min="160" max="520" value="300" />
+      </label>
+      <label>
+        Zoom
+        <input id="zoom" type="range" min="500" max="1400" value="850" />
+      </label>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
