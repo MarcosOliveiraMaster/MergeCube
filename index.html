@@ -1,45 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubo 3D Interativo</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Cubo Interativo — MERGE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <header>
-      <div>
-        <h1>Cubo 3D Interativo</h1>
-        <p>Arraste com o mouse para girar • Scroll para aproximar/afastar</p>
-      </div>
-      <button id="reset">Reiniciar</button>
-    </header>
 
-    <section class="viewer">
-      <div id="scene">
-        <div id="cube">
-          <div class="face front"><span>FACE 1</span></div>
-          <div class="face back"><span>FACE 2</span></div>
-          <div class="face right"><span>FACE 3</span></div>
-          <div class="face left"><span>FACE 4</span></div>
-          <div class="face top"><span>FACE 5</span></div>
-          <div class="face bottom"><span>FACE 6</span></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="hud-top">
+    <div class="hud-brand">
+      <span class="brand-mark">◇</span>
+      <span class="brand-text">CUBE<span class="brand-accent">/VIEWER</span></span>
+    </div>
+    <div class="hud-status" id="statusText">ARRASTE PARA GIRAR</div>
+  </header>
+
+  <main class="stage" id="stage">
+    <div class="reticle corner-tl" aria-hidden="true"></div>
+    <div class="reticle corner-tr" aria-hidden="true"></div>
+    <div class="reticle corner-bl" aria-hidden="true"></div>
+    <div class="reticle corner-br" aria-hidden="true"></div>
+
+    <div class="scene" id="scene">
+      <div class="cube-wrapper" id="cubeWrapper">
+        <div class="cube" id="cube">
+          <div class="face face-front"  data-face="front"></div>
+          <div class="face face-back"   data-face="back"></div>
+          <div class="face face-right"  data-face="right"></div>
+          <div class="face face-left"   data-face="left"></div>
+          <div class="face face-top"    data-face="top"></div>
+          <div class="face face-bottom" data-face="bottom"></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <footer>
-      <label>
-        Tamanho
-        <input id="size" type="range" min="160" max="520" value="300" />
-      </label>
-      <label>
-        Zoom
-        <input id="zoom" type="range" min="500" max="1400" value="850" />
-      </label>
-    </footer>
+    <div class="loading" id="loading">
+      <div class="loading-bar"><div class="loading-fill" id="loadingFill"></div></div>
+      <span>MONTANDO O CUBO…</span>
+    </div>
   </main>
+
+  <footer class="hud-bottom">
+    <div class="panel">
+      <div class="panel-row">
+        <label for="zoomRange">ZOOM</label>
+        <button class="mini-btn" id="zoomOut" aria-label="Diminuir zoom">−</button>
+        <input type="range" id="zoomRange" min="0.4" max="2.5" step="0.01" value="1">
+        <button class="mini-btn" id="zoomIn" aria-label="Aumentar zoom">+</button>
+      </div>
+      <div class="panel-row">
+        <label for="sensRange">SENSIBILIDADE</label>
+        <input type="range" id="sensRange" min="0.3" max="2.5" step="0.01" value="1">
+      </div>
+      <div class="panel-row panel-row-actions">
+        <label class="toggle">
+          <input type="checkbox" id="autoRotate">
+          <span>ROTAÇÃO AUTO</span>
+        </label>
+        <button class="reset-btn" id="resetBtn">REDEFINIR VISTA</button>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
