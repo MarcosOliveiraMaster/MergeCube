@@ -2,71 +2,1130 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>Cubo Interativo — MERGE</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadro Geral dos Verbos — Atividades</title>
+<style>
+  :root{
+    --bg:#f4f6fb;
+    --surface:#ffffff;
+    --surface-2:#eef2fa;
+    --text:#182135;
+    --muted:#5b6784;
+    --line:#d9e0ee;
+    --accent:#3d5afe;
+    --accent-soft:#e8ecff;
+    --ok:#0f8f52;
+    --ok-soft:#e2f6ec;
+    --bad:#cf2f45;
+    --bad-soft:#fdeaed;
+    --warn:#a5741a;
+    --warn-soft:#fdf3dd;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(20,30,60,.06), 0 8px 24px rgba(20,30,60,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0e1320;
+      --surface:#161d2e;
+      --surface-2:#1d2739;
+      --text:#e8edf8;
+      --muted:#9aa8c4;
+      --line:#2a3548;
+      --accent:#7d90ff;
+      --accent-soft:#232c48;
+      --ok:#4ad38c;
+      --ok-soft:#12301f;
+      --bad:#ff7b8c;
+      --bad-soft:#331319;
+      --warn:#e9c26a;
+      --warn-soft:#332a12;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:940px;margin:0 auto;padding:0 16px 80px}
+
+  /* ---------- cabeçalho ---------- */
+  header.top{
+    background:linear-gradient(135deg,var(--accent),#7b3dfe);
+    color:#fff;
+    padding:34px 16px 30px;
+  }
+  header.top .wrap{padding-bottom:0}
+  header.top h1{margin:0 0 6px;font-size:1.85rem;letter-spacing:-.02em}
+  header.top p{margin:0;opacity:.92;font-size:.98rem}
+  .scoreboard{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;
+  }
+  .score-pill{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:600;
+  }
+
+  /* ---------- navegação ---------- */
+  nav.jump{
+    position:sticky;top:0;z-index:20;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 10px rgba(20,30,60,.05);
+  }
+  nav.jump .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
+  nav.jump a{
+    white-space:nowrap;text-decoration:none;color:var(--muted);
+    font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;
+    background:var(--surface-2);border:1px solid var(--line);
+  }
+  nav.jump a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- seções ---------- */
+  section{margin-top:38px;scroll-margin-top:64px}
+  section > h2{
+    font-size:1.4rem;margin:0 0 4px;letter-spacing:-.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  section > h2 .num{
+    background:var(--accent);color:#fff;font-size:.85rem;font-weight:700;
+    width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;
+  }
+  .lead{color:var(--muted);margin:0 0 18px}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;box-shadow:var(--shadow);margin-bottom:18px;
+  }
+  .card h3{margin:0 0 10px;font-size:1.05rem}
+  .card h4{margin:18px 0 8px;font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+  table{width:100%;border-collapse:collapse;font-size:.93rem;margin:6px 0}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--surface-2);font-weight:600}
+  .table-scroll{overflow-x:auto}
+
+  ul.clean{margin:6px 0 0;padding-left:20px}
+  ul.clean li{margin-bottom:6px}
+  code,.ex{
+    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
+    padding:1px 6px;font-family:"Cascadia Mono",Consolas,monospace;font-size:.88em;
+  }
+
+  /* ---------- atividades ---------- */
+  .activity{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden;
+  }
+  .activity > header{
+    padding:16px 18px;border-bottom:1px solid var(--line);background:var(--surface-2);
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  }
+  .activity > header .t{font-weight:700}
+  .activity > header .s{display:block;font-size:.85rem;color:var(--muted);font-weight:400}
+  .badge{
+    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 10px;
+  }
+  .activity .body{padding:6px 18px 18px}
+
+  .topic-title{
+    margin:20px 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--accent);
+    border-top:1px dashed var(--line);padding-top:16px;
+  }
+  .topic-title:first-child{border-top:0;padding-top:8px}
+
+  .q{padding:12px 0;border-bottom:1px solid var(--line)}
+  .q:last-child{border-bottom:0}
+  .q .stem{margin:0 0 10px;font-weight:500}
+  .q .stem .n{
+    display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;
+    background:var(--surface-2);border:1px solid var(--line);
+    font-size:.75rem;font-weight:700;color:var(--muted);margin-right:8px;
+  }
+  .q .stem em{color:var(--accent);font-style:normal;font-weight:700}
+
+  .opts{display:grid;gap:8px}
+  @media(min-width:620px){ .opts.two{grid-template-columns:1fr 1fr} }
+  .opt{
+    display:flex;align-items:center;gap:10px;cursor:pointer;
+    border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--surface);
+    font-size:.94rem;transition:border-color .15s, background .15s;
+  }
+  .opt:hover{border-color:var(--accent)}
+  .opt input{accent-color:var(--accent);margin:0;flex:none}
+  .opt.sel{border-color:var(--accent);background:var(--accent-soft)}
+  .opt.right{border-color:var(--ok);background:var(--ok-soft)}
+  .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+
+  input.txt{
+    font:inherit;color:var(--text);background:var(--surface-2);
+    border:1px solid var(--line);border-radius:9px;padding:7px 10px;min-width:150px;
+  }
+  input.txt:focus{outline:2px solid var(--accent);outline-offset:1px}
+  input.txt.right{border-color:var(--ok);background:var(--ok-soft)}
+  input.txt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+  input.txt.almost{border-color:var(--warn);background:var(--warn-soft)}
+  input.gap{min-width:120px;width:150px;text-align:center;margin:0 4px}
+
+  .fb{font-size:.87rem;margin-top:8px;display:none;border-radius:8px;padding:7px 10px}
+  .fb.show{display:block}
+  .fb.ok{background:var(--ok-soft);color:var(--ok)}
+  .fb.no{background:var(--bad-soft);color:var(--bad)}
+  .fb.al{background:var(--warn-soft);color:var(--warn)}
+
+  .toolbar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+  }
+  button{
+    font:inherit;font-weight:600;cursor:pointer;border-radius:10px;padding:9px 18px;
+    border:1px solid var(--accent);background:var(--accent);color:#fff;
+  }
+  button:hover{filter:brightness(1.08)}
+  button.ghost{background:transparent;color:var(--accent)}
+  .result{font-weight:700;margin-left:auto;font-size:.95rem}
+  .result.ok{color:var(--ok)}
+  .result.no{color:var(--bad)}
+
+  /* ---------- regular x irregular ---------- */
+  .verbgrid{display:grid;gap:10px}
+  @media(min-width:560px){ .verbgrid{grid-template-columns:1fr 1fr} }
+  .verbcard{
+    border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  }
+  .verbcard .vb{font-weight:700}
+  .verbcard .vb .idx{color:var(--muted);font-weight:600;font-size:.8rem;margin-right:6px}
+  .choice{display:flex;gap:6px}
+  .choice button{
+    padding:5px 12px;font-size:.82rem;border-radius:999px;
+    background:var(--surface-2);color:var(--muted);border:1px solid var(--line);
+  }
+  .choice button.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .verbcard.right{border-color:var(--ok);background:var(--ok-soft)}
+  .verbcard.wrong{border-color:var(--bad);background:var(--bad-soft)}
+  .verbcard .note{flex-basis:100%;font-size:.82rem;color:var(--muted);display:none}
+  .verbcard.done .note{display:block}
+
+  /* ---------- ligar colunas ---------- */
+  .match{position:relative;display:flex;gap:18px;justify-content:space-between}
+  .match svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+  .match .col{display:flex;flex-direction:column;gap:10px;flex:1;z-index:2}
+  .match .col.right{max-width:180px}
+  .node{
+    border:1px solid var(--line);background:var(--surface-2);border-radius:10px;
+    padding:10px 12px;cursor:pointer;font-weight:600;text-align:center;font-size:.94rem;
+    transition:border-color .15s,background .15s;
+  }
+  .node:hover{border-color:var(--accent)}
+  .node.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+  .node.linked{border-style:solid;border-color:var(--accent)}
+  .node.right-ans{border-color:var(--ok);background:var(--ok-soft)}
+  .node.wrong-ans{border-color:var(--bad);background:var(--bad-soft)}
+  .hint{font-size:.85rem;color:var(--muted);margin:0 0 12px}
+
+  footer.end{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+</style>
 </head>
 <body>
 
-  <div class="scanlines" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap">
+    <h1>Quadro Geral dos Verbos</h1>
+    <p>Teoria e atividades interativas de Língua Portuguesa — flexões, regularidade, tempos e modos verbais.</p>
+    <div class="scoreboard" id="scoreboard"></div>
+  </div>
+</header>
 
-  <header class="hud-top">
-    <div class="hud-brand">
-      <span class="brand-mark">◇</span>
-      <span class="brand-text">CUBE<span class="brand-accent">/VIEWER</span></span>
+<nav class="jump">
+  <div class="wrap">
+    <a href="#flexoes">As cinco flexões</a>
+    <a href="#regulares">Regulares e irregulares</a>
+    <a href="#tempos">Tempos verbais</a>
+    <a href="#quadro">Quadro geral</a>
+    <a href="#modos">Os três modos</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ================= 1. AS CINCO FLEXÕES ================= -->
+  <section id="flexoes">
+    <h2><span class="num">1</span> As cinco flexões</h2>
+    <p class="lead">O verbo é a palavra que mais varia na língua portuguesa. Ele pode sofrer cinco flexões.</p>
+
+    <div class="card">
+      <h3>Quadro das cinco flexões</h3>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Flexão</th><th>Variações</th><th>Exemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Número</strong></td><td>singular e plural</td><td>o menino <em>corre</em> / os meninos <em>correm</em></td></tr>
+            <tr><td><strong>Pessoa</strong></td><td>1ª, 2ª e 3ª (eu, tu, ele / nós, vós, eles)</td><td>eu <em>canto</em> / tu <em>cantas</em> / ele <em>canta</em></td></tr>
+            <tr><td><strong>Modo</strong></td><td>indicativo, subjuntivo e imperativo</td><td>ele <em>estuda</em> / que ele <em>estude</em> / <em>estude</em>!</td></tr>
+            <tr><td><strong>Tempo</strong></td><td>presente, pretérito e futuro</td><td>eu <em>falo</em> / eu <em>falei</em> / eu <em>falarei</em></td></tr>
+            <tr><td><strong>Voz</strong></td><td>ativa, passiva e reflexiva</td><td>o time <em>venceu</em> o jogo / o jogo <em>foi vencido</em> pelo time</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>O que o verbo pode expressar</h4>
+      <ul class="clean">
+        <li><strong>Ação:</strong> Marina <em>desenhou</em> um mapa.</li>
+        <li><strong>Estado:</strong> O menino <em>está</em> triste.</li>
+        <li><strong>Mudança de estado:</strong> Ele <em>ficou</em> nervoso com a notícia.</li>
+        <li><strong>Fenômeno da natureza:</strong> <em>Choveu</em> muito ontem.</li>
+      </ul>
+
+      <h4>Conjugações e formas nominais</h4>
+      <ul class="clean">
+        <li><strong>1ª conjugação:</strong> terminação <code>-AR</code> (cantar, estudar)</li>
+        <li><strong>2ª conjugação:</strong> terminação <code>-ER</code> (vender, beber) — <em>pôr</em> e derivados também pertencem à 2ª</li>
+        <li><strong>3ª conjugação:</strong> terminação <code>-IR</code> (partir, sorrir)</li>
+        <li><strong>Formas nominais:</strong> infinitivo (<code>-r</code>), gerúndio (<code>-ndo</code>) e particípio (<code>-do</code>)</li>
+      </ul>
     </div>
-    <div class="hud-status" id="statusText">ARRASTE PARA GIRAR</div>
-  </header>
 
-  <main class="stage" id="stage">
-    <div class="reticle corner-tl" aria-hidden="true"></div>
-    <div class="reticle corner-tr" aria-hidden="true"></div>
-    <div class="reticle corner-bl" aria-hidden="true"></div>
-    <div class="reticle corner-br" aria-hidden="true"></div>
+    <!-- Atividade quiz -->
+    <div class="activity" id="act-quiz-flexoes">
+      <header>
+        <span class="t">Atividade 1 — Quiz das cinco flexões<span class="s">25 questões · 5 de cada tópico · marque a alternativa correta</span></span>
+        <span class="badge">Quiz</span>
+      </header>
+      <div class="body" data-quiz="flexoes"></div>
+    </div>
 
-    <div class="scene" id="scene">
-      <div class="cube-wrapper" id="cubeWrapper">
-        <div class="cube" id="cube">
-          <div class="face face-front"  data-face="front"></div>
-          <div class="face face-back"   data-face="back"></div>
-          <div class="face face-right"  data-face="right"></div>
-          <div class="face face-left"   data-face="left"></div>
-          <div class="face face-top"    data-face="top"></div>
-          <div class="face face-bottom" data-face="bottom"></div>
-        </div>
+    <!-- Atividade escrita -->
+    <div class="activity" id="act-escrita-flexoes">
+      <header>
+        <span class="t">Atividade 2 — Escreva das cinco flexões<span class="s">25 questões · 5 de cada tópico · digite a resposta</span></span>
+        <span class="badge">Escrita</span>
+      </header>
+      <div class="body" data-write="flexoes"></div>
+    </div>
+  </section>
+
+  <!-- ================= 2. REGULARES E IRREGULARES ================= -->
+  <section id="regulares">
+    <h2><span class="num">2</span> Verbos regulares e irregulares</h2>
+    <p class="lead">A diferença está no radical: se ele se mantém em toda a conjugação, o verbo é regular.</p>
+
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Regular</strong></td>
+              <td>O radical não muda e as terminações seguem o modelo da conjugação.</td>
+              <td>cant<strong>ar</strong> → eu cant<strong>o</strong>, eu cant<strong>ei</strong>, eu cant<strong>arei</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Irregular</strong></td>
+              <td>O radical e/ou as terminações sofrem alterações.</td>
+              <td>faz<strong>er</strong> → eu <strong>faço</strong>, eu <strong>fiz</strong>, eu <strong>farei</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint" style="margin-top:10px">Dica: conjugue o verbo no presente e no pretérito perfeito. Se o radical mudar em alguma pessoa, ele é irregular.</p>
+    </div>
+
+    <div class="activity" id="act-regirreg">
+      <header>
+        <span class="t">Atividade 3 — Regular ou irregular?<span class="s">20 verbos · classifique cada um e some seus pontos</span></span>
+        <span class="badge">Classificar</span>
+      </header>
+      <div class="body" data-regirreg></div>
+    </div>
+  </section>
+
+  <!-- ================= 3. TEMPOS VERBAIS ================= -->
+  <section id="tempos">
+    <h2><span class="num">3</span> Tempos verbais</h2>
+    <p class="lead">O tempo indica o momento em que o fato ocorre: antes, durante ou depois do momento da fala.</p>
+
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Tempo</th><th>Indica</th><th>Exemplos</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Presente</strong></td><td>fato que acontece agora ou é habitual</td><td>eu estudo · ele dorme · nós partimos</td></tr>
+            <tr><td><strong>Pretérito (passado)</strong></td><td>fato que já aconteceu</td><td>eu cantei · ele brincava · nós tínhamos saído</td></tr>
+            <tr><td><strong>Futuro</strong></td><td>fato que ainda vai acontecer</td><td>eu viajarei · ele venderá · nós iremos</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <div class="loading" id="loading">
-      <div class="loading-bar"><div class="loading-fill" id="loadingFill"></div></div>
-      <span>MONTANDO O CUBO…</span>
+    <div class="activity" id="act-ligar">
+      <header>
+        <span class="t">Atividade 4 — Ligue as colunas<span class="s">6 verbos · relacione cada um a passado, presente ou futuro</span></span>
+        <span class="badge">Ligar colunas</span>
+      </header>
+      <div class="body" data-match></div>
     </div>
-  </main>
+  </section>
 
-  <footer class="hud-bottom">
-    <div class="panel">
-      <div class="panel-row">
-        <label for="zoomRange">ZOOM</label>
-        <button class="mini-btn" id="zoomOut" aria-label="Diminuir zoom">−</button>
-        <input type="range" id="zoomRange" min="0.4" max="2.5" step="0.01" value="1">
-        <button class="mini-btn" id="zoomIn" aria-label="Aumentar zoom">+</button>
-      </div>
-      <div class="panel-row">
-        <label for="sensRange">SENSIBILIDADE</label>
-        <input type="range" id="sensRange" min="0.3" max="2.5" step="0.01" value="1">
-      </div>
-      <div class="panel-row panel-row-actions">
-        <label class="toggle">
-          <input type="checkbox" id="autoRotate">
-          <span>ROTAÇÃO AUTO</span>
-        </label>
-        <button class="reset-btn" id="resetBtn">REDEFINIR VISTA</button>
+  <!-- ================= 4. QUADRO GERAL ================= -->
+  <section id="quadro">
+    <h2><span class="num">4</span> Quadro geral dos verbos</h2>
+    <p class="lead">Reunindo tudo: modos, tempos e formas nominais em um só quadro.</p>
+
+    <div class="card">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Modo</th><th>Tempos</th><th>Exemplo com <em>cantar</em></th></tr></thead>
+          <tbody>
+            <tr>
+              <td rowspan="3"><strong>Indicativo</strong></td>
+              <td>Presente</td><td>eu canto</td>
+            </tr>
+            <tr><td>Pretérito (perfeito, imperfeito, mais-que-perfeito)</td><td>eu cantei · eu cantava · eu cantara</td></tr>
+            <tr><td>Futuro (do presente e do pretérito)</td><td>eu cantarei · eu cantaria</td></tr>
+            <tr>
+              <td rowspan="3"><strong>Subjuntivo</strong></td>
+              <td>Presente</td><td>que eu cante</td>
+            </tr>
+            <tr><td>Pretérito imperfeito</td><td>se eu cantasse</td></tr>
+            <tr><td>Futuro</td><td>quando eu cantar</td></tr>
+            <tr>
+              <td rowspan="2"><strong>Imperativo</strong></td>
+              <td>Afirmativo</td><td>canta (tu) · cante (você)</td>
+            </tr>
+            <tr><td>Negativo</td><td>não cantes (tu) · não cante (você)</td></tr>
+            <tr>
+              <td rowspan="3"><strong>Formas nominais</strong></td>
+              <td>Infinitivo</td><td>cantar</td>
+            </tr>
+            <tr><td>Gerúndio</td><td>cantando</td></tr>
+            <tr><td>Particípio</td><td>cantado</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
+
+    <!-- ============ OS TRÊS MODOS ============ -->
+    <div id="modos" style="scroll-margin-top:64px">
+      <div class="card">
+        <h3>Os três modos</h3>
+        <ul class="clean">
+          <li><strong>Indicativo</strong> — apresenta o fato como certo, real. <span class="ex">Ela estuda todos os dias.</span></li>
+          <li><strong>Subjuntivo</strong> — apresenta o fato como possível, duvidoso ou desejado. <span class="ex">Talvez ela estude hoje.</span></li>
+          <li><strong>Imperativo</strong> — expressa ordem, pedido ou conselho. <span class="ex">Estude para a prova!</span></li>
+        </ul>
+      </div>
+
+      <div class="activity" id="act-lacunas">
+        <header>
+          <span class="t">Atividade 5 — Complete com o modo indicado<span class="s">10 frases · escreva o verbo entre parênteses no modo pedido</span></span>
+          <span class="badge">Escrita</span>
+        </header>
+        <div class="body" data-gaps></div>
+      </div>
+
+      <div class="activity" id="act-classmodo">
+        <header>
+          <span class="t">Atividade 6 — Classifique o modo verbal<span class="s">10 frases · indicativo, subjuntivo ou imperativo</span></span>
+          <span class="badge">Quiz</span>
+        </header>
+        <div class="body" data-modos></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="end">
+    Material de estudo de Língua Portuguesa — verbos. Todas as atividades funcionam sem internet: basta abrir este arquivo no navegador.
   </footer>
+</div>
 
-  <script src="script.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* =========================================================
+     UTILIDADES
+     ========================================================= */
+  var norm = function(s){
+    return String(s == null ? "" : s).toLowerCase().trim().replace(/\s+/g," ");
+  };
+  var plain = function(s){
+    return norm(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.!?,;:]$/,"");
+  };
+  var el = function(tag, cls, html){
+    var n = document.createElement(tag);
+    if(cls) n.className = cls;
+    if(html != null) n.innerHTML = html;
+    return n;
+  };
+
+  /* Registro de pontuação global */
+  var registry = [];
+  function registerScore(id, label, total){
+    var item = {id:id, label:label, total:total, got:null};
+    registry.push(item);
+    return function(got){ item.got = got; paintScoreboard(); };
+  }
+  function paintScoreboard(){
+    var box = document.getElementById("scoreboard");
+    box.innerHTML = "";
+    var sum = 0, max = 0, done = 0;
+    registry.forEach(function(it){
+      max += it.total;
+      if(it.got !== null){ sum += it.got; done++; }
+    });
+    var pill = el("span","score-pill","🏆 Pontuação geral: " + sum + " / " + max);
+    box.appendChild(pill);
+    box.appendChild(el("span","score-pill","✅ Atividades corrigidas: " + done + " / " + registry.length));
+  }
+
+  /* =========================================================
+     DADOS — SEÇÃO 1: AS CINCO FLEXÕES
+     ========================================================= */
+
+  var FLEX_OPTS   = ["Número","Pessoa","Modo","Tempo","Voz"];
+  var EXPR_OPTS   = ["Ação","Estado","Mudança de estado","Fenômeno da natureza"];
+  var CONJ_OPTS   = ["1ª conjugação (-ar)","2ª conjugação (-er)","3ª conjugação (-ir)"];
+  var NOM_OPTS    = ["Infinitivo","Gerúndio","Particípio"];
+
+  var QUIZ_FLEXOES = [
+    { topic:"Tópico 1 — Qual flexão o verbo sofreu?",
+      items:[
+        { stem:"De <em>“Tu cantavas”</em> para <em>“Ele cantava”</em>, qual flexão do verbo mudou?",
+          opts:FLEX_OPTS, ans:1,
+          why:"Continua no singular, no pretérito imperfeito do indicativo e na voz ativa: mudou apenas a <strong>pessoa</strong> (2ª → 3ª)." },
+        { stem:"De <em>“Eu canto”</em> para <em>“Eu cantei”</em>, qual flexão mudou?",
+          opts:FLEX_OPTS, ans:3,
+          why:"Mesma pessoa e mesmo número: mudou o <strong>tempo</strong> (presente → pretérito perfeito)." },
+        { stem:"De <em>“O pedreiro construiu a casa”</em> para <em>“A casa foi construída pelo pedreiro”</em>, qual flexão mudou?",
+          opts:FLEX_OPTS, ans:4,
+          why:"O sujeito passou a receber a ação: mudou a <strong>voz</strong> (ativa → passiva)." },
+        { stem:"De <em>“Ele viaja amanhã”</em> para <em>“Talvez ele viaje amanhã”</em>, qual flexão mudou?",
+          opts:FLEX_OPTS, ans:2,
+          why:"O fato deixou de ser certo e passou a ser duvidoso: mudou o <strong>modo</strong> (indicativo → subjuntivo)." },
+        { stem:"De <em>“O menino corre”</em> para <em>“Os meninos correm”</em>, qual flexão mudou?",
+          opts:FLEX_OPTS, ans:0,
+          why:"Permanece na 3ª pessoa, no presente do indicativo: mudou o <strong>número</strong> (singular → plural)." }
+      ]},
+    { topic:"Tópico 2 — O que o verbo quer expressar?",
+      items:[
+        { stem:"<em>“Choveu muito ontem à noite.”</em> O verbo destacado expressa:",
+          opts:EXPR_OPTS, ans:3,
+          why:"<strong>Choveu</strong> indica um fenômeno da natureza — por isso é um verbo impessoal, sem sujeito." },
+        { stem:"<em>“Ana correu até a escola.”</em> O verbo destacado expressa:",
+          opts:EXPR_OPTS, ans:0,
+          why:"<strong>Correu</strong> indica uma ação praticada pelo sujeito." },
+        { stem:"<em>“O menino está triste.”</em> O verbo destacado expressa:",
+          opts:EXPR_OPTS, ans:1,
+          why:"<strong>Está</strong> liga o sujeito a uma característica: expressa estado." },
+        { stem:"<em>“Ele ficou nervoso com a notícia.”</em> O verbo destacado expressa:",
+          opts:EXPR_OPTS, ans:2,
+          why:"<strong>Ficou</strong> mostra a passagem de um estado para outro: mudança de estado." },
+        { stem:"<em>“Amanheceu nublado na serra.”</em> O verbo destacado expressa:",
+          opts:EXPR_OPTS, ans:3,
+          why:"<strong>Amanheceu</strong> indica fenômeno da natureza." }
+      ]},
+    { topic:"Tópico 3 — Escolha o verbo na flexão indicada",
+      items:[
+        { stem:"Verbo <em>CANTAR</em> na 1ª pessoa do <em>plural</em> do <em>presente do indicativo</em>:",
+          opts:["cantamos","cantávamos","cantaremos","cantássemos"], ans:0,
+          why:"Nós <strong>cantamos</strong> — presente do indicativo. “Cantávamos” é pretérito imperfeito." },
+        { stem:"Verbo <em>VENDER</em> na 3ª pessoa do <em>singular</em> do <em>pretérito perfeito do indicativo</em>:",
+          opts:["vende","vendeu","venderá","vendia"], ans:1,
+          why:"Ele <strong>vendeu</strong> — ação concluída no passado." },
+        { stem:"Verbo <em>PARTIR</em> no <em>gerúndio</em>:",
+          opts:["partir","partido","partindo","partiria"], ans:2,
+          why:"O gerúndio termina em <strong>-ndo</strong>: partindo." },
+        { stem:"Verbo <em>FAZER</em> na 1ª pessoa do <em>singular</em> do <em>futuro do presente</em>:",
+          opts:["fiz","fazia","faria","farei"], ans:3,
+          why:"Eu <strong>farei</strong>. “Faria” é futuro do pretérito." },
+        { stem:"Verbo <em>SER</em> na 3ª pessoa do <em>plural</em> do <em>pretérito imperfeito do indicativo</em>:",
+          opts:["são","foram","eram","serão"], ans:2,
+          why:"Eles <strong>eram</strong> — pretérito imperfeito. “Foram” é pretérito perfeito." }
+      ]},
+    { topic:"Tópico 4 — Em qual conjugação está o verbo?",
+      items:[
+        { stem:"O verbo <em>brincar</em> pertence à:", opts:CONJ_OPTS, ans:0,
+          why:"Termina em <strong>-ar</strong>: 1ª conjugação." },
+        { stem:"O verbo <em>beber</em> pertence à:", opts:CONJ_OPTS, ans:1,
+          why:"Termina em <strong>-er</strong>: 2ª conjugação." },
+        { stem:"O verbo <em>dividir</em> pertence à:", opts:CONJ_OPTS, ans:2,
+          why:"Termina em <strong>-ir</strong>: 3ª conjugação." },
+        { stem:"O verbo <em>pôr</em> (e derivados, como <em>repor</em>) pertence à:", opts:CONJ_OPTS, ans:1,
+          why:"Apesar da terminação <strong>-or</strong>, vem do antigo <em>poer</em>: pertence à 2ª conjugação." },
+        { stem:"O verbo <em>sorrir</em> pertence à:", opts:CONJ_OPTS, ans:2,
+          why:"Termina em <strong>-ir</strong>: 3ª conjugação (ainda que seja irregular)." }
+      ]},
+    { topic:"Tópico 5 — Em qual forma nominal está o verbo?",
+      items:[
+        { stem:"<em>“Cantar</em> é o meu passatempo favorito.” A forma destacada é:",
+          opts:NOM_OPTS, ans:0, why:"Termina em <strong>-r</strong> e funciona como substantivo: infinitivo." },
+        { stem:"“Está <em>chovendo</em> desde cedo.” A forma destacada é:",
+          opts:NOM_OPTS, ans:1, why:"Termina em <strong>-ndo</strong>: gerúndio, indica ação em curso." },
+        { stem:"“Ele tinha <em>comido</em> antes de sair.” A forma destacada é:",
+          opts:NOM_OPTS, ans:2, why:"Termina em <strong>-do</strong> e acompanha o auxiliar: particípio." },
+        { stem:"“<em>Correndo</em>, ela chegou a tempo.” A forma destacada é:",
+          opts:NOM_OPTS, ans:1, why:"Termina em <strong>-ndo</strong>: gerúndio, com valor de modo." },
+        { stem:"“<em>Terminada</em> a prova, todos saíram.” A forma destacada é:",
+          opts:NOM_OPTS, ans:2, why:"Particípio (flexionado em gênero e número), indicando ação concluída." }
+      ]}
+  ];
+
+  var WRITE_FLEXOES = [
+    { topic:"Tópico 1 — Escreva qual flexão mudou",
+      hint:"Responda com uma palavra: número, pessoa, modo, tempo ou voz.",
+      items:[
+        { stem:"Compare: <em>“Eu falo”</em> → <em>“Eu falei”</em>. Qual flexão mudou?",
+          accept:["tempo"], why:"Presente → pretérito perfeito: mudou o tempo." },
+        { stem:"Compare: <em>“Ela dança”</em> → <em>“Elas dançam”</em>. Qual flexão mudou?",
+          accept:["número"], why:"Singular → plural: mudou o número." },
+        { stem:"Compare: <em>“Tu cantas”</em> → <em>“Ele canta”</em>. Qual flexão mudou?",
+          accept:["pessoa"], why:"2ª pessoa → 3ª pessoa: mudou a pessoa." },
+        { stem:"Compare: <em>“Ele viaja”</em> → <em>“Talvez ele viaje”</em>. Qual flexão mudou?",
+          accept:["modo"], why:"Indicativo → subjuntivo: mudou o modo." },
+        { stem:"Compare: <em>“O time venceu o jogo”</em> → <em>“O jogo foi vencido pelo time”</em>. Qual flexão mudou?",
+          accept:["voz"], why:"Voz ativa → voz passiva." }
+      ]},
+    { topic:"Tópico 2 — Escreva o que o verbo expressa",
+      hint:"Responda com: ação, estado, mudança de estado ou fenômeno da natureza.",
+      items:[
+        { stem:"“<em>Ventou</em> forte durante a noite.”",
+          accept:["fenômeno","fenômeno da natureza"],
+          why:"Verbo impessoal que indica fenômeno da natureza." },
+        { stem:"“Marina <em>desenhou</em> um mapa do bairro.”",
+          accept:["ação"], why:"O sujeito pratica a ação de desenhar." },
+        { stem:"“O bebê <em>parece</em> tranquilo hoje.”",
+          accept:["estado"], why:"Verbo de ligação: atribui um estado ao sujeito." },
+        { stem:"“A lagarta <em>virou</em> borboleta.”",
+          accept:["mudança","mudança de estado"],
+          why:"Indica a passagem de um estado para outro." },
+        { stem:"“<em>Trovejou</em> durante a madrugada.”",
+          accept:["fenômeno","fenômeno da natureza"],
+          why:"Fenômeno da natureza — verbo impessoal." }
+      ]},
+    { topic:"Tópico 3 — Escreva o verbo na flexão indicada",
+      hint:"Escreva apenas a forma verbal pedida.",
+      items:[
+        { stem:"<em>(correr)</em> — 3ª pessoa do plural do presente do indicativo:",
+          accept:["correm"], why:"Eles <strong>correm</strong>." },
+        { stem:"<em>(estudar)</em> — 1ª pessoa do singular do pretérito perfeito do indicativo:",
+          accept:["estudei"], why:"Eu <strong>estudei</strong>." },
+        { stem:"<em>(partir)</em> — 2ª pessoa do singular do futuro do presente do indicativo:",
+          accept:["partirás"], why:"Tu <strong>partirás</strong>." },
+        { stem:"<em>(ser)</em> — 3ª pessoa do singular do pretérito imperfeito do indicativo:",
+          accept:["era"], why:"Ele <strong>era</strong>." },
+        { stem:"<em>(vender)</em> — particípio:",
+          accept:["vendido"], why:"Particípio: <strong>vendido</strong>." }
+      ]},
+    { topic:"Tópico 4 — Escreva a conjugação do verbo",
+      hint:"Responda com 1, 2 ou 3.",
+      items:[
+        { stem:"O verbo <em>amar</em> pertence a qual conjugação?",
+          accept:["1","1a","primeira","1ª"], why:"Termina em -ar: 1ª conjugação." },
+        { stem:"O verbo <em>escrever</em> pertence a qual conjugação?",
+          accept:["2","2a","segunda","2ª"], why:"Termina em -er: 2ª conjugação." },
+        { stem:"O verbo <em>sorrir</em> pertence a qual conjugação?",
+          accept:["3","3a","terceira","3ª"], why:"Termina em -ir: 3ª conjugação." },
+        { stem:"O verbo <em>repor</em> pertence a qual conjugação?",
+          accept:["2","2a","segunda","2ª"], why:"Derivado de <em>pôr</em> (antigo poer): 2ª conjugação." },
+        { stem:"O verbo <em>cozinhar</em> pertence a qual conjugação?",
+          accept:["1","1a","primeira","1ª"], why:"Termina em -ar: 1ª conjugação." }
+      ]},
+    { topic:"Tópico 5 — Escreva a forma nominal do verbo destacado",
+      hint:"Responda com: infinitivo, gerúndio ou particípio.",
+      items:[
+        { stem:"“<em>Viver</em> é aprender todos os dias.”",
+          accept:["infinitivo"], why:"Termina em -r: infinitivo." },
+        { stem:"“Ele saiu <em>correndo</em> pela porta.”",
+          accept:["gerúndio"], why:"Termina em -ndo: gerúndio." },
+        { stem:"“A porta foi <em>fechada</em> pelo vento.”",
+          accept:["particípio"], why:"Particípio, na voz passiva." },
+        { stem:"“<em>Sorrindo</em>, ela respondeu à pergunta.”",
+          accept:["gerúndio"], why:"Termina em -ndo: gerúndio." },
+        { stem:"“É preciso <em>partir</em> bem cedo.”",
+          accept:["infinitivo"], why:"Termina em -r: infinitivo." }
+      ]}
+  ];
+
+  /* =========================================================
+     DADOS — SEÇÃO 2: REGULARES E IRREGULARES (20 verbos)
+     ========================================================= */
+  var REG_IRREG = [
+    { v:"cantar",     reg:true,  why:"Radical CANT- constante: canto, cantei, cantarei." },
+    { v:"fazer",      reg:false, why:"Radical muda: faço, fiz, farei, fizesse." },
+    { v:"estudar",    reg:true,  why:"Radical ESTUD- constante: estudo, estudei, estudarei." },
+    { v:"ser",        reg:false, why:"Verbo anômalo: sou, fui, era, serei." },
+    { v:"vender",     reg:true,  why:"Radical VEND- constante: vendo, vendi, venderei." },
+    { v:"ir",         reg:false, why:"Verbo anômalo: vou, fui, irei." },
+    { v:"partir",     reg:true,  why:"Radical PART- constante: parto, parti, partirei." },
+    { v:"ter",        reg:false, why:"Radical muda: tenho, tive, terei." },
+    { v:"falar",      reg:true,  why:"Radical FAL- constante: falo, falei, falarei." },
+    { v:"dizer",      reg:false, why:"Radical muda: digo, disse, direi." },
+    { v:"comer",      reg:true,  why:"Radical COM- constante: como, comi, comerei." },
+    { v:"poder",      reg:false, why:"Radical muda: posso, pude, poderei." },
+    { v:"beber",      reg:true,  why:"Radical BEB- constante: bebo, bebi, beberei." },
+    { v:"querer",     reg:false, why:"Radical muda: quero, quis, quisesse." },
+    { v:"decidir",    reg:true,  why:"Radical DECID- constante: decido, decidi, decidirei." },
+    { v:"estar",      reg:false, why:"Radical muda: estou, estive, esteja." },
+    { v:"aprender",   reg:true,  why:"Radical APRENDE- regular: aprendo, aprendi, aprenderei." },
+    { v:"trazer",     reg:false, why:"Radical muda: trago, trouxe, trarei." },
+    { v:"trabalhar",  reg:true,  why:"Radical TRABALH- constante: trabalho, trabalhei, trabalharei." },
+    { v:"saber",      reg:false, why:"Radical muda: sei, soube, saiba." }
+  ];
+
+  /* =========================================================
+     DADOS — SEÇÃO 3: LIGAR COLUNAS
+     ========================================================= */
+  var MATCH_LEFT = [
+    { id:"m1", label:"cantei",    ans:"passado",  why:"Pretérito perfeito do indicativo." },
+    { id:"m2", label:"estuda",    ans:"presente", why:"Presente do indicativo." },
+    { id:"m3", label:"viajarei",  ans:"futuro",   why:"Futuro do presente do indicativo." },
+    { id:"m4", label:"brincava",  ans:"passado",  why:"Pretérito imperfeito do indicativo." },
+    { id:"m5", label:"venderá",   ans:"futuro",   why:"Futuro do presente do indicativo." },
+    { id:"m6", label:"dormem",    ans:"presente", why:"Presente do indicativo." }
+  ];
+  var MATCH_RIGHT = [
+    { id:"passado",  label:"Passado" },
+    { id:"presente", label:"Presente" },
+    { id:"futuro",   label:"Futuro" }
+  ];
+
+  /* =========================================================
+     DADOS — SEÇÃO 4: OS TRÊS MODOS
+     ========================================================= */
+  var GAPS = [
+    { pre:"Todos os dias, eu", post:"para a prova de português.", tag:"estudar – indicativo",
+      accept:["estudo"], why:"Presente do indicativo: eu <strong>estudo</strong>." },
+    { pre:"Espero que você", post:"toda a comida do prato.", tag:"comer – subjuntivo",
+      accept:["coma"], why:"Presente do subjuntivo: que você <strong>coma</strong>." },
+    { pre:"", post:"cedo hoje, menino!", tag:"dormir – imperativo",
+      accept:["durma","dorme"], why:"Imperativo afirmativo: <strong>Durma</strong> (você) / <strong>Dorme</strong> (tu)." },
+    { pre:"Se eu", post:"tempo, viajaria com vocês.", tag:"ter – subjuntivo",
+      accept:["tivesse"], why:"Pretérito imperfeito do subjuntivo: se eu <strong>tivesse</strong>." },
+    { pre:"Ontem nós", post:"atrasados à reunião.", tag:"chegar – indicativo",
+      accept:["chegamos"], why:"Pretérito perfeito do indicativo: nós <strong>chegamos</strong>." },
+    { pre:"Quando você", post:"em casa, me avise.", tag:"chegar – subjuntivo",
+      accept:["chegar"], why:"Futuro do subjuntivo: quando você <strong>chegar</strong>." },
+    { pre:"", post:"a porta com cuidado, por favor.", tag:"fechar – imperativo",
+      accept:["feche","fecha"], why:"Imperativo afirmativo: <strong>Feche</strong> (você) / <strong>Fecha</strong> (tu)." },
+    { pre:"Ela", post:"minha melhor amiga desde a infância.", tag:"ser – indicativo",
+      accept:["é"], why:"Presente do indicativo: ela <strong>é</strong>." },
+    { pre:"Talvez ele", post:"para o litoral amanhã.", tag:"viajar – subjuntivo",
+      accept:["viaje"], why:"Presente do subjuntivo: talvez ele <strong>viaje</strong>." },
+    { pre:"Não", post:"alto dentro da biblioteca.", tag:"falar – imperativo",
+      accept:["fale","fales"], why:"Imperativo negativo: não <strong>fale</strong> (você) / não <strong>fales</strong> (tu)." }
+  ];
+
+  var MODO_OPTS = ["Indicativo","Subjuntivo","Imperativo"];
+  var MODOS = [
+    { stem:"“Nós <em>viajamos</em> para a praia todo verão.”", ans:0, why:"Fato real e habitual: indicativo." },
+    { stem:"“Quero que você <em>venha</em> comigo ao teatro.”", ans:1, why:"Fato desejado, dependente de outro: subjuntivo." },
+    { stem:"“<em>Traga</em> o livro amanhã, por favor.”", ans:2, why:"Pedido dirigido ao interlocutor: imperativo." },
+    { stem:"“Se eu <em>fosse</em> rico, ajudaria mais pessoas.”", ans:1, why:"Hipótese: pretérito imperfeito do subjuntivo." },
+    { stem:"“<em>Chegue</em> mais perto para enxergar melhor.”", ans:2, why:"Ordem/conselho: imperativo afirmativo." },
+    { stem:"“Ela <em>estuda</em> todos os dias pela manhã.”", ans:0, why:"Fato certo: presente do indicativo." },
+    { stem:"“Talvez <em>chova</em> no fim da tarde.”", ans:1, why:"Dúvida/possibilidade: presente do subjuntivo." },
+    { stem:"“Não <em>saia</em> de casa sem casaco.”", ans:2, why:"Ordem negativa: imperativo negativo." },
+    { stem:"“Amanhã eu <em>farei</em> todo o trabalho.”", ans:0, why:"Fato tido como certo no futuro: indicativo." },
+    { stem:"“Quando ele <em>voltar</em>, avisaremos todos.”", ans:1, why:"Fato futuro e eventual: futuro do subjuntivo." }
+  ];
+
+  /* =========================================================
+     MOTOR 1 — QUIZ (múltipla escolha, agrupado por tópico)
+     ========================================================= */
+  function buildQuiz(mount, groups, scoreId, scoreLabel){
+    var qs = [], n = 0, total = 0;
+    groups.forEach(function(g){ total += g.items.length; });
+    var setScore = registerScore(scoreId, scoreLabel, total);
+
+    groups.forEach(function(g){
+      mount.appendChild(el("p","topic-title", g.topic));
+      g.items.forEach(function(it){
+        n++;
+        var q = el("div","q");
+        q.appendChild(el("p","stem", '<span class="n">'+n+'</span>'+it.stem));
+        var opts = el("div","opts" + (it.opts.length > 3 ? " two" : ""));
+        var name = scoreId + "-q" + n;
+        it.opts.forEach(function(txt, i){
+          var lab = el("label","opt");
+          var inp = document.createElement("input");
+          inp.type = "radio"; inp.name = name; inp.value = String(i);
+          inp.addEventListener("change", function(){
+            Array.prototype.forEach.call(opts.children, function(c){ c.classList.remove("sel"); });
+            lab.classList.add("sel");
+          });
+          lab.appendChild(inp);
+          lab.appendChild(el("span",null,txt));
+          opts.appendChild(lab);
+        });
+        q.appendChild(opts);
+        q.appendChild(el("div","fb"));
+        q._data = it; q._opts = opts; q._name = name;
+        mount.appendChild(q);
+        qs.push(q);
+      });
+    });
+
+    addToolbar(mount, function check(){
+      var got = 0;
+      qs.forEach(function(q){
+        var sel = q.querySelector('input[name="'+q._name+'"]:checked');
+        var fb = q.querySelector(".fb");
+        var kids = q._opts.children;
+        Array.prototype.forEach.call(kids, function(c){ c.classList.remove("right","wrong","sel"); });
+        kids[q._data.ans].classList.add("right");
+        fb.className = "fb show";
+        if(sel && Number(sel.value) === q._data.ans){
+          got++;
+          fb.classList.add("ok");
+          fb.innerHTML = "✔ Correto! " + q._data.why;
+        }else{
+          if(sel) kids[Number(sel.value)].classList.add("wrong");
+          fb.classList.add("no");
+          fb.innerHTML = "✘ Resposta correta: <strong>" + q._data.opts[q._data.ans] + "</strong>. " + q._data.why;
+        }
+      });
+      setScore(got);
+      return {got:got, total:total};
+    }, function reset(){
+      qs.forEach(function(q){
+        q.querySelectorAll("input").forEach(function(i){ i.checked = false; });
+        Array.prototype.forEach.call(q._opts.children, function(c){ c.classList.remove("right","wrong","sel"); });
+        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
+      });
+      setScore(null);
+    });
+  }
+
+  /* =========================================================
+     MOTOR 2 — ESCRITA (campo de texto, agrupado por tópico)
+     ========================================================= */
+  function checkText(value, accept){
+    var v = norm(value);
+    if(!v) return "empty";
+    for(var i=0;i<accept.length;i++){ if(v === norm(accept[i])) return "exact"; }
+    var p = plain(value);
+    for(var j=0;j<accept.length;j++){ if(p === plain(accept[j])) return "almost"; }
+    return "wrong";
+  }
+
+  function buildWrite(mount, groups, scoreId, scoreLabel){
+    var qs = [], n = 0, total = 0;
+    groups.forEach(function(g){ total += g.items.length; });
+    var setScore = registerScore(scoreId, scoreLabel, total);
+
+    groups.forEach(function(g){
+      mount.appendChild(el("p","topic-title", g.topic));
+      if(g.hint) mount.appendChild(el("p","hint", g.hint));
+      g.items.forEach(function(it){
+        n++;
+        var q = el("div","q");
+        q.appendChild(el("p","stem", '<span class="n">'+n+'</span>'+it.stem));
+        var inp = document.createElement("input");
+        inp.type = "text"; inp.className = "txt"; inp.autocomplete = "off";
+        inp.placeholder = "sua resposta";
+        q.appendChild(inp);
+        q.appendChild(el("div","fb"));
+        q._data = it; q._inp = inp;
+        mount.appendChild(q);
+        qs.push(q);
+      });
+    });
+
+    addToolbar(mount, function check(){
+      var got = 0;
+      qs.forEach(function(q){
+        var res = checkText(q._inp.value, q._data.accept);
+        var fb = q.querySelector(".fb");
+        q._inp.classList.remove("right","wrong","almost");
+        fb.className = "fb show";
+        if(res === "exact"){
+          got++; q._inp.classList.add("right");
+          fb.classList.add("ok"); fb.innerHTML = "✔ Correto! " + q._data.why;
+        }else if(res === "almost"){
+          got++; q._inp.classList.add("almost");
+          fb.classList.add("al");
+          fb.innerHTML = "✔ Aceito, mas atenção à grafia/acentuação: o correto é <strong>" + q._data.accept[q._data.accept.length-1] + "</strong>. " + q._data.why;
+        }else{
+          q._inp.classList.add("wrong");
+          fb.classList.add("no");
+          fb.innerHTML = "✘ Resposta esperada: <strong>" + q._data.accept[q._data.accept.length-1] + "</strong>. " + q._data.why;
+        }
+      });
+      setScore(got);
+      return {got:got, total:total};
+    }, function reset(){
+      qs.forEach(function(q){
+        q._inp.value = ""; q._inp.classList.remove("right","wrong","almost");
+        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
+      });
+      setScore(null);
+    });
+  }
+
+  /* =========================================================
+     MOTOR 3 — REGULAR x IRREGULAR
+     ========================================================= */
+  function buildRegIrreg(mount){
+    var total = REG_IRREG.length;
+    var setScore = registerScore("regirreg","Regular ou irregular", total);
+    var grid = el("div","verbgrid");
+    var cards = [];
+
+    REG_IRREG.forEach(function(item, i){
+      var card = el("div","verbcard");
+      card.appendChild(el("span","vb", '<span class="idx">'+(i+1)+'.</span>'+item.v));
+      var choice = el("div","choice");
+      ["Regular","Irregular"].forEach(function(txt, k){
+        var b = document.createElement("button");
+        b.type = "button"; b.textContent = txt;
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(choice.children, function(c){ c.classList.remove("sel"); });
+          b.classList.add("sel");
+          card._pick = (k === 0);
+        });
+        choice.appendChild(b);
+      });
+      card.appendChild(choice);
+      card.appendChild(el("div","note"));
+      card._data = item; card._pick = null;
+      grid.appendChild(card);
+      cards.push(card);
+    });
+    mount.appendChild(grid);
+
+    addToolbar(mount, function check(){
+      var got = 0;
+      cards.forEach(function(c){
+        c.classList.remove("right","wrong");
+        c.classList.add("done");
+        var ok = (c._pick !== null && c._pick === c._data.reg);
+        if(ok){ got++; c.classList.add("right"); }
+        else{ c.classList.add("wrong"); }
+        c.querySelector(".note").innerHTML =
+          (ok ? "✔ " : "✘ ") + "<strong>" + (c._data.reg ? "Regular" : "Irregular") + "</strong> — " + c._data.why;
+      });
+      setScore(got);
+      return {got:got, total:total};
+    }, function reset(){
+      cards.forEach(function(c){
+        c.classList.remove("right","wrong","done");
+        c._pick = null;
+        Array.prototype.forEach.call(c.querySelector(".choice").children, function(b){ b.classList.remove("sel"); });
+        c.querySelector(".note").innerHTML = "";
+      });
+      setScore(null);
+    });
+  }
+
+  /* =========================================================
+     MOTOR 4 — LIGAR COLUNAS
+     ========================================================= */
+  function buildMatch(mount){
+    var total = MATCH_LEFT.length;
+    var setScore = registerScore("ligar","Ligar colunas", total);
+
+    mount.appendChild(el("p","hint",
+      "Toque em um verbo da coluna da esquerda e depois no tempo verbal correspondente à direita. Para trocar, basta ligar de novo."));
+
+    var box = el("div","match");
+    var svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+    box.appendChild(svg);
+
+    var colL = el("div","col left"), colR = el("div","col right");
+    var links = {}, active = null, leftNodes = {}, rightNodes = {};
+
+    function redraw(){
+      while(svg.firstChild) svg.removeChild(svg.firstChild);
+      var b = box.getBoundingClientRect();
+      Object.keys(links).forEach(function(lid){
+        var a = leftNodes[lid].getBoundingClientRect();
+        var c = rightNodes[links[lid].to].getBoundingClientRect();
+        var line = document.createElementNS("http://www.w3.org/2000/svg","line");
+        line.setAttribute("x1", a.right - b.left);
+        line.setAttribute("y1", a.top + a.height/2 - b.top);
+        line.setAttribute("x2", c.left - b.left);
+        line.setAttribute("y2", c.top + c.height/2 - b.top);
+        line.setAttribute("stroke-width","3");
+        line.setAttribute("stroke-linecap","round");
+        var st = links[lid].state;
+        line.setAttribute("stroke",
+          st === "ok" ? getComputedStyle(document.body).getPropertyValue("--ok") :
+          st === "no" ? getComputedStyle(document.body).getPropertyValue("--bad") :
+          getComputedStyle(document.body).getPropertyValue("--accent"));
+        svg.appendChild(line);
+      });
+    }
+
+    MATCH_LEFT.forEach(function(it){
+      var node = el("div","node", it.label);
+      node.addEventListener("click", function(){
+        Object.keys(leftNodes).forEach(function(k){ leftNodes[k].classList.remove("active"); });
+        active = it.id; node.classList.add("active");
+      });
+      leftNodes[it.id] = node;
+      colL.appendChild(node);
+    });
+
+    MATCH_RIGHT.forEach(function(it){
+      var node = el("div","node", it.label);
+      node.addEventListener("click", function(){
+        if(!active) return;
+        links[active] = {to:it.id, state:"idle"};
+        leftNodes[active].classList.add("linked");
+        leftNodes[active].classList.remove("active");
+        active = null;
+        redraw();
+      });
+      rightNodes[it.id] = node;
+      colR.appendChild(node);
+    });
+
+    box.appendChild(colL); box.appendChild(colR);
+    mount.appendChild(box);
+    window.addEventListener("resize", redraw);
+
+    addToolbar(mount, function check(){
+      var got = 0;
+      MATCH_LEFT.forEach(function(it){
+        var node = leftNodes[it.id];
+        node.classList.remove("right-ans","wrong-ans");
+        var lk = links[it.id];
+        if(lk && lk.to === it.ans){
+          got++; lk.state = "ok"; node.classList.add("right-ans");
+          node.innerHTML = it.label + '<div style="font-size:.76rem;font-weight:400;color:var(--muted)">✔ ' + it.why + "</div>";
+        }else{
+          if(lk) lk.state = "no";
+          node.classList.add("wrong-ans");
+          var cert = MATCH_RIGHT.filter(function(r){ return r.id === it.ans; })[0].label;
+          node.innerHTML = it.label + '<div style="font-size:.76rem;font-weight:400;color:var(--muted)">✘ ' + cert + " — " + it.why + "</div>";
+        }
+      });
+      redraw();
+      setScore(got);
+      return {got:got, total:total};
+    }, function reset(){
+      links = {}; active = null;
+      MATCH_LEFT.forEach(function(it){
+        var node = leftNodes[it.id];
+        node.className = "node";
+        node.textContent = it.label;
+      });
+      redraw();
+      setScore(null);
+    });
+
+    setTimeout(redraw, 60);
+  }
+
+  /* =========================================================
+     MOTOR 5 — FRASES COM LACUNA (os três modos)
+     ========================================================= */
+  function buildGaps(mount){
+    var total = GAPS.length;
+    var setScore = registerScore("lacunas","Complete com o modo indicado", total);
+    mount.appendChild(el("p","hint",
+      "Escreva, na lacuna, o verbo entre parênteses conjugado no modo indicado."));
+
+    var qs = [];
+    GAPS.forEach(function(it, i){
+      var q = el("div","q");
+      var stem = el("p","stem");
+      stem.innerHTML = '<span class="n">'+(i+1)+'</span>';
+      if(it.pre) stem.appendChild(document.createTextNode(it.pre + " "));
+      var inp = document.createElement("input");
+      inp.type = "text"; inp.className = "txt gap"; inp.autocomplete = "off"; inp.placeholder = "…";
+      stem.appendChild(inp);
+      stem.appendChild(document.createTextNode(" " + it.post + " "));
+      stem.appendChild(el("em", null, "(" + it.tag + ")"));
+      q.appendChild(stem);
+      q.appendChild(el("div","fb"));
+      q._data = it; q._inp = inp;
+      mount.appendChild(q);
+      qs.push(q);
+    });
+
+    addToolbar(mount, function check(){
+      var got = 0;
+      qs.forEach(function(q){
+        var res = checkText(q._inp.value, q._data.accept);
+        var fb = q.querySelector(".fb");
+        q._inp.classList.remove("right","wrong","almost");
+        fb.className = "fb show";
+        if(res === "exact"){
+          got++; q._inp.classList.add("right");
+          fb.classList.add("ok"); fb.innerHTML = "✔ Correto! " + q._data.why;
+        }else if(res === "almost"){
+          got++; q._inp.classList.add("almost");
+          fb.classList.add("al");
+          fb.innerHTML = "✔ Aceito, mas atenção à acentuação. " + q._data.why;
+        }else{
+          q._inp.classList.add("wrong");
+          fb.classList.add("no");
+          fb.innerHTML = "✘ " + q._data.why;
+        }
+      });
+      setScore(got);
+      return {got:got, total:total};
+    }, function reset(){
+      qs.forEach(function(q){
+        q._inp.value = ""; q._inp.classList.remove("right","wrong","almost");
+        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
+      });
+      setScore(null);
+    });
+  }
+
+  /* =========================================================
+     BARRA DE AÇÕES (verificar / refazer / resultado)
+     ========================================================= */
+  function addToolbar(mount, onCheck, onReset){
+    var bar = el("div","toolbar");
+    var bCheck = document.createElement("button");
+    bCheck.type = "button"; bCheck.textContent = "Verificar respostas";
+    var bReset = document.createElement("button");
+    bReset.type = "button"; bReset.className = "ghost"; bReset.textContent = "Refazer";
+    var out = el("span","result");
+    bar.appendChild(bCheck); bar.appendChild(bReset); bar.appendChild(out);
+    mount.appendChild(bar);
+
+    bCheck.addEventListener("click", function(){
+      var r = onCheck();
+      var pct = Math.round(r.got / r.total * 100);
+      out.className = "result " + (pct >= 60 ? "ok" : "no");
+      out.textContent = "Pontos: " + r.got + " / " + r.total + " (" + pct + "%)";
+    });
+    bReset.addEventListener("click", function(){
+      onReset();
+      out.className = "result"; out.textContent = "";
+    });
+  }
+
+  /* =========================================================
+     INICIALIZAÇÃO
+     ========================================================= */
+  buildQuiz(document.querySelector('[data-quiz="flexoes"]'), QUIZ_FLEXOES, "quizflex", "Quiz das cinco flexões");
+  buildWrite(document.querySelector('[data-write="flexoes"]'), WRITE_FLEXOES, "escrflex", "Escrita das cinco flexões");
+  buildRegIrreg(document.querySelector("[data-regirreg]"));
+  buildMatch(document.querySelector("[data-match]"));
+  buildGaps(document.querySelector("[data-gaps]"));
+  buildQuiz(document.querySelector("[data-modos]"),
+    [{ topic:"Classifique o modo do verbo destacado", items: MODOS.map(function(m){
+        return { stem:m.stem, opts:MODO_OPTS, ans:m.ans, why:m.why };
+      })}],
+    "modos", "Classificação dos modos");
+
+  paintScoreboard();
+})();
+</script>
 </body>
 </html>
