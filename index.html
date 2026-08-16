@@ -2,1130 +2,1961 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quadro Geral dos Verbos — Atividades</title>
-<style>
-  :root{
-    --bg:#f4f6fb;
-    --surface:#ffffff;
-    --surface-2:#eef2fa;
-    --text:#182135;
-    --muted:#5b6784;
-    --line:#d9e0ee;
-    --accent:#3d5afe;
-    --accent-soft:#e8ecff;
-    --ok:#0f8f52;
-    --ok-soft:#e2f6ec;
-    --bad:#cf2f45;
-    --bad-soft:#fdeaed;
-    --warn:#a5741a;
-    --warn-soft:#fdf3dd;
-    --radius:14px;
-    --shadow:0 1px 2px rgba(20,30,60,.06), 0 8px 24px rgba(20,30,60,.06);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#0e1320;
-      --surface:#161d2e;
-      --surface-2:#1d2739;
-      --text:#e8edf8;
-      --muted:#9aa8c4;
-      --line:#2a3548;
-      --accent:#7d90ff;
-      --accent-soft:#232c48;
-      --ok:#4ad38c;
-      --ok-soft:#12301f;
-      --bad:#ff7b8c;
-      --bad-soft:#331319;
-      --warn:#e9c26a;
-      --warn-soft:#332a12;
-      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verbos &amp; Textos — caderno de estudo de Língua Portuguesa</title>
+<meta name="description" content="Material de estudo: verbos, conjugações, tempos, modos verbais e classificação de textos literários e não literários.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        tinta:   '#131C33',
+        tinta2:  '#2B3A63',
+        papel:   '#F1F2ED',
+        papel2:  '#E4E6DE',
+        grifo:   '#FFE14D',
+        indic:   '#1F5FD0',
+        subj:    '#6D4AE0',
+        imper:   '#E0523F',
+        mata:    '#1F7A5A'
+      },
+      fontFamily: {
+        display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+        corpo:   ['"Source Serif 4"', 'Georgia', 'serif'],
+        mono:    ['"IBM Plex Mono"', 'ui-monospace', 'monospace']
+      }
     }
   }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.6;
-    -webkit-text-size-adjust:100%;
-  }
-  .wrap{max-width:940px;margin:0 auto;padding:0 16px 80px}
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-image: radial-gradient(#d7dad0 1px, transparent 1px); background-size: 22px 22px; }
 
-  /* ---------- cabeçalho ---------- */
-  header.top{
-    background:linear-gradient(135deg,var(--accent),#7b3dfe);
-    color:#fff;
-    padding:34px 16px 30px;
+  /* Assinatura da página: o marca-texto */
+  .grifado {
+    background-image: linear-gradient(transparent 58%, #FFE14D 58%, #FFE14D 92%, transparent 92%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    transition: background-size .5s cubic-bezier(.22,.61,.36,1);
+    padding: 0 .12em;
   }
-  header.top .wrap{padding-bottom:0}
-  header.top h1{margin:0 0 6px;font-size:1.85rem;letter-spacing:-.02em}
-  header.top p{margin:0;opacity:.92;font-size:.98rem}
-  .scoreboard{
-    display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;
-  }
-  .score-pill{
-    background:rgba(255,255,255,.16);
-    border:1px solid rgba(255,255,255,.28);
-    border-radius:999px;padding:6px 14px;font-size:.85rem;font-weight:600;
-  }
+  .grifar-on .grifado, .grifado.on { background-size: 100% 100%; }
 
-  /* ---------- navegação ---------- */
-  nav.jump{
-    position:sticky;top:0;z-index:20;
-    background:var(--surface);
-    border-bottom:1px solid var(--line);
-    box-shadow:0 2px 10px rgba(20,30,60,.05);
-  }
-  nav.jump .wrap{display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
-  nav.jump a{
-    white-space:nowrap;text-decoration:none;color:var(--muted);
-    font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;
-    background:var(--surface-2);border:1px solid var(--line);
-  }
-  nav.jump a:hover{color:var(--accent);border-color:var(--accent)}
+  .caneta { box-shadow: 3px 3px 0 0 #131C33; }
+  .caneta-sm { box-shadow: 2px 2px 0 0 #131C33; }
 
-  /* ---------- seções ---------- */
-  section{margin-top:38px;scroll-margin-top:64px}
-  section > h2{
-    font-size:1.4rem;margin:0 0 4px;letter-spacing:-.01em;
-    display:flex;align-items:center;gap:10px;
-  }
-  section > h2 .num{
-    background:var(--accent);color:#fff;font-size:.85rem;font-weight:700;
-    width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;
-  }
-  .lead{color:var(--muted);margin:0 0 18px}
+  .tick-enter { animation: sobe .45s cubic-bezier(.22,.61,.36,1); }
+  @keyframes sobe { from { opacity: 0; transform: translateY(.5em) } to { opacity: 1; transform: none } }
 
-  .card{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px;box-shadow:var(--shadow);margin-bottom:18px;
-  }
-  .card h3{margin:0 0 10px;font-size:1.05rem}
-  .card h4{margin:18px 0 8px;font-size:.95rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.vis { opacity: 1; transform: none; }
 
-  table{width:100%;border-collapse:collapse;font-size:.93rem;margin:6px 0}
-  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-  th{background:var(--surface-2);font-weight:600}
-  .table-scroll{overflow-x:auto}
+  :focus-visible { outline: 3px solid #6D4AE0; outline-offset: 2px; border-radius: 2px; }
 
-  ul.clean{margin:6px 0 0;padding-left:20px}
-  ul.clean li{margin-bottom:6px}
-  code,.ex{
-    background:var(--surface-2);border:1px solid var(--line);border-radius:6px;
-    padding:1px 6px;font-family:"Cascadia Mono",Consolas,monospace;font-size:.88em;
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
-
-  /* ---------- atividades ---------- */
-  .activity{
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    box-shadow:var(--shadow);margin-bottom:22px;overflow:hidden;
+  @media print {
+    nav, .nao-imprime { display: none !important; }
+    body { background: #fff; }
   }
-  .activity > header{
-    padding:16px 18px;border-bottom:1px solid var(--line);background:var(--surface-2);
-    display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
-  }
-  .activity > header .t{font-weight:700}
-  .activity > header .s{display:block;font-size:.85rem;color:var(--muted);font-weight:400}
-  .badge{
-    font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-    background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:4px 10px;
-  }
-  .activity .body{padding:6px 18px 18px}
-
-  .topic-title{
-    margin:20px 0 8px;font-size:.78rem;font-weight:700;letter-spacing:.09em;
-    text-transform:uppercase;color:var(--accent);
-    border-top:1px dashed var(--line);padding-top:16px;
-  }
-  .topic-title:first-child{border-top:0;padding-top:8px}
-
-  .q{padding:12px 0;border-bottom:1px solid var(--line)}
-  .q:last-child{border-bottom:0}
-  .q .stem{margin:0 0 10px;font-weight:500}
-  .q .stem .n{
-    display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;
-    background:var(--surface-2);border:1px solid var(--line);
-    font-size:.75rem;font-weight:700;color:var(--muted);margin-right:8px;
-  }
-  .q .stem em{color:var(--accent);font-style:normal;font-weight:700}
-
-  .opts{display:grid;gap:8px}
-  @media(min-width:620px){ .opts.two{grid-template-columns:1fr 1fr} }
-  .opt{
-    display:flex;align-items:center;gap:10px;cursor:pointer;
-    border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--surface);
-    font-size:.94rem;transition:border-color .15s, background .15s;
-  }
-  .opt:hover{border-color:var(--accent)}
-  .opt input{accent-color:var(--accent);margin:0;flex:none}
-  .opt.sel{border-color:var(--accent);background:var(--accent-soft)}
-  .opt.right{border-color:var(--ok);background:var(--ok-soft)}
-  .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
-
-  input.txt{
-    font:inherit;color:var(--text);background:var(--surface-2);
-    border:1px solid var(--line);border-radius:9px;padding:7px 10px;min-width:150px;
-  }
-  input.txt:focus{outline:2px solid var(--accent);outline-offset:1px}
-  input.txt.right{border-color:var(--ok);background:var(--ok-soft)}
-  input.txt.wrong{border-color:var(--bad);background:var(--bad-soft)}
-  input.txt.almost{border-color:var(--warn);background:var(--warn-soft)}
-  input.gap{min-width:120px;width:150px;text-align:center;margin:0 4px}
-
-  .fb{font-size:.87rem;margin-top:8px;display:none;border-radius:8px;padding:7px 10px}
-  .fb.show{display:block}
-  .fb.ok{background:var(--ok-soft);color:var(--ok)}
-  .fb.no{background:var(--bad-soft);color:var(--bad)}
-  .fb.al{background:var(--warn-soft);color:var(--warn)}
-
-  .toolbar{
-    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
-    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
-  }
-  button{
-    font:inherit;font-weight:600;cursor:pointer;border-radius:10px;padding:9px 18px;
-    border:1px solid var(--accent);background:var(--accent);color:#fff;
-  }
-  button:hover{filter:brightness(1.08)}
-  button.ghost{background:transparent;color:var(--accent)}
-  .result{font-weight:700;margin-left:auto;font-size:.95rem}
-  .result.ok{color:var(--ok)}
-  .result.no{color:var(--bad)}
-
-  /* ---------- regular x irregular ---------- */
-  .verbgrid{display:grid;gap:10px}
-  @media(min-width:560px){ .verbgrid{grid-template-columns:1fr 1fr} }
-  .verbcard{
-    border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);
-    display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
-  }
-  .verbcard .vb{font-weight:700}
-  .verbcard .vb .idx{color:var(--muted);font-weight:600;font-size:.8rem;margin-right:6px}
-  .choice{display:flex;gap:6px}
-  .choice button{
-    padding:5px 12px;font-size:.82rem;border-radius:999px;
-    background:var(--surface-2);color:var(--muted);border:1px solid var(--line);
-  }
-  .choice button.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .verbcard.right{border-color:var(--ok);background:var(--ok-soft)}
-  .verbcard.wrong{border-color:var(--bad);background:var(--bad-soft)}
-  .verbcard .note{flex-basis:100%;font-size:.82rem;color:var(--muted);display:none}
-  .verbcard.done .note{display:block}
-
-  /* ---------- ligar colunas ---------- */
-  .match{position:relative;display:flex;gap:18px;justify-content:space-between}
-  .match svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-  .match .col{display:flex;flex-direction:column;gap:10px;flex:1;z-index:2}
-  .match .col.right{max-width:180px}
-  .node{
-    border:1px solid var(--line);background:var(--surface-2);border-radius:10px;
-    padding:10px 12px;cursor:pointer;font-weight:600;text-align:center;font-size:.94rem;
-    transition:border-color .15s,background .15s;
-  }
-  .node:hover{border-color:var(--accent)}
-  .node.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-  .node.linked{border-style:solid;border-color:var(--accent)}
-  .node.right-ans{border-color:var(--ok);background:var(--ok-soft)}
-  .node.wrong-ans{border-color:var(--bad);background:var(--bad-soft)}
-  .hint{font-size:.85rem;color:var(--muted);margin:0 0 12px}
-
-  footer.end{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
 </style>
 </head>
-<body>
 
-<header class="top">
-  <div class="wrap">
-    <h1>Quadro Geral dos Verbos</h1>
-    <p>Teoria e atividades interativas de Língua Portuguesa — flexões, regularidade, tempos e modos verbais.</p>
-    <div class="scoreboard" id="scoreboard"></div>
+<body class="bg-papel text-tinta font-corpo antialiased">
+
+<!-- ============ CABEÇALHO / HERO ============ -->
+<header class="border-b-2 border-tinta bg-papel">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-8 pb-14">
+
+    <div class="flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[.18em]">
+      <span class="bg-tinta text-papel px-2 py-1">Língua Portuguesa</span>
+      <span class="border border-tinta px-2 py-1">Caderno de estudo</span>
+      <button id="btnGrifar" class="ml-auto border-2 border-tinta bg-grifo px-3 py-1 caneta-sm hover:-translate-y-[1px] transition nao-imprime">
+        Grifar o essencial
+      </button>
+    </div>
+
+    <h1 class="font-display font-extrabold leading-[.92] tracking-tight mt-8 text-[13vw] sm:text-[8rem]">
+      VERBO
+    </h1>
+    <p class="font-display text-xl sm:text-3xl leading-tight max-w-3xl mt-2">
+      a única palavra da frase que <span class="grifado">carrega o tempo</span> junto com o sentido.
+    </p>
+
+    <!-- Demonstração viva: a mesma ação em três tempos -->
+    <div class="mt-10 border-2 border-tinta bg-white caneta max-w-2xl">
+      <div class="flex items-center justify-between border-b-2 border-tinta px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em]">
+        <span>Uma ação, três tempos</span>
+        <span id="tickRotulo" class="text-tinta2">agora</span>
+      </div>
+      <p class="px-4 py-7 text-2xl sm:text-4xl font-display">
+        <span class="text-tinta2">eu</span> <span id="tickForma" class="font-extrabold">estudo</span>
+      </p>
+      <div class="border-t-2 border-tinta px-4 py-2 font-mono text-[11px] text-tinta2">
+        muda a forma do verbo, muda o momento do fato.
+      </div>
+    </div>
+
+    <p class="mt-8 max-w-2xl text-lg leading-relaxed">
+      Este caderno cobre seis frentes: o que é verbo, verbos regulares e irregulares, tempos verbais,
+      os três modos (indicativo, subjuntivo e imperativo), uma tabela de conjugação para consulta e a
+      classificação de textos literários e não literários.
+    </p>
   </div>
 </header>
 
-<nav class="jump">
-  <div class="wrap">
-    <a href="#flexoes">As cinco flexões</a>
-    <a href="#regulares">Regulares e irregulares</a>
-    <a href="#tempos">Tempos verbais</a>
-    <a href="#quadro">Quadro geral</a>
-    <a href="#modos">Os três modos</a>
+<!-- ============ ÍNDICE (sticky) ============ -->
+<nav class="sticky top-0 z-40 bg-tinta text-papel border-b-2 border-tinta nao-imprime">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <ul id="indice" class="flex gap-1 overflow-x-auto font-mono text-[11px] uppercase tracking-[.12em] whitespace-nowrap">
+      <li><a href="#verbo"      class="link-idx block px-3 py-3 border-b-4 border-transparent">01 · O que é verbo</a></li>
+      <li><a href="#regulares"  class="link-idx block px-3 py-3 border-b-4 border-transparent">02 · Regular / irregular</a></li>
+      <li><a href="#tempos"     class="link-idx block px-3 py-3 border-b-4 border-transparent">03 · Tempos</a></li>
+      <li><a href="#modos"      class="link-idx block px-3 py-3 border-b-4 border-transparent">04 · Modos</a></li>
+      <li><a href="#conjugador" class="link-idx block px-3 py-3 border-b-4 border-transparent">05 · Conjugador</a></li>
+      <li><a href="#textos"     class="link-idx block px-3 py-3 border-b-4 border-transparent">06 · Tipos de texto</a></li>
+      <li><a href="#quiz"       class="link-idx block px-3 py-3 border-b-4 border-transparent">07 · Quiz — 50 questões</a></li>
+    </ul>
   </div>
 </nav>
 
-<div class="wrap">
+<main class="max-w-6xl mx-auto px-5 sm:px-8">
 
-  <!-- ================= 1. AS CINCO FLEXÕES ================= -->
-  <section id="flexoes">
-    <h2><span class="num">1</span> As cinco flexões</h2>
-    <p class="lead">O verbo é a palavra que mais varia na língua portuguesa. Ele pode sofrer cinco flexões.</p>
+<!-- ============ 01 — O QUE É VERBO ============ -->
+<section id="verbo" class="pt-16 pb-14 border-b-2 border-tinta reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">01</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">O que são verbos</h2>
 
-    <div class="card">
-      <h3>Quadro das cinco flexões</h3>
-      <div class="table-scroll">
-        <table>
-          <thead>
-            <tr><th>Flexão</th><th>Variações</th><th>Exemplo</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><strong>Número</strong></td><td>singular e plural</td><td>o menino <em>corre</em> / os meninos <em>correm</em></td></tr>
-            <tr><td><strong>Pessoa</strong></td><td>1ª, 2ª e 3ª (eu, tu, ele / nós, vós, eles)</td><td>eu <em>canto</em> / tu <em>cantas</em> / ele <em>canta</em></td></tr>
-            <tr><td><strong>Modo</strong></td><td>indicativo, subjuntivo e imperativo</td><td>ele <em>estuda</em> / que ele <em>estude</em> / <em>estude</em>!</td></tr>
-            <tr><td><strong>Tempo</strong></td><td>presente, pretérito e futuro</td><td>eu <em>falo</em> / eu <em>falei</em> / eu <em>falarei</em></td></tr>
-            <tr><td><strong>Voz</strong></td><td>ativa, passiva e reflexiva</td><td>o time <em>venceu</em> o jogo / o jogo <em>foi vencido</em> pelo time</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-8 mt-8">
+    <div class="space-y-5 text-lg leading-relaxed">
+      <p>
+        Verbo é a classe de palavra que <span class="grifado">indica ação, estado, fenômeno da natureza ou mudança de estado</span>
+        e que se flexiona em pessoa, número, tempo, modo e voz. É o núcleo do predicado: sem verbo, não há oração.
+      </p>
 
-      <h4>O que o verbo pode expressar</h4>
-      <ul class="clean">
-        <li><strong>Ação:</strong> Marina <em>desenhou</em> um mapa.</li>
-        <li><strong>Estado:</strong> O menino <em>está</em> triste.</li>
-        <li><strong>Mudança de estado:</strong> Ele <em>ficou</em> nervoso com a notícia.</li>
-        <li><strong>Fenômeno da natureza:</strong> <em>Choveu</em> muito ontem.</li>
-      </ul>
-
-      <h4>Conjugações e formas nominais</h4>
-      <ul class="clean">
-        <li><strong>1ª conjugação:</strong> terminação <code>-AR</code> (cantar, estudar)</li>
-        <li><strong>2ª conjugação:</strong> terminação <code>-ER</code> (vender, beber) — <em>pôr</em> e derivados também pertencem à 2ª</li>
-        <li><strong>3ª conjugação:</strong> terminação <code>-IR</code> (partir, sorrir)</li>
-        <li><strong>Formas nominais:</strong> infinitivo (<code>-r</code>), gerúndio (<code>-ndo</code>) e particípio (<code>-do</code>)</li>
-      </ul>
-    </div>
-
-    <!-- Atividade quiz -->
-    <div class="activity" id="act-quiz-flexoes">
-      <header>
-        <span class="t">Atividade 1 — Quiz das cinco flexões<span class="s">25 questões · 5 de cada tópico · marque a alternativa correta</span></span>
-        <span class="badge">Quiz</span>
-      </header>
-      <div class="body" data-quiz="flexoes"></div>
-    </div>
-
-    <!-- Atividade escrita -->
-    <div class="activity" id="act-escrita-flexoes">
-      <header>
-        <span class="t">Atividade 2 — Escreva das cinco flexões<span class="s">25 questões · 5 de cada tópico · digite a resposta</span></span>
-        <span class="badge">Escrita</span>
-      </header>
-      <div class="body" data-write="flexoes"></div>
-    </div>
-  </section>
-
-  <!-- ================= 2. REGULARES E IRREGULARES ================= -->
-  <section id="regulares">
-    <h2><span class="num">2</span> Verbos regulares e irregulares</h2>
-    <p class="lead">A diferença está no radical: se ele se mantém em toda a conjugação, o verbo é regular.</p>
-
-    <div class="card">
-      <div class="table-scroll">
-        <table>
-          <thead><tr><th>Tipo</th><th>Característica</th><th>Exemplo</th></tr></thead>
-          <tbody>
-            <tr>
-              <td><strong>Regular</strong></td>
-              <td>O radical não muda e as terminações seguem o modelo da conjugação.</td>
-              <td>cant<strong>ar</strong> → eu cant<strong>o</strong>, eu cant<strong>ei</strong>, eu cant<strong>arei</strong></td>
-            </tr>
-            <tr>
-              <td><strong>Irregular</strong></td>
-              <td>O radical e/ou as terminações sofrem alterações.</td>
-              <td>faz<strong>er</strong> → eu <strong>faço</strong>, eu <strong>fiz</strong>, eu <strong>farei</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="hint" style="margin-top:10px">Dica: conjugue o verbo no presente e no pretérito perfeito. Se o radical mudar em alguma pessoa, ele é irregular.</p>
-    </div>
-
-    <div class="activity" id="act-regirreg">
-      <header>
-        <span class="t">Atividade 3 — Regular ou irregular?<span class="s">20 verbos · classifique cada um e some seus pontos</span></span>
-        <span class="badge">Classificar</span>
-      </header>
-      <div class="body" data-regirreg></div>
-    </div>
-  </section>
-
-  <!-- ================= 3. TEMPOS VERBAIS ================= -->
-  <section id="tempos">
-    <h2><span class="num">3</span> Tempos verbais</h2>
-    <p class="lead">O tempo indica o momento em que o fato ocorre: antes, durante ou depois do momento da fala.</p>
-
-    <div class="card">
-      <div class="table-scroll">
-        <table>
-          <thead><tr><th>Tempo</th><th>Indica</th><th>Exemplos</th></tr></thead>
-          <tbody>
-            <tr><td><strong>Presente</strong></td><td>fato que acontece agora ou é habitual</td><td>eu estudo · ele dorme · nós partimos</td></tr>
-            <tr><td><strong>Pretérito (passado)</strong></td><td>fato que já aconteceu</td><td>eu cantei · ele brincava · nós tínhamos saído</td></tr>
-            <tr><td><strong>Futuro</strong></td><td>fato que ainda vai acontecer</td><td>eu viajarei · ele venderá · nós iremos</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="activity" id="act-ligar">
-      <header>
-        <span class="t">Atividade 4 — Ligue as colunas<span class="s">6 verbos · relacione cada um a passado, presente ou futuro</span></span>
-        <span class="badge">Ligar colunas</span>
-      </header>
-      <div class="body" data-match></div>
-    </div>
-  </section>
-
-  <!-- ================= 4. QUADRO GERAL ================= -->
-  <section id="quadro">
-    <h2><span class="num">4</span> Quadro geral dos verbos</h2>
-    <p class="lead">Reunindo tudo: modos, tempos e formas nominais em um só quadro.</p>
-
-    <div class="card">
-      <div class="table-scroll">
-        <table>
-          <thead><tr><th>Modo</th><th>Tempos</th><th>Exemplo com <em>cantar</em></th></tr></thead>
-          <tbody>
-            <tr>
-              <td rowspan="3"><strong>Indicativo</strong></td>
-              <td>Presente</td><td>eu canto</td>
-            </tr>
-            <tr><td>Pretérito (perfeito, imperfeito, mais-que-perfeito)</td><td>eu cantei · eu cantava · eu cantara</td></tr>
-            <tr><td>Futuro (do presente e do pretérito)</td><td>eu cantarei · eu cantaria</td></tr>
-            <tr>
-              <td rowspan="3"><strong>Subjuntivo</strong></td>
-              <td>Presente</td><td>que eu cante</td>
-            </tr>
-            <tr><td>Pretérito imperfeito</td><td>se eu cantasse</td></tr>
-            <tr><td>Futuro</td><td>quando eu cantar</td></tr>
-            <tr>
-              <td rowspan="2"><strong>Imperativo</strong></td>
-              <td>Afirmativo</td><td>canta (tu) · cante (você)</td>
-            </tr>
-            <tr><td>Negativo</td><td>não cantes (tu) · não cante (você)</td></tr>
-            <tr>
-              <td rowspan="3"><strong>Formas nominais</strong></td>
-              <td>Infinitivo</td><td>cantar</td>
-            </tr>
-            <tr><td>Gerúndio</td><td>cantando</td></tr>
-            <tr><td>Particípio</td><td>cantado</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ============ OS TRÊS MODOS ============ -->
-    <div id="modos" style="scroll-margin-top:64px">
-      <div class="card">
-        <h3>Os três modos</h3>
-        <ul class="clean">
-          <li><strong>Indicativo</strong> — apresenta o fato como certo, real. <span class="ex">Ela estuda todos os dias.</span></li>
-          <li><strong>Subjuntivo</strong> — apresenta o fato como possível, duvidoso ou desejado. <span class="ex">Talvez ela estude hoje.</span></li>
-          <li><strong>Imperativo</strong> — expressa ordem, pedido ou conselho. <span class="ex">Estude para a prova!</span></li>
+      <div class="border-2 border-tinta bg-white caneta">
+        <p class="border-b-2 border-tinta px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em]">O que o verbo pode expressar</p>
+        <ul class="divide-y divide-papel2">
+          <li class="px-4 py-3"><b>Ação</b> — A menina <b class="text-indic">correu</b> até o portão.</li>
+          <li class="px-4 py-3"><b>Estado</b> — O time <b class="text-indic">está</b> confiante.</li>
+          <li class="px-4 py-3"><b>Fenômeno da natureza</b> — <b class="text-indic">Choveu</b> a noite inteira.</li>
+          <li class="px-4 py-3"><b>Mudança de estado</b> — A água <b class="text-indic">virou</b> gelo.</li>
         </ul>
       </div>
 
-      <div class="activity" id="act-lacunas">
-        <header>
-          <span class="t">Atividade 5 — Complete com o modo indicado<span class="s">10 frases · escreva o verbo entre parênteses no modo pedido</span></span>
-          <span class="badge">Escrita</span>
-        </header>
-        <div class="body" data-gaps></div>
+      <h3 class="font-display font-bold text-2xl pt-2">As cinco flexões</h3>
+      <p>Cada forma verbal responde a cinco perguntas ao mesmo tempo:</p>
+      <ol class="space-y-2">
+        <li><b>Pessoa</b> — quem fala (1ª), com quem se fala (2ª), de quem se fala (3ª).</li>
+        <li><b>Número</b> — singular ou plural.</li>
+        <li><b>Tempo</b> — presente, passado ou futuro.</li>
+        <li><b>Modo</b> — a atitude de quem fala: certeza, hipótese ou ordem.</li>
+        <li><b>Voz</b> — ativa (o sujeito pratica), passiva (o sujeito sofre) ou reflexiva (pratica e sofre).</li>
+      </ol>
+
+      <h3 class="font-display font-bold text-2xl pt-2">Como identificar um verbo no texto</h3>
+      <p>
+        Teste prático: tente colocar a palavra em outro tempo. Se ela aceita <i>ontem / hoje / amanhã</i>
+        mudando de forma, é verbo. <i>"A corrida foi longa"</i> — <i>corrida</i> não muda com o tempo (é substantivo);
+        <i>foi</i> muda (<i>é</i>, <i>será</i>) — é verbo.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      <!-- Estrutura interna -->
+      <div class="border-2 border-tinta bg-tinta text-papel caneta">
+        <p class="border-b-2 border-papel/30 px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em]">Anatomia de uma forma verbal</p>
+        <div class="px-4 py-6">
+          <p class="font-display text-4xl font-extrabold tracking-tight">
+            <span class="text-grifo">fal</span><span class="text-white">á</span><span class="text-[#9BE3B4]">va</span><span class="text-[#FF9C8A]">mos</span>
+          </p>
+          <ul class="mt-4 font-mono text-xs space-y-2 leading-relaxed">
+            <li><span class="text-grifo">fal</span> — radical (o sentido)</li>
+            <li><span class="text-white">á</span> — vogal temática (a conjugação)</li>
+            <li><span class="text-[#9BE3B4]">va</span> — desinência modo-temporal (pretérito imperfeito do indicativo)</li>
+            <li><span class="text-[#FF9C8A]">mos</span> — desinência número-pessoal (1ª do plural)</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="activity" id="act-classmodo">
-        <header>
-          <span class="t">Atividade 6 — Classifique o modo verbal<span class="s">10 frases · indicativo, subjuntivo ou imperativo</span></span>
-          <span class="badge">Quiz</span>
-        </header>
-        <div class="body" data-modos></div>
+      <!-- Conjugações -->
+      <div class="border-2 border-tinta bg-white caneta">
+        <p class="border-b-2 border-tinta px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em]">As três conjugações</p>
+        <table class="w-full text-left">
+          <tbody class="divide-y divide-papel2">
+            <tr><td class="px-4 py-3 font-mono text-sm">1ª</td><td class="px-4 py-3">terminam em <b>-ar</b></td><td class="px-4 py-3 italic">falar, cantar, estudar</td></tr>
+            <tr><td class="px-4 py-3 font-mono text-sm">2ª</td><td class="px-4 py-3">terminam em <b>-er</b></td><td class="px-4 py-3 italic">comer, vender, saber</td></tr>
+            <tr><td class="px-4 py-3 font-mono text-sm">3ª</td><td class="px-4 py-3">terminam em <b>-ir</b></td><td class="px-4 py-3 italic">partir, dormir, sorrir</td></tr>
+          </tbody>
+        </table>
+        <p class="border-t-2 border-tinta px-4 py-3 text-sm">
+          <b>Exceção clássica:</b> <i>pôr</i> e derivados (<i>compor</i>, <i>supor</i>, <i>repor</i>) pertencem à
+          2ª conjugação — vêm do antigo <i>poer</i>.
+        </p>
+      </div>
+
+      <!-- Formas nominais -->
+      <div class="border-2 border-tinta bg-grifo caneta">
+        <p class="border-b-2 border-tinta px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em]">Formas nominais</p>
+        <ul class="px-4 py-3 space-y-2">
+          <li><b>Infinitivo</b> (-ar, -er, -ir): nomeia a ação — <i>estudar é preciso</i>.</li>
+          <li><b>Gerúndio</b> (-ndo): ação em curso — <i>estudando para a prova</i>.</li>
+          <li><b>Particípio</b> (-ado, -ido): ação concluída — <i>tenho estudado</i>.</li>
+        </ul>
+        <p class="border-t-2 border-tinta px-4 py-2 text-sm">Não indicam tempo nem modo por si sós.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <footer class="end">
-    Material de estudo de Língua Portuguesa — verbos. Todas as atividades funcionam sem internet: basta abrir este arquivo no navegador.
-  </footer>
-</div>
+  <!-- ---------- TREINO DAS CINCO FLEXÕES (atividades) ---------- -->
+  <div class="mt-16 nao-imprime">
+    <div class="flex items-center gap-4">
+      <span class="h-2 flex-1 bg-tinta"></span>
+      <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2 whitespace-nowrap">Treino · as cinco flexões</p>
+      <span class="h-2 flex-1 bg-tinta"></span>
+    </div>
+
+    <p class="mt-6 text-lg max-w-3xl leading-relaxed">
+      Cinquenta questões divididas em cinco tópicos: <b>qual flexão o verbo sofreu</b>, <b>o que o verbo expressa</b>,
+      <b>escrever o verbo na flexão indicada</b>, <b>em qual conjugação está</b> e <b>em qual forma nominal está</b>.
+      A primeira atividade é de marcar; a segunda, de escrever.
+    </p>
+
+    <!-- Atividade 1 — quiz -->
+    <div class="mt-8 border-2 border-tinta bg-white caneta">
+      <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 1 · marque a alternativa</p>
+          <p class="font-display font-bold text-2xl leading-tight mt-1">Quiz das cinco flexões</p>
+        </div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="flexQuiz">0 de 25</p>
+      </div>
+      <div data-lista="flexQuiz" class="divide-y-2 divide-papel2"></div>
+      <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+        <button data-refazer="flexQuiz" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Recomeçar</button>
+        <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">5 questões por tópico</span>
+      </div>
+    </div>
+
+    <!-- Atividade 2 — escrita -->
+    <div class="mt-8 border-2 border-tinta bg-white caneta">
+      <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+        <div>
+          <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 2 · escreva a resposta</p>
+          <p class="font-display font-bold text-2xl leading-tight mt-1">Escrita das cinco flexões</p>
+        </div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="flexEscrita">0 de 25</p>
+      </div>
+      <div data-lista="flexEscrita" class="divide-y-2 divide-papel2"></div>
+      <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+        <button data-corrigir="flexEscrita" class="border-2 border-tinta bg-tinta text-papel px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Corrigir tudo</button>
+        <button data-refazer="flexEscrita" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Limpar</button>
+        <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Enter confere a questão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 — REGULARES E IRREGULARES ============ -->
+<section id="regulares" class="pt-16 pb-14 border-b-2 border-tinta reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">02</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Regulares e irregulares</h2>
+
+  <div class="grid lg:grid-cols-2 gap-8 mt-8">
+    <div class="border-2 border-tinta bg-white caneta">
+      <p class="border-b-2 border-tinta px-4 py-3 font-display font-bold text-2xl">Regulares</p>
+      <div class="px-4 py-4 space-y-3 text-lg leading-relaxed">
+        <p><span class="grifado">O radical não muda</span> e as desinências seguem sempre o modelo da conjugação.</p>
+        <p class="font-mono text-sm bg-papel border border-papel2 p-3 leading-relaxed">
+          fal<b>o</b> · fal<b>ei</b> · fal<b>arei</b> · fal<b>ava</b><br>
+          com<b>o</b> · com<b>i</b> · com<b>erei</b> · com<b>ia</b><br>
+          part<b>o</b> · part<b>i</b> · part<b>irei</b> · part<b>ia</b>
+        </p>
+        <p class="text-base">Aprendendo um modelo de cada conjugação, você conjuga milhares de verbos.</p>
+      </div>
+    </div>
+
+    <div class="border-2 border-tinta bg-tinta text-papel caneta">
+      <p class="border-b-2 border-papel/30 px-4 py-3 font-display font-bold text-2xl">Irregulares</p>
+      <div class="px-4 py-4 space-y-3 text-lg leading-relaxed">
+        <p><span class="text-grifo font-bold">O radical e/ou as desinências mudam</span> ao longo da conjugação.</p>
+        <p class="font-mono text-sm bg-tinta2/40 border border-papel/20 p-3 leading-relaxed">
+          <b class="text-grifo">s</b>ou · <b class="text-grifo">f</b>ui · <b class="text-grifo">er</b>a · <b class="text-grifo">ser</b>ei<br>
+          <b class="text-grifo">faç</b>o · <b class="text-grifo">fiz</b> · <b class="text-grifo">faz</b>ia · <b class="text-grifo">far</b>ei<br>
+          <b class="text-grifo">v</b>ou · <b class="text-grifo">f</b>ui · <b class="text-grifo">i</b>a · <b class="text-grifo">ir</b>ei
+        </p>
+        <p class="text-base">Precisam ser memorizados por uso e leitura — não há atalho de modelo.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 border-2 border-tinta bg-grifo caneta p-5">
+    <p class="font-display font-bold text-xl">O teste dos três tempos</p>
+    <p class="mt-2 text-lg leading-relaxed max-w-3xl">
+      Para descobrir se um verbo é irregular, conjugue-o na <b>1ª pessoa do presente</b>, no <b>pretérito perfeito</b> e no <b>futuro</b>.
+      Se o radical mudar em alguma delas, o verbo é irregular.
+      <i>Vender</i> → vendo / vendi / venderei (regular). <i>Trazer</i> → trago / trouxe / trarei (irregular).
+    </p>
+  </div>
+
+  <h3 class="font-display font-bold text-2xl mt-10">Outras classificações que costumam cair na prova</h3>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+    <div class="border-2 border-tinta bg-white p-4 caneta-sm">
+      <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Anômalos</p>
+      <p class="mt-2">Irregularidade extrema: mudam totalmente de radical.</p>
+      <p class="mt-2 italic">ser (sou / fui), ir (vou / fui)</p>
+    </div>
+    <div class="border-2 border-tinta bg-white p-4 caneta-sm">
+      <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Defectivos</p>
+      <p class="mt-2">Não possuem algumas formas da conjugação.</p>
+      <p class="mt-2 italic">falir, reaver, precaver, colorir</p>
+    </div>
+    <div class="border-2 border-tinta bg-white p-4 caneta-sm">
+      <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Abundantes</p>
+      <p class="mt-2">Têm duas formas para a mesma função, em geral no particípio.</p>
+      <p class="mt-2 italic">pagado / pago · aceitado / aceito</p>
+    </div>
+    <div class="border-2 border-tinta bg-white p-4 caneta-sm">
+      <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Auxiliares</p>
+      <p class="mt-2">Acompanham outro verbo formando locução.</p>
+      <p class="mt-2 italic">ser, estar, ter, haver — <i>tenho estudado</i></p>
+    </div>
+  </div>
+
+  <!-- ---------- ATIVIDADE: REGULAR OU IRREGULAR ---------- -->
+  <div class="mt-14 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 3 · classifique cada verbo</p>
+        <p class="font-display font-bold text-2xl leading-tight mt-1">Caça aos irregulares — 20 verbos</p>
+      </div>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="regIrreg">0 de 20</p>
+    </div>
+
+    <p class="px-4 sm:px-5 py-4 text-lg leading-relaxed border-b-2 border-papel2">
+      Aplique o teste dos três tempos em cada verbo e marque <b>regular</b> ou <b>irregular</b>.
+      Cada acerto vale um ponto.
+    </p>
+
+    <div data-lista="regIrreg" class="grid sm:grid-cols-2 gap-px bg-papel2"></div>
+
+    <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+      <button data-refazer="regIrreg" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Recomeçar</button>
+      <span data-resumo="regIrreg" class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 — TEMPOS VERBAIS ============ -->
+<section id="tempos" class="pt-16 pb-14 border-b-2 border-tinta reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">03</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Tempos verbais</h2>
+  <p class="mt-4 text-lg max-w-3xl leading-relaxed">
+    O tempo verbal situa o fato em relação ao momento da fala. São três eixos —
+    <span class="grifado">passado, presente e futuro</span> — e cada eixo tem tempos próprios em cada modo.
+    Clique em um eixo para ver os tempos correspondentes.
+  </p>
+
+  <!-- Linha do tempo interativa -->
+  <div class="mt-8">
+    <div class="grid grid-cols-3 gap-2 sm:gap-4 nao-imprime">
+      <button data-eixo="passado" class="btn-eixo border-2 border-tinta bg-white px-3 py-4 text-left caneta-sm transition">
+        <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">antes</span>
+        <span class="block font-display font-extrabold text-xl sm:text-3xl leading-none mt-1">Passado</span>
+      </button>
+      <button data-eixo="presente" class="btn-eixo border-2 border-tinta bg-white px-3 py-4 text-left caneta-sm transition">
+        <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">agora</span>
+        <span class="block font-display font-extrabold text-xl sm:text-3xl leading-none mt-1">Presente</span>
+      </button>
+      <button data-eixo="futuro" class="btn-eixo border-2 border-tinta bg-white px-3 py-4 text-left caneta-sm transition">
+        <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">depois</span>
+        <span class="block font-display font-extrabold text-xl sm:text-3xl leading-none mt-1">Futuro</span>
+      </button>
+    </div>
+    <div class="h-2 bg-tinta mt-4"></div>
+    <div id="painelEixo" class="mt-6 grid md:grid-cols-2 gap-4"></div>
+  </div>
+
+  <div class="mt-10 border-2 border-tinta bg-white caneta p-5">
+    <p class="font-display font-bold text-xl">Quadro geral dos tempos</p>
+    <div class="overflow-x-auto mt-4">
+      <table class="w-full text-left border-collapse min-w-[560px]">
+        <thead>
+          <tr class="bg-tinta text-papel font-mono text-[11px] uppercase tracking-[.12em]">
+            <th class="px-3 py-2 border border-tinta">Modo</th>
+            <th class="px-3 py-2 border border-tinta">Tempos</th>
+            <th class="px-3 py-2 border border-tinta">Exemplo com <i>falar</i></th>
+          </tr>
+        </thead>
+        <tbody class="align-top">
+          <tr>
+            <td class="px-3 py-3 border border-papel2 font-bold text-indic">Indicativo</td>
+            <td class="px-3 py-3 border border-papel2">presente · pretérito perfeito · pretérito imperfeito · pretérito mais-que-perfeito · futuro do presente · futuro do pretérito</td>
+            <td class="px-3 py-3 border border-papel2 italic">falo · falei · falava · falara · falarei · falaria</td>
+          </tr>
+          <tr>
+            <td class="px-3 py-3 border border-papel2 font-bold text-subj">Subjuntivo</td>
+            <td class="px-3 py-3 border border-papel2">presente · pretérito imperfeito · futuro</td>
+            <td class="px-3 py-3 border border-papel2 italic">que eu fale · se eu falasse · quando eu falar</td>
+          </tr>
+          <tr>
+            <td class="px-3 py-3 border border-papel2 font-bold text-imper">Imperativo</td>
+            <td class="px-3 py-3 border border-papel2">afirmativo · negativo (não tem divisão de tempo)</td>
+            <td class="px-3 py-3 border border-papel2 italic">fala · não fales</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ---------- ATIVIDADE: LIGAR COLUNAS ---------- -->
+  <div class="mt-14 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 4 · ligue as colunas</p>
+        <p class="font-display font-bold text-2xl leading-tight mt-1">Cada verbo no seu eixo</p>
+      </div>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="ligar">0 de 6</p>
+    </div>
+
+    <p class="px-4 sm:px-5 py-4 text-lg leading-relaxed border-b-2 border-papel2">
+      Clique em uma forma verbal da esquerda e depois no eixo correspondente à direita —
+      <b>passado</b>, <b>presente</b> ou <b>futuro</b>. Para trocar uma ligação, basta ligar de novo.
+    </p>
+
+    <div data-lista="ligar" class="px-4 sm:px-5 py-6"></div>
+
+    <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+      <button data-corrigir="ligar" class="border-2 border-tinta bg-tinta text-papel px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Conferir ligações</button>
+      <button data-refazer="ligar" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Apagar tudo</button>
+      <span data-resumo="ligar" class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — MODOS VERBAIS ============ -->
+<section id="modos" class="pt-16 pb-14 border-b-2 border-tinta reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">04</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Os três modos</h2>
+  <p class="mt-4 text-lg max-w-3xl leading-relaxed">
+    O modo revela a <span class="grifado">atitude de quem fala diante do fato</span>: se o apresenta como certo,
+    como possível ou como uma ordem. Cada modo tem uma cor neste caderno.
+  </p>
+
+  <div class="grid lg:grid-cols-3 gap-5 mt-8">
+    <!-- Indicativo -->
+    <article class="border-2 border-tinta bg-white caneta flex flex-col">
+      <div class="bg-indic text-white px-4 py-3 border-b-2 border-tinta">
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Modo 1</p>
+        <h3 class="font-display font-extrabold text-3xl leading-none">Indicativo</h3>
+      </div>
+      <div class="p-4 space-y-3 flex-1">
+        <p class="text-lg"><b>Significa:</b> certeza. O fato é apresentado como real, concreto, verificável.</p>
+        <p><b>Aplicações:</b> narrar, informar, relatar, descrever. É o modo da notícia, do relatório, da conversa cotidiana.</p>
+        <ul class="space-y-1 italic border-l-4 border-indic pl-3">
+          <li>Ela <b>estuda</b> todas as manhãs.</li>
+          <li>O prazo <b>terminou</b> ontem.</li>
+          <li>A prova <b>será</b> em novembro.</li>
+        </ul>
+        <p class="font-mono text-xs bg-papel p-3">Pista: aparece sozinho, na oração principal, sem "que" nem "se" antes.</p>
+      </div>
+    </article>
+
+    <!-- Subjuntivo -->
+    <article class="border-2 border-tinta bg-white caneta flex flex-col">
+      <div class="bg-subj text-white px-4 py-3 border-b-2 border-tinta">
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Modo 2</p>
+        <h3 class="font-display font-extrabold text-3xl leading-none">Subjuntivo</h3>
+      </div>
+      <div class="p-4 space-y-3 flex-1">
+        <p class="text-lg"><b>Significa:</b> hipótese. O fato é possível, desejado, duvidoso ou condicionado — não é dado como certo.</p>
+        <p><b>Aplicações:</b> expressar desejo, dúvida, condição, receio e possibilidade. Aparece muito em orações subordinadas.</p>
+        <ul class="space-y-1 italic border-l-4 border-subj pl-3">
+          <li>Espero que ela <b>estude</b>. <span class="not-italic text-sm">(desejo — presente)</span></li>
+          <li>Se ela <b>estudasse</b>, passaria. <span class="not-italic text-sm">(condição — pretérito imperfeito)</span></li>
+          <li>Quando ela <b>estudar</b>, avise. <span class="not-italic text-sm">(futuro)</span></li>
+        </ul>
+        <p class="font-mono text-xs bg-papel p-3">Pista: vem depois de <b>que</b>, <b>se</b>, <b>quando</b>, <b>talvez</b>, <b>embora</b>, <b>caso</b>.</p>
+      </div>
+    </article>
+
+    <!-- Imperativo -->
+    <article class="border-2 border-tinta bg-white caneta flex flex-col">
+      <div class="bg-imper text-white px-4 py-3 border-b-2 border-tinta">
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Modo 3</p>
+        <h3 class="font-display font-extrabold text-3xl leading-none">Imperativo</h3>
+      </div>
+      <div class="p-4 space-y-3 flex-1">
+        <p class="text-lg"><b>Significa:</b> ordem. Também pedido, conselho, convite, súplica ou instrução.</p>
+        <p><b>Aplicações:</b> receitas, manuais, bulas, placas, propaganda, comandos de prova ("assinale", "explique").</p>
+        <ul class="space-y-1 italic border-l-4 border-imper pl-3">
+          <li><b>Estude</b> mais uma hora hoje. <span class="not-italic text-sm">(ordem)</span></li>
+          <li><b>Bata</b> os ovos com o açúcar. <span class="not-italic text-sm">(instrução)</span></li>
+          <li><b>Não deixe</b> para a última semana. <span class="not-italic text-sm">(negativo)</span></li>
+        </ul>
+        <p class="font-mono text-xs bg-papel p-3">Não existe imperativo na 1ª pessoa do singular: ninguém dá ordem a si mesmo.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Como se forma o imperativo -->
+  <div class="mt-8 border-2 border-tinta bg-tinta text-papel caneta p-5">
+    <p class="font-display font-bold text-2xl">Como se forma o imperativo</p>
+    <div class="grid md:grid-cols-2 gap-6 mt-4">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-grifo">Afirmativo</p>
+        <p class="mt-2 leading-relaxed"><b>tu</b> e <b>vós</b> vêm do presente do <span class="text-grifo">indicativo</span>, sem o <b>-s</b> final.
+        Todas as outras pessoas vêm do presente do <span class="text-grifo">subjuntivo</span>.</p>
+        <p class="font-mono text-sm bg-tinta2/40 p-3 mt-3 leading-relaxed">
+          tu falas → <b>fala</b> tu<br>
+          que ele fale → <b>fale</b> você<br>
+          vós falais → <b>falai</b> vós<br>
+          que eles falem → <b>falem</b> vocês
+        </p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-grifo">Negativo</p>
+        <p class="mt-2 leading-relaxed">Todas as pessoas vêm do presente do <span class="text-grifo">subjuntivo</span>, com <b>não</b> antes. Sem exceção.</p>
+        <p class="font-mono text-sm bg-tinta2/40 p-3 mt-3 leading-relaxed">
+          <b>não fales</b> tu<br>
+          <b>não fale</b> você<br>
+          <b>não faleis</b> vós<br>
+          <b>não falem</b> vocês
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz de modos -->
+  <div id="quizModos" class="mt-10 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+      <p class="font-display font-bold text-xl">Treino: identifique o modo</p>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" id="placarModos">0 de 6</p>
+    </div>
+    <div id="listaModos" class="divide-y-2 divide-papel2"></div>
+  </div>
+
+  <!-- ---------- ATIVIDADE: COMPLETAR NO MODO INDICADO ---------- -->
+  <div class="mt-14 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 5 · escreva o verbo</p>
+        <p class="font-display font-bold text-2xl leading-tight mt-1">Complete a frase no modo indicado</p>
+      </div>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="lacunas">0 de 10</p>
+    </div>
+
+    <p class="px-4 sm:px-5 py-4 text-lg leading-relaxed border-b-2 border-papel2">
+      Entre parênteses estão o verbo e o modo em que ele deve aparecer — por exemplo
+      <span class="font-mono text-sm bg-papel border border-papel2 px-2 py-1">(estudar – indicativo)</span>.
+      Escreva na lacuna a forma correta.
+    </p>
+
+    <div data-lista="lacunas" class="divide-y-2 divide-papel2"></div>
+
+    <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+      <button data-corrigir="lacunas" class="border-2 border-tinta bg-tinta text-papel px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Corrigir tudo</button>
+      <button data-refazer="lacunas" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Limpar</button>
+      <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Enter confere a frase</span>
+    </div>
+  </div>
+
+  <!-- ---------- ATIVIDADE: CLASSIFICAR O MODO ---------- -->
+  <div class="mt-8 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 sm:px-5 py-3 flex items-end justify-between gap-3 flex-wrap">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Atividade 6 · marque o modo</p>
+        <p class="font-display font-bold text-2xl leading-tight mt-1">Classifique o verbo da frase</p>
+      </div>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" data-placar="classModo">0 de 10</p>
+    </div>
+
+    <p class="px-4 sm:px-5 py-4 text-lg leading-relaxed border-b-2 border-papel2">
+      Dez frases prontas. Diga se o verbo em destaque está no <b class="text-indic">indicativo</b>,
+      no <b class="text-subj">subjuntivo</b> ou no <b class="text-imper">imperativo</b>.
+    </p>
+
+    <div data-lista="classModo" class="divide-y-2 divide-papel2"></div>
+
+    <div class="border-t-2 border-tinta px-4 sm:px-5 py-3 flex flex-wrap gap-3 items-center">
+      <button data-refazer="classModo" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">Recomeçar</button>
+      <span data-resumo="classModo" class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 — CONJUGADOR ============ -->
+<section id="conjugador" class="pt-16 pb-14 border-b-2 border-tinta reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">05</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Tabela de conjugação</h2>
+  <p class="mt-4 text-lg max-w-3xl leading-relaxed">
+    Três verbos regulares (um de cada conjugação) e três irregulares de alta frequência.
+    Compare as formas e observe onde o radical se mantém e onde ele quebra.
+  </p>
+
+  <div class="mt-6 grid sm:grid-cols-2 gap-4 nao-imprime">
+    <label class="block">
+      <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Verbo</span>
+      <select id="selVerbo" class="mt-1 w-full border-2 border-tinta bg-white px-3 py-3 font-display text-xl caneta-sm"></select>
+    </label>
+    <label class="block">
+      <span class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Modo e tempo</span>
+      <select id="selTempo" class="mt-1 w-full border-2 border-tinta bg-white px-3 py-3 font-display text-xl caneta-sm"></select>
+    </label>
+  </div>
+
+  <div id="cartaoConjug" class="mt-6 border-2 border-tinta bg-white caneta"></div>
+
+  <p class="mt-4 text-base bg-grifo border-2 border-tinta p-4 caneta-sm">
+    <b>Detalhe que confunde:</b> em <i>falamos</i>, <i>comemos</i> e <i>partimos</i>, a 1ª pessoa do plural é igual no
+    presente e no pretérito perfeito. Só o contexto distingue: <i>hoje nós falamos</i> (presente) × <i>ontem nós falamos</i> (passado).
+  </p>
+</section>
+
+<!-- ============ 06 — TEXTOS LITERÁRIOS E NÃO LITERÁRIOS ============ -->
+<section id="textos" class="pt-16 pb-14 reveal">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">06</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Textos literários<br>e não literários</h2>
+  <p class="mt-4 text-lg max-w-3xl leading-relaxed">
+    A diferença não está no assunto — os dois podem falar de uma seca, de um crime ou de um amor.
+    Está em <span class="grifado">como a linguagem é usada e para quê</span>.
+  </p>
+
+  <div class="grid lg:grid-cols-2 gap-6 mt-8">
+    <article class="border-2 border-tinta bg-tinta text-papel caneta">
+      <div class="border-b-2 border-papel/30 px-5 py-4">
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-grifo">Definição</p>
+        <h3 class="font-display font-extrabold text-3xl leading-none mt-1">Texto literário</h3>
+      </div>
+      <div class="p-5 space-y-3 text-lg leading-relaxed">
+        <p>Texto em que a linguagem é <b class="text-grifo">o próprio objeto de trabalho</b>. Predomina a função poética:
+        importa não só o que se diz, mas como se diz.</p>
+        <ul class="space-y-2 text-base">
+          <li><b>Linguagem conotativa</b> — sentido figurado, metáfora, imagem.</li>
+          <li><b>Plurissignificação</b> — admite várias leituras válidas.</li>
+          <li><b>Ficcionalidade</b> — cria um mundo próprio, mesmo quando parte do real.</li>
+          <li><b>Liberdade formal</b> — pode inventar ritmo, sintaxe, pontuação.</li>
+          <li><b>Finalidade estética</b> — provoca emoção, estranhamento, prazer.</li>
+        </ul>
+        <p class="font-mono text-xs bg-tinta2/40 p-3">Gêneros: poema, conto, romance, novela, fábula, texto teatral, cordel.</p>
+      </div>
+    </article>
+
+    <article class="border-2 border-tinta bg-white caneta">
+      <div class="border-b-2 border-tinta px-5 py-4">
+        <p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">Definição</p>
+        <h3 class="font-display font-extrabold text-3xl leading-none mt-1">Texto não literário</h3>
+      </div>
+      <div class="p-5 space-y-3 text-lg leading-relaxed">
+        <p>Texto em que a linguagem é <b>meio para transmitir informação</b>. Predomina a função referencial:
+        o foco está no assunto, não na forma.</p>
+        <ul class="space-y-2 text-base">
+          <li><b>Linguagem denotativa</b> — sentido literal, direto.</li>
+          <li><b>Monossignificação</b> — busca uma única leitura possível.</li>
+          <li><b>Compromisso com o real</b> — dados verificáveis, fontes.</li>
+          <li><b>Estrutura convencionada</b> — segue o formato do gênero.</li>
+          <li><b>Finalidade prática</b> — informar, instruir, orientar, convencer.</li>
+        </ul>
+        <p class="font-mono text-xs bg-papel p-3">Gêneros: notícia, reportagem, verbete, artigo científico, bula, receita, manual, edital, relatório.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Comparativo -->
+  <div class="mt-8 border-2 border-tinta bg-white caneta overflow-x-auto">
+    <table class="w-full text-left border-collapse min-w-[620px]">
+      <thead>
+        <tr class="bg-tinta text-papel font-mono text-[11px] uppercase tracking-[.12em]">
+          <th class="px-4 py-3 border border-tinta">Critério</th>
+          <th class="px-4 py-3 border border-tinta">Literário</th>
+          <th class="px-4 py-3 border border-tinta">Não literário</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="px-4 py-3 border border-papel2 font-bold">Intenção</td><td class="px-4 py-3 border border-papel2">Emocionar, provocar, criar arte</td><td class="px-4 py-3 border border-papel2">Informar, ensinar, orientar</td></tr>
+        <tr class="bg-papel"><td class="px-4 py-3 border border-papel2 font-bold">Linguagem</td><td class="px-4 py-3 border border-papel2">Conotativa, subjetiva</td><td class="px-4 py-3 border border-papel2">Denotativa, objetiva</td></tr>
+        <tr><td class="px-4 py-3 border border-papel2 font-bold">Compromisso</td><td class="px-4 py-3 border border-papel2">Com a verossimilhança</td><td class="px-4 py-3 border border-papel2">Com a verdade dos fatos</td></tr>
+        <tr class="bg-papel"><td class="px-4 py-3 border border-papel2 font-bold">Leitura</td><td class="px-4 py-3 border border-papel2">Múltipla, aberta</td><td class="px-4 py-3 border border-papel2">Única, fechada</td></tr>
+        <tr><td class="px-4 py-3 border border-papel2 font-bold">Forma</td><td class="px-4 py-3 border border-papel2">Livre, inventiva</td><td class="px-4 py-3 border border-papel2">Padronizada pelo gênero</td></tr>
+        <tr class="bg-papel"><td class="px-4 py-3 border border-papel2 font-bold">Exemplo</td><td class="px-4 py-3 border border-papel2 italic">"O rio arrastava a cidade inteira na memória."</td><td class="px-4 py-3 border border-papel2 italic">"O rio transbordou e atingiu 320 casas."</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Fronteiras -->
+  <div class="mt-8 border-2 border-tinta bg-grifo caneta p-5">
+    <p class="font-display font-bold text-2xl">As fronteiras (onde a prova costuma pegar)</p>
+    <div class="grid md:grid-cols-3 gap-5 mt-4">
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Crônica</p>
+        <p class="mt-1">Nasce do fato jornalístico, mas trabalha a linguagem com liberdade literária. Gênero híbrido.</p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Publicidade</p>
+        <p class="mt-1">Usa metáfora, ritmo e jogo de palavras — recursos literários —, porém com finalidade comercial.</p>
+      </div>
+      <div>
+        <p class="font-mono text-[11px] uppercase tracking-[.15em]">Reportagem-livro</p>
+        <p class="mt-1">Fatos apurados e verificáveis narrados com técnica de romance. Conteúdo real, forma literária.</p>
+      </div>
+    </div>
+    <p class="mt-4 text-base border-t-2 border-tinta pt-3">
+      Critério de desempate: pergunte qual é a <b>função dominante</b> do texto. Se ele existe sobretudo para
+      informar, é não literário, mesmo com uma imagem bonita no meio.
+    </p>
+  </div>
+
+  <!-- Quiz de classificação -->
+  <div id="quizTextos" class="mt-10 border-2 border-tinta bg-white caneta nao-imprime">
+    <div class="border-b-2 border-tinta px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+      <p class="font-display font-bold text-xl">Treino: classifique o trecho</p>
+      <p class="font-mono text-[11px] uppercase tracking-[.15em]" id="placarTextos">0 de 6</p>
+    </div>
+    <div id="listaTextos" class="divide-y-2 divide-papel2"></div>
+  </div>
+</section>
+
+<!-- ============ 07 — QUIZ COMPLETO ============ -->
+<section id="quiz" class="pt-16 pb-14 border-t-2 border-tinta reveal nao-imprime">
+  <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">07</p>
+  <h2 class="font-display font-extrabold text-4xl sm:text-6xl leading-none mt-1">Quiz — 50 questões</h2>
+  <p class="mt-4 text-lg max-w-3xl leading-relaxed">
+    Dez questões para cada tema do caderno. Escolha o tema, responda uma por vez e veja a correção
+    comentada na hora. <span class="grifado">Errar aqui é a parte barata do estudo.</span>
+  </p>
+
+  <!-- Abas dos temas -->
+  <div id="abasQuiz" class="grid grid-cols-2 lg:grid-cols-5 gap-2 mt-8"></div>
+
+  <!-- Cartão do quiz -->
+  <div id="quizGeral" class="mt-6 border-2 border-tinta bg-white caneta">
+    <div class="border-b-2 border-tinta px-5 py-3 flex flex-wrap items-center gap-x-5 gap-y-2">
+      <p id="quizTema" class="font-display font-bold text-xl leading-none"></p>
+      <p id="quizPos" class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2"></p>
+      <p id="quizAcertos" class="font-mono text-[11px] uppercase tracking-[.15em] ml-auto"></p>
+    </div>
+
+    <div class="h-2 bg-papel2">
+      <div id="quizBarra" class="h-full bg-grifo transition-all duration-300" style="width:0%"></div>
+    </div>
+
+    <div id="quizCorpo" class="p-5 sm:p-7"></div>
+
+    <div class="border-t-2 border-tinta px-5 py-3 flex flex-wrap gap-3 items-center">
+      <button id="btnProxima" class="border-2 border-tinta bg-tinta text-papel px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition disabled:opacity-40 disabled:hover:translate-y-0" disabled>
+        Próxima questão
+      </button>
+      <button id="btnReiniciar" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition">
+        Recomeçar tema
+      </button>
+      <span id="quizDica" class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+<section class="pb-20 reveal">
+  <div class="border-2 border-tinta bg-tinta text-papel caneta p-6 sm:p-8">
+    <p class="font-mono text-[11px] uppercase tracking-[.2em] text-grifo">Revisão relâmpago</p>
+    <h2 class="font-display font-extrabold text-3xl sm:text-5xl leading-none mt-2">Seis frases para levar</h2>
+    <ol class="mt-6 grid md:grid-cols-2 gap-x-8 gap-y-4 text-lg leading-relaxed">
+      <li><b class="text-grifo">1.</b> Verbo indica ação, estado, fenômeno ou mudança de estado — e flexiona em pessoa, número, tempo, modo e voz.</li>
+      <li><b class="text-grifo">2.</b> Regular mantém o radical; irregular quebra o radical ou as desinências.</li>
+      <li><b class="text-grifo">3.</b> Tempo situa o fato: antes, agora ou depois do momento da fala.</li>
+      <li><b class="text-grifo">4.</b> Indicativo = certeza. Subjuntivo = hipótese. Imperativo = ordem.</li>
+      <li><b class="text-grifo">5.</b> Imperativo negativo sai inteiro do presente do subjuntivo.</li>
+      <li><b class="text-grifo">6.</b> Literário trabalha a linguagem; não literário usa a linguagem para informar.</li>
+    </ol>
+  </div>
+  <p class="text-center font-mono text-[11px] uppercase tracking-[.2em] text-tinta2 mt-8">
+    Caderno de estudo · Língua Portuguesa
+  </p>
+</section>
+
+</main>
 
 <script>
-(function(){
-  "use strict";
+/* ==========================================================
+   1. MARCA-TEXTO — assinatura da página
+   ========================================================== */
+const btnGrifar = document.getElementById('btnGrifar');
+let grifando = false;
+btnGrifar.addEventListener('click', () => {
+  grifando = !grifando;
+  document.body.classList.toggle('grifar-on', grifando);
+  btnGrifar.textContent = grifando ? 'Apagar os grifos' : 'Grifar o essencial';
+  btnGrifar.classList.toggle('bg-grifo', !grifando);
+  btnGrifar.classList.toggle('bg-white', grifando);
+});
 
-  /* =========================================================
-     UTILIDADES
-     ========================================================= */
-  var norm = function(s){
-    return String(s == null ? "" : s).toLowerCase().trim().replace(/\s+/g," ");
-  };
-  var plain = function(s){
-    return norm(s).normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.!?,;:]$/,"");
-  };
-  var el = function(tag, cls, html){
-    var n = document.createElement(tag);
-    if(cls) n.className = cls;
-    if(html != null) n.innerHTML = html;
-    return n;
-  };
+/* ==========================================================
+   2. RELÓGIO DO HERO — uma ação em três tempos
+   ========================================================== */
+const ticks = [
+  { rotulo: 'ontem',  forma: 'estudei'   },
+  { rotulo: 'agora',  forma: 'estudo'    },
+  { rotulo: 'amanhã', forma: 'estudarei' }
+];
+let tickIdx = 1;
+const elRotulo = document.getElementById('tickRotulo');
+const elForma  = document.getElementById('tickForma');
+setInterval(() => {
+  tickIdx = (tickIdx + 1) % ticks.length;
+  elRotulo.textContent = ticks[tickIdx].rotulo;
+  elForma.textContent  = ticks[tickIdx].forma;
+  elForma.classList.remove('tick-enter');
+  void elForma.offsetWidth;
+  elForma.classList.add('tick-enter');
+}, 2200);
 
-  /* Registro de pontuação global */
-  var registry = [];
-  function registerScore(id, label, total){
-    var item = {id:id, label:label, total:total, got:null};
-    registry.push(item);
-    return function(got){ item.got = got; paintScoreboard(); };
-  }
-  function paintScoreboard(){
-    var box = document.getElementById("scoreboard");
-    box.innerHTML = "";
-    var sum = 0, max = 0, done = 0;
-    registry.forEach(function(it){
-      max += it.total;
-      if(it.got !== null){ sum += it.got; done++; }
+/* ==========================================================
+   3. ÍNDICE ATIVO CONFORME A ROLAGEM
+   ========================================================== */
+const links = [...document.querySelectorAll('.link-idx')];
+const secoes = links.map(a => document.querySelector(a.getAttribute('href')));
+const marcaAtivo = (id) => links.forEach(a => {
+  const ativo = a.getAttribute('href') === '#' + id;
+  a.classList.toggle('border-grifo', ativo);
+  a.classList.toggle('text-grifo', ativo);
+  a.classList.toggle('border-transparent', !ativo);
+});
+const obsIdx = new IntersectionObserver((entradas) => {
+  entradas.forEach(e => { if (e.isIntersecting) marcaAtivo(e.target.id); });
+}, { rootMargin: '-20% 0px -70% 0px' });
+secoes.forEach(s => s && obsIdx.observe(s));
+
+/* ==========================================================
+   4. REVELAR SEÇÕES AO ROLAR
+   ========================================================== */
+const obsReveal = new IntersectionObserver((entradas) => {
+  entradas.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obsReveal.unobserve(e.target); } });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => obsReveal.observe(el));
+
+/* ==========================================================
+   5. LINHA DO TEMPO — tempos por eixo
+   ========================================================== */
+const EIXOS = {
+  passado: [
+    { nome: 'Pretérito perfeito (indicativo)', desc: 'Ação concluída em um ponto do passado.', ex: 'Eu estudei a matéria ontem.' },
+    { nome: 'Pretérito imperfeito (indicativo)', desc: 'Ação habitual, contínua ou inacabada no passado.', ex: 'Eu estudava todo domingo.' },
+    { nome: 'Pretérito mais-que-perfeito (indicativo)', desc: 'Ação anterior a outra ação passada.', ex: 'Eu já estudara quando a aula começou.' },
+    { nome: 'Pretérito imperfeito (subjuntivo)', desc: 'Hipótese ou condição no passado.', ex: 'Se eu estudasse, teria passado.' }
+  ],
+  presente: [
+    { nome: 'Presente (indicativo)', desc: 'Fato atual, habitual ou verdade permanente.', ex: 'Eu estudo três horas por dia.' },
+    { nome: 'Presente (subjuntivo)', desc: 'Desejo, dúvida ou possibilidade no agora.', ex: 'Espero que eu estude o suficiente.' },
+    { nome: 'Imperativo', desc: 'Ordem, pedido ou instrução dada no momento da fala.', ex: 'Estude agora.' }
+  ],
+  futuro: [
+    { nome: 'Futuro do presente (indicativo)', desc: 'Fato que vai acontecer.', ex: 'Eu estudarei amanhã.' },
+    { nome: 'Futuro do pretérito (indicativo)', desc: 'Fato condicionado a outro; também usado para polidez.', ex: 'Eu estudaria mais, se tivesse tempo.' },
+    { nome: 'Futuro (subjuntivo)', desc: 'Hipótese futura; vem depois de "quando", "se", "enquanto".', ex: 'Quando eu estudar, aviso você.' }
+  ]
+};
+const CORES_EIXO = { passado: 'bg-tinta text-papel', presente: 'bg-grifo text-tinta', futuro: 'bg-subj text-white' };
+const painelEixo = document.getElementById('painelEixo');
+const botoesEixo = [...document.querySelectorAll('.btn-eixo')];
+
+function mostraEixo(eixo) {
+  botoesEixo.forEach(b => {
+    const ativo = b.dataset.eixo === eixo;
+    b.classList.toggle('bg-tinta', ativo);
+    b.classList.toggle('text-papel', ativo);
+    b.classList.toggle('bg-white', !ativo);
+    b.querySelectorAll('span')[0].classList.toggle('text-tinta2', !ativo);
+  });
+  painelEixo.innerHTML = EIXOS[eixo].map(t => `
+    <div class="border-2 border-tinta bg-white caneta-sm p-4">
+      <p class="font-display font-bold text-lg leading-tight">${t.nome}</p>
+      <p class="mt-1">${t.desc}</p>
+      <p class="mt-2 italic border-l-4 border-tinta pl-3">${t.ex}</p>
+    </div>`).join('');
+}
+botoesEixo.forEach(b => b.addEventListener('click', () => mostraEixo(b.dataset.eixo)));
+mostraEixo('presente');
+
+/* ==========================================================
+   6. CONJUGADOR
+   ========================================================== */
+const PESSOAS = ['eu', 'tu', 'ele / ela', 'nós', 'vós', 'eles / elas'];
+
+const VERBOS = {
+  falar: { nome: 'falar', tipo: 'regular — 1ª conjugação (-ar)', formas: {
+    presInd:  ['falo','falas','fala','falamos','falais','falam'],
+    pretPerf: ['falei','falaste','falou','falamos','falastes','falaram'],
+    pretImp:  ['falava','falavas','falava','falávamos','faláveis','falavam'],
+    futPres:  ['falarei','falarás','falará','falaremos','falareis','falarão'],
+    futPret:  ['falaria','falarias','falaria','falaríamos','falaríeis','falariam'],
+    presSub:  ['que eu fale','que tu fales','que ele fale','que nós falemos','que vós faleis','que eles falem'],
+    impSub:   ['se eu falasse','se tu falasses','se ele falasse','se nós falássemos','se vós falásseis','se eles falassem'],
+    futSub:   ['quando eu falar','quando tu falares','quando ele falar','quando nós falarmos','quando vós falardes','quando eles falarem'],
+    impAfir:  ['—','fala tu','fale você','falemos nós','falai vós','falem vocês'],
+    impNeg:   ['—','não fales tu','não fale você','não falemos nós','não faleis vós','não falem vocês']
+  }},
+  comer: { nome: 'comer', tipo: 'regular — 2ª conjugação (-er)', formas: {
+    presInd:  ['como','comes','come','comemos','comeis','comem'],
+    pretPerf: ['comi','comeste','comeu','comemos','comestes','comeram'],
+    pretImp:  ['comia','comias','comia','comíamos','comíeis','comiam'],
+    futPres:  ['comerei','comerás','comerá','comeremos','comereis','comerão'],
+    futPret:  ['comeria','comerias','comeria','comeríamos','comeríeis','comeriam'],
+    presSub:  ['que eu coma','que tu comas','que ele coma','que nós comamos','que vós comais','que eles comam'],
+    impSub:   ['se eu comesse','se tu comesses','se ele comesse','se nós comêssemos','se vós comêsseis','se eles comessem'],
+    futSub:   ['quando eu comer','quando tu comeres','quando ele comer','quando nós comermos','quando vós comerdes','quando eles comerem'],
+    impAfir:  ['—','come tu','coma você','comamos nós','comei vós','comam vocês'],
+    impNeg:   ['—','não comas tu','não coma você','não comamos nós','não comais vós','não comam vocês']
+  }},
+  partir: { nome: 'partir', tipo: 'regular — 3ª conjugação (-ir)', formas: {
+    presInd:  ['parto','partes','parte','partimos','partis','partem'],
+    pretPerf: ['parti','partiste','partiu','partimos','partistes','partiram'],
+    pretImp:  ['partia','partias','partia','partíamos','partíeis','partiam'],
+    futPres:  ['partirei','partirás','partirá','partiremos','partireis','partirão'],
+    futPret:  ['partiria','partirias','partiria','partiríamos','partiríeis','partiriam'],
+    presSub:  ['que eu parta','que tu partas','que ele parta','que nós partamos','que vós partais','que eles partam'],
+    impSub:   ['se eu partisse','se tu partisses','se ele partisse','se nós partíssemos','se vós partísseis','se eles partissem'],
+    futSub:   ['quando eu partir','quando tu partires','quando ele partir','quando nós partirmos','quando vós partirdes','quando eles partirem'],
+    impAfir:  ['—','parte tu','parta você','partamos nós','parti vós','partam vocês'],
+    impNeg:   ['—','não partas tu','não parta você','não partamos nós','não partais vós','não partam vocês']
+  }},
+  ser: { nome: 'ser', tipo: 'irregular (anômalo)', formas: {
+    presInd:  ['sou','és','é','somos','sois','são'],
+    pretPerf: ['fui','foste','foi','fomos','fostes','foram'],
+    pretImp:  ['era','eras','era','éramos','éreis','eram'],
+    futPres:  ['serei','serás','será','seremos','sereis','serão'],
+    futPret:  ['seria','serias','seria','seríamos','seríeis','seriam'],
+    presSub:  ['que eu seja','que tu sejas','que ele seja','que nós sejamos','que vós sejais','que eles sejam'],
+    impSub:   ['se eu fosse','se tu fosses','se ele fosse','se nós fôssemos','se vós fôsseis','se eles fossem'],
+    futSub:   ['quando eu for','quando tu fores','quando ele for','quando nós formos','quando vós fordes','quando eles forem'],
+    impAfir:  ['—','sê tu','seja você','sejamos nós','sede vós','sejam vocês'],
+    impNeg:   ['—','não sejas tu','não seja você','não sejamos nós','não sejais vós','não sejam vocês']
+  }},
+  ir: { nome: 'ir', tipo: 'irregular (anômalo)', formas: {
+    presInd:  ['vou','vais','vai','vamos','ides','vão'],
+    pretPerf: ['fui','foste','foi','fomos','fostes','foram'],
+    pretImp:  ['ia','ias','ia','íamos','íeis','iam'],
+    futPres:  ['irei','irás','irá','iremos','ireis','irão'],
+    futPret:  ['iria','irias','iria','iríamos','iríeis','iriam'],
+    presSub:  ['que eu vá','que tu vás','que ele vá','que nós vamos','que vós vades','que eles vão'],
+    impSub:   ['se eu fosse','se tu fosses','se ele fosse','se nós fôssemos','se vós fôsseis','se eles fossem'],
+    futSub:   ['quando eu for','quando tu fores','quando ele for','quando nós formos','quando vós fordes','quando eles forem'],
+    impAfir:  ['—','vai tu','vá você','vamos nós','ide vós','vão vocês'],
+    impNeg:   ['—','não vás tu','não vá você','não vamos nós','não vades vós','não vão vocês']
+  }},
+  fazer: { nome: 'fazer', tipo: 'irregular', formas: {
+    presInd:  ['faço','fazes','faz','fazemos','fazeis','fazem'],
+    pretPerf: ['fiz','fizeste','fez','fizemos','fizestes','fizeram'],
+    pretImp:  ['fazia','fazias','fazia','fazíamos','fazíeis','faziam'],
+    futPres:  ['farei','farás','fará','faremos','fareis','farão'],
+    futPret:  ['faria','farias','faria','faríamos','faríeis','fariam'],
+    presSub:  ['que eu faça','que tu faças','que ele faça','que nós façamos','que vós façais','que eles façam'],
+    impSub:   ['se eu fizesse','se tu fizesses','se ele fizesse','se nós fizéssemos','se vós fizésseis','se eles fizessem'],
+    futSub:   ['quando eu fizer','quando tu fizeres','quando ele fizer','quando nós fizermos','quando vós fizerdes','quando eles fizerem'],
+    impAfir:  ['—','faze tu','faça você','façamos nós','fazei vós','façam vocês'],
+    impNeg:   ['—','não faças tu','não faça você','não façamos nós','não façais vós','não façam vocês']
+  }}
+};
+
+const TEMPOS = [
+  { id: 'presInd',  rotulo: 'Indicativo · presente',                  modo: 'indicativo' },
+  { id: 'pretPerf', rotulo: 'Indicativo · pretérito perfeito',        modo: 'indicativo' },
+  { id: 'pretImp',  rotulo: 'Indicativo · pretérito imperfeito',      modo: 'indicativo' },
+  { id: 'futPres',  rotulo: 'Indicativo · futuro do presente',        modo: 'indicativo' },
+  { id: 'futPret',  rotulo: 'Indicativo · futuro do pretérito',       modo: 'indicativo' },
+  { id: 'presSub',  rotulo: 'Subjuntivo · presente',                  modo: 'subjuntivo' },
+  { id: 'impSub',   rotulo: 'Subjuntivo · pretérito imperfeito',      modo: 'subjuntivo' },
+  { id: 'futSub',   rotulo: 'Subjuntivo · futuro',                    modo: 'subjuntivo' },
+  { id: 'impAfir',  rotulo: 'Imperativo · afirmativo',                modo: 'imperativo' },
+  { id: 'impNeg',   rotulo: 'Imperativo · negativo',                  modo: 'imperativo' }
+];
+
+const CORES_MODO = {
+  indicativo: { faixa: 'bg-indic', texto: 'text-indic' },
+  subjuntivo: { faixa: 'bg-subj',  texto: 'text-subj'  },
+  imperativo: { faixa: 'bg-imper', texto: 'text-imper' }
+};
+
+const selVerbo = document.getElementById('selVerbo');
+const selTempo = document.getElementById('selTempo');
+const cartao   = document.getElementById('cartaoConjug');
+
+selVerbo.innerHTML = Object.keys(VERBOS).map(k => `<option value="${k}">${VERBOS[k].nome}</option>`).join('');
+selTempo.innerHTML = TEMPOS.map(t => `<option value="${t.id}">${t.rotulo}</option>`).join('');
+
+function desenhaConjugacao() {
+  const v = VERBOS[selVerbo.value];
+  const t = TEMPOS.find(x => x.id === selTempo.value);
+  const cor = CORES_MODO[t.modo];
+  const formas = v.formas[t.id];
+
+  cartao.innerHTML = `
+    <div class="${cor.faixa} text-white px-5 py-4 border-b-2 border-tinta flex flex-wrap items-baseline gap-x-4 gap-y-1">
+      <span class="font-display font-extrabold text-3xl">${v.nome}</span>
+      <span class="font-mono text-[11px] uppercase tracking-[.15em]">${v.tipo}</span>
+      <span class="font-mono text-[11px] uppercase tracking-[.15em] ml-auto">${t.rotulo}</span>
+    </div>
+    <ul class="divide-y divide-papel2">
+      ${formas.map((f, i) => `
+        <li class="flex items-baseline gap-4 px-5 py-3 ${f === '—' ? 'opacity-40' : ''}">
+          <span class="font-mono text-xs uppercase tracking-wider text-tinta2 w-24 shrink-0">${PESSOAS[i]}</span>
+          <span class="font-display text-xl sm:text-2xl ${cor.texto} font-semibold">${f}</span>
+        </li>`).join('')}
+    </ul>
+    ${t.id === 'impAfir' ? '<p class="border-t-2 border-tinta px-5 py-3 text-sm">A 1ª pessoa do singular não existe no imperativo.</p>' : ''}
+  `;
+}
+selVerbo.addEventListener('change', desenhaConjugacao);
+selTempo.addEventListener('change', desenhaConjugacao);
+desenhaConjugacao();
+
+/* ==========================================================
+   7. QUIZ — MODOS VERBAIS
+   ========================================================== */
+const QMODOS = [
+  { frase: 'Os alunos <b>chegaram</b> cedo à escola.', certa: 'indicativo', porque: 'Fato apresentado como certo e concluído — pretérito perfeito do indicativo.' },
+  { frase: '<b>Entregue</b> a redação até sexta-feira.', certa: 'imperativo', porque: 'É uma ordem dirigida ao interlocutor.' },
+  { frase: 'Talvez ele <b>volte</b> antes do almoço.', certa: 'subjuntivo', porque: '"Talvez" marca dúvida — presente do subjuntivo.' },
+  { frase: 'Se você <b>estudasse</b> comigo, seria mais rápido.', certa: 'subjuntivo', porque: 'Condição hipotética introduzida por "se" — pretérito imperfeito do subjuntivo.' },
+  { frase: 'Não <b>deixe</b> o portão aberto.', certa: 'imperativo', porque: 'Imperativo negativo, formado a partir do presente do subjuntivo.' },
+  { frase: 'A prova <b>começará</b> às oito horas.', certa: 'indicativo', porque: 'Fato futuro dado como certo — futuro do presente do indicativo.' }
+];
+const OPC_MODOS = ['indicativo', 'subjuntivo', 'imperativo'];
+montaQuiz({
+  dados: QMODOS, opcoes: OPC_MODOS,
+  alvo: document.getElementById('listaModos'),
+  placar: document.getElementById('placarModos'),
+  coresPorOpcao: { indicativo: 'indic', subjuntivo: 'subj', imperativo: 'imper' }
+});
+
+/* ==========================================================
+   8. QUIZ — TEXTOS LITERÁRIOS x NÃO LITERÁRIOS
+   ========================================================== */
+const QTEXTOS = [
+  { frase: '"Dissolva o conteúdo do sachê em 200 ml de água e tome uma vez ao dia."', certa: 'não literário', porque: 'Bula: linguagem denotativa, instrução prática, uma única leitura possível.' },
+  { frase: '"A cidade acordou com o mar batendo na porta de todo mundo, cobrando aluguel de silêncio."', certa: 'literário', porque: 'Metáfora e personificação: a linguagem cria imagem, não informa dado.' },
+  { frase: '"A prefeitura registrou 320 imóveis atingidos pela cheia entre março e abril."', certa: 'não literário', porque: 'Dado verificável, função referencial — notícia.' },
+  { frase: '"Ele guardava as horas num bolso furado, e por isso chegava sempre depois de si mesmo."', certa: 'literário', porque: 'Sentido figurado e plurissignificação, com finalidade estética.' },
+  { frase: '"Substantivo é a classe de palavras que nomeia seres, objetos e sentimentos."', certa: 'não literário', porque: 'Verbete didático: define com objetividade e clareza.' },
+  { frase: '"Naquele quintal, a goiabeira era o único relógio em que a avó confiava."', certa: 'literário', porque: 'Construção de sentido por imagem, dentro de um universo ficcional.' }
+];
+montaQuiz({
+  dados: QTEXTOS, opcoes: ['literário', 'não literário'],
+  alvo: document.getElementById('listaTextos'),
+  placar: document.getElementById('placarTextos'),
+  coresPorOpcao: { 'literário': 'subj', 'não literário': 'mata' }
+});
+
+/* ==========================================================
+   9. MOTOR DOS QUIZZES
+   ========================================================== */
+function montaQuiz({ dados, opcoes, alvo, placar, coresPorOpcao }) {
+  let acertos = 0;
+  const respondidas = new Set();
+
+  alvo.innerHTML = dados.map((q, i) => `
+    <div class="p-4" data-q="${i}">
+      <p class="text-lg leading-relaxed">${q.frase}</p>
+      <div class="flex flex-wrap gap-2 mt-3">
+        ${opcoes.map(o => `
+          <button type="button" data-opc="${o}"
+            class="opc border-2 border-tinta bg-white px-3 py-2 font-mono text-xs uppercase tracking-[.12em] caneta-sm hover:-translate-y-[1px] transition">
+            ${o}
+          </button>`).join('')}
+      </div>
+      <p class="feedback mt-3 text-base hidden"></p>
+    </div>`).join('');
+
+  alvo.querySelectorAll('[data-q]').forEach(bloco => {
+    const idx = Number(bloco.dataset.q);
+    const q = dados[idx];
+    const feedback = bloco.querySelector('.feedback');
+
+    bloco.querySelectorAll('.opc').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (respondidas.has(idx)) return;
+        respondidas.add(idx);
+
+        const escolha = btn.dataset.opc;
+        const acertou = escolha === q.certa;
+        if (acertou) acertos++;
+
+        bloco.querySelectorAll('.opc').forEach(b => {
+          b.disabled = true;
+          b.classList.remove('bg-white');
+          if (b.dataset.opc === q.certa) {
+            b.classList.add('bg-' + coresPorOpcao[q.certa], 'text-white');
+          } else {
+            b.classList.add('bg-papel2', 'opacity-60');
+          }
+        });
+
+        feedback.classList.remove('hidden');
+        feedback.innerHTML = (acertou ? '<b>Isso.</b> ' : `<b>Não é essa.</b> A resposta é <b>${q.certa}</b>. `) + q.porque;
+        feedback.classList.add(acertou ? 'text-mata' : 'text-imper');
+        placar.textContent = `${acertos} de ${dados.length}`;
+      });
     });
-    var pill = el("span","score-pill","🏆 Pontuação geral: " + sum + " / " + max);
-    box.appendChild(pill);
-    box.appendChild(el("span","score-pill","✅ Atividades corrigidas: " + done + " / " + registry.length));
+  });
+}
+
+/* ==========================================================
+   10. BANCO DE QUESTÕES — 10 por tema
+   ========================================================== */
+const BANCO = [
+{
+  tema: 'O que são verbos', curto: '01 · Verbo', faixa: 'bg-tinta', borda: 'border-tinta', texto: 'text-tinta',
+  questoes: [
+    { p: 'Verbo é a classe de palavras que indica principalmente:', alt: ['Qualidade dos seres','Ação, estado, fenômeno da natureza ou mudança de estado','Nome de seres e objetos','Circunstância de tempo e lugar'], certa: 1, porque: 'Essas quatro possibilidades formam a definição básica de verbo. Qualidade é adjetivo; nome é substantivo; circunstância é advérbio.' },
+    { p: 'Em "Choveu a noite inteira em Maceió", o verbo expressa:', alt: ['Ação','Estado','Fenômeno da natureza','Mudança de estado'], certa: 2, porque: 'Verbos como chover, nevar e trovejar indicam fenômenos da natureza e não têm sujeito.' },
+    { p: 'Quais são as cinco flexões do verbo?', alt: ['Gênero, número, grau, tempo e voz','Pessoa, número, tempo, modo e voz','Pessoa, gênero, tempo, modo e grau','Número, grau, aspecto, tempo e voz'], certa: 1, porque: 'Gênero e grau são flexões de substantivos e adjetivos, não de verbos.' },
+    { p: 'Os verbos terminados em -er no infinitivo pertencem à:', alt: ['1ª conjugação','2ª conjugação','3ª conjugação','Nenhuma conjugação'], certa: 1, porque: '-ar é 1ª, -er é 2ª e -ir é 3ª conjugação.' },
+    { p: 'O verbo "pôr" e seus derivados (compor, supor) pertencem à:', alt: ['1ª conjugação','2ª conjugação','3ª conjugação','4ª conjugação'], certa: 1, porque: 'Vêm do antigo "poer", por isso seguem a 2ª conjugação, apesar da terminação -or.' },
+    { p: 'Em "falávamos", o segmento "-mos" é:', alt: ['Radical','Vogal temática','Desinência modo-temporal','Desinência número-pessoal'], certa: 3, porque: '"-mos" marca a 1ª pessoa do plural: é desinência número-pessoal.' },
+    { p: 'Em "cantávamos", o radical é:', alt: ['cant','canta','cantáv','cantávamo'], certa: 0, porque: 'O radical carrega o sentido e permanece nas demais formas: cantar, canto, cantei.' },
+    { p: 'A forma nominal que indica ação em curso é o:', alt: ['Infinitivo','Gerúndio','Particípio','Imperativo'], certa: 1, porque: 'O gerúndio termina em -ndo: estudando, comendo, partindo.' },
+    { p: 'Em "É preciso estudar mais", a forma "estudar" é:', alt: ['Infinitivo','Gerúndio','Particípio','Presente do indicativo'], certa: 0, porque: 'O infinitivo nomeia a ação e é a forma de entrada do verbo no dicionário.' },
+    { p: 'Qual é o verbo da oração "A corrida foi longa"?', alt: ['A','corrida','foi','longa'], certa: 2, porque: '"Corrida" é substantivo (não muda com o tempo); "foi" flexiona: é, será, era.' }
+  ]
+},
+{
+  tema: 'Regulares e irregulares', curto: '02 · Regular/irregular', faixa: 'bg-mata', borda: 'border-mata', texto: 'text-mata',
+  questoes: [
+    { p: 'Verbo regular é aquele que:', alt: ['Nunca muda de forma','Mantém o radical e segue o modelo da conjugação','Só existe no presente','Não aceita sujeito'], certa: 1, porque: 'A regularidade está na estabilidade do radical e no uso das desinências previstas pelo modelo.' },
+    { p: 'Qual dos verbos abaixo é irregular?', alt: ['vender','partir','fazer','cantar'], certa: 2, porque: 'faço / fiz / farei: o radical muda em cada tempo.' },
+    { p: 'A sequência "trago / trouxe / trarei" mostra que "trazer" é:', alt: ['Regular','Irregular','Defectivo','Abundante'], certa: 1, porque: 'O radical muda (trag-, troux-, trar-), o que caracteriza irregularidade.' },
+    { p: 'São chamados anômalos os verbos:', alt: ['ser e ir','ter e haver','falar e comer','ler e ver'], certa: 0, porque: 'Ser e ir mudam completamente de radical (sou/fui, vou/fui) — irregularidade extrema.' },
+    { p: 'Verbo defectivo é aquele que:', alt: ['Tem dois particípios','Não possui algumas formas da conjugação','Auxilia outro verbo','Muda o radical no futuro'], certa: 1, porque: 'Falir, reaver e precaver, por exemplo, não têm todas as pessoas do presente.' },
+    { p: 'Qual par mostra um verbo abundante?', alt: ['fazer / fiz','pagado / pago','sou / fui','vou / irei'], certa: 1, porque: 'Abundantes têm duas formas para a mesma função, em geral no particípio: pagado/pago, aceitado/aceito.' },
+    { p: 'Qual dos verbos abaixo é regular?', alt: ['caber','saber','beber','trazer'], certa: 2, porque: 'bebo / bebi / beberei segue o modelo de comer; os demais alteram o radical.' },
+    { p: 'São verbos auxiliares típicos das locuções verbais:', alt: ['ser, estar, ter e haver','falar, comer, partir e sair','ir, vir, pôr e ver','dar, dizer, fazer e trazer'], certa: 0, porque: 'Eles acompanham outro verbo: tenho estudado, foi feito, havia chegado.' },
+    { p: 'O teste mais rápido para saber se um verbo é irregular é conjugá-lo:', alt: ['Só no presente','No presente, no pretérito perfeito e no futuro','Apenas no imperativo','No gerúndio e no particípio'], certa: 1, porque: 'Se o radical quebrar em alguma dessas três formas, o verbo é irregular.' },
+    { p: 'A alternância "eu faço / eu fiz / eu farei" indica:', alt: ['Erro de conjugação','Mudança de radical, típica de verbo irregular','Verbo defectivo','Verbo na voz passiva'], certa: 1, porque: 'Três radicais diferentes para o mesmo verbo: faz-, fiz-, far-.' }
+  ]
+},
+{
+  tema: 'Tempos verbais', curto: '03 · Tempos', faixa: 'bg-indic', borda: 'border-indic', texto: 'text-indic',
+  questoes: [
+    { p: '"Eu estudava todo domingo de manhã." O tempo verbal é:', alt: ['Pretérito perfeito','Pretérito imperfeito','Pretérito mais-que-perfeito','Presente'], certa: 1, porque: 'O pretérito imperfeito marca ação habitual ou contínua no passado.' },
+    { p: '"Eu estudei a matéria ontem." O tempo verbal é:', alt: ['Pretérito perfeito','Pretérito imperfeito','Futuro do pretérito','Presente'], certa: 0, porque: 'O pretérito perfeito indica ação concluída em um ponto definido do passado.' },
+    { p: '"Quando ele chegou, eu já saíra de casa." A forma "saíra" está no:', alt: ['Pretérito perfeito','Pretérito imperfeito','Pretérito mais-que-perfeito','Futuro do pretérito'], certa: 2, porque: 'O mais-que-perfeito marca a ação anterior a outra ação já passada.' },
+    { p: '"A prova começará às oito horas." O tempo é:', alt: ['Futuro do presente','Futuro do pretérito','Presente','Futuro do subjuntivo'], certa: 0, porque: 'Fato futuro apresentado como certo — futuro do presente do indicativo.' },
+    { p: '"Eu estudaria mais, se tivesse tempo." A forma "estudaria" está no:', alt: ['Futuro do presente','Futuro do pretérito','Pretérito imperfeito','Presente do subjuntivo'], certa: 1, porque: 'O futuro do pretérito indica fato condicionado a outro; também serve para polidez.' },
+    { p: '"Se eu estudasse com ele, aprenderia mais rápido." A forma "estudasse" está no:', alt: ['Pretérito perfeito do indicativo','Pretérito imperfeito do subjuntivo','Futuro do subjuntivo','Presente do subjuntivo'], certa: 1, porque: 'Depois de "se", com valor de hipótese no passado, usa-se o imperfeito do subjuntivo.' },
+    { p: '"Quando eu falar com ela, aviso você." A forma "falar" está no:', alt: ['Infinitivo','Futuro do subjuntivo','Presente do subjuntivo','Futuro do presente'], certa: 1, porque: 'Após "quando", com sentido de futuro, usa-se o futuro do subjuntivo — que coincide com o infinitivo nos verbos regulares.' },
+    { p: 'Sobre o imperativo, é correto afirmar que:', alt: ['Divide-se em presente, passado e futuro','Não se divide em tempos: só há afirmativo e negativo','Tem apenas o tempo futuro','Só existe na 1ª pessoa'], certa: 1, porque: 'A ordem é sempre dada no momento da fala, por isso o imperativo não tem divisão temporal.' },
+    { p: 'Em "Ontem nós falamos sobre isso", a forma "falamos" está no:', alt: ['Presente','Pretérito perfeito','Futuro do presente','Pretérito imperfeito'], certa: 1, porque: 'Nos verbos de 1ª conjugação, a 1ª pessoa do plural é igual no presente e no pretérito perfeito; só o contexto ("ontem") distingue.' },
+    { p: 'Em "A água ferve a 100 °C", o presente do indicativo expressa:', alt: ['Ação em curso neste instante','Verdade permanente','Ação passada','Ordem'], certa: 1, porque: 'É o presente atemporal, usado em leis científicas, definições e provérbios.' }
+  ]
+},
+{
+  tema: 'Modos verbais', curto: '04 · Modos', faixa: 'bg-subj', borda: 'border-subj', texto: 'text-subj',
+  questoes: [
+    { p: 'O modo que apresenta o fato como certo e real é o:', alt: ['Indicativo','Subjuntivo','Imperativo','Infinitivo'], certa: 0, porque: 'Indicativo = certeza. É o modo da notícia, do relato e da conversa cotidiana.' },
+    { p: 'O modo que expressa desejo, dúvida, hipótese ou condição é o:', alt: ['Indicativo','Subjuntivo','Imperativo','Gerúndio'], certa: 1, porque: 'No subjuntivo o fato é possível, não confirmado.' },
+    { p: 'O modo usado para dar ordens, conselhos e instruções é o:', alt: ['Indicativo','Subjuntivo','Imperativo','Particípio'], certa: 2, porque: 'É o modo das receitas, manuais, bulas e comandos de prova.' },
+    { p: '"Espero que você venha à reunião." A forma "venha" está no:', alt: ['Presente do indicativo','Presente do subjuntivo','Imperativo afirmativo','Futuro do subjuntivo'], certa: 1, porque: 'Depois de verbo de desejo + "que", usa-se o presente do subjuntivo.' },
+    { p: '"Venha aqui um instante." A forma "venha" está no:', alt: ['Presente do indicativo','Imperativo afirmativo','Imperativo negativo','Futuro do pretérito'], certa: 1, porque: 'É uma ordem/pedido direto ao interlocutor — imperativo afirmativo (você).' },
+    { p: 'O imperativo negativo é formado a partir do:', alt: ['Presente do indicativo','Presente do subjuntivo','Futuro do subjuntivo','Infinitivo'], certa: 1, porque: 'Todas as pessoas do imperativo negativo vêm do presente do subjuntivo: não fales, não fale, não falem.' },
+    { p: 'No imperativo afirmativo, as formas de "tu" e "vós" derivam do:', alt: ['Presente do indicativo, sem o -s final','Presente do subjuntivo','Pretérito perfeito','Futuro do presente'], certa: 0, porque: 'tu falas → fala tu; vós falais → falai vós. As demais pessoas vêm do subjuntivo.' },
+    { p: 'Qual pessoa não existe no modo imperativo?', alt: ['1ª do singular (eu)','2ª do singular (tu)','1ª do plural (nós)','3ª do plural (eles)'], certa: 0, porque: 'Ninguém dá ordem a si mesmo — não há imperativo para "eu".' },
+    { p: '"Talvez ele volte antes do almoço." O verbo "volte" está no:', alt: ['Indicativo','Subjuntivo','Imperativo','Infinitivo'], certa: 1, porque: '"Talvez" marca dúvida e exige presente do subjuntivo.' },
+    { p: 'Em qual gênero o imperativo é o modo predominante?', alt: ['Notícia de jornal','Receita culinária','Poema lírico','Verbete de dicionário'], certa: 1, porque: 'Receitas e manuais são sequências de instruções: bata, misture, leve ao forno.' }
+  ]
+},
+{
+  tema: 'Literário e não literário', curto: '05 · Tipos de texto', faixa: 'bg-imper', borda: 'border-imper', texto: 'text-imper',
+  questoes: [
+    { p: 'No texto literário predomina a função da linguagem:', alt: ['Referencial','Poética','Apelativa','Metalinguística'], certa: 1, porque: 'Na função poética o foco está na própria mensagem: importa como se diz.' },
+    { p: 'A linguagem típica do texto não literário é:', alt: ['Conotativa','Denotativa','Figurada','Ambígua'], certa: 1, porque: 'Denotativa = sentido literal, direto, sem duplo sentido.' },
+    { p: 'A plurissignificação (várias leituras possíveis) é característica do texto:', alt: ['Literário','Não literário','Científico','Jurídico'], certa: 0, porque: 'O texto literário admite interpretações diferentes e igualmente válidas.' },
+    { p: 'Bula de remédio, receita e manual de instruções são exemplos de texto:', alt: ['Literário','Não literário','Poético','Ficcional'], certa: 1, porque: 'Têm finalidade prática: instruir com clareza e objetividade.' },
+    { p: 'Conto, romance, poema e fábula são exemplos de texto:', alt: ['Literário','Não literário','Técnico','Jornalístico informativo'], certa: 0, porque: 'São gêneros ficcionais com finalidade estética.' },
+    { p: 'A crônica é considerada um gênero de fronteira porque:', alt: ['Não tem autor definido','Parte do fato cotidiano, mas trabalha a linguagem com liberdade literária','É sempre em versos','Não pode ser publicada em jornal'], certa: 1, porque: 'Nasce no jornalismo e trabalha o texto com recursos de literatura — por isso é híbrida.' },
+    { p: 'O texto publicitário usa metáforas e jogos de palavras com finalidade:', alt: ['Estética apenas','Comercial e persuasiva','Científica','Documental'], certa: 1, porque: 'Usa recursos literários, mas seu objetivo dominante é vender ou convencer.' },
+    { p: 'Quando um texto mistura características dos dois tipos, o critério de desempate é:', alt: ['O tamanho do texto','A função dominante do texto','O suporte em que foi publicado','A presença de adjetivos'], certa: 1, porque: 'Se o texto existe sobretudo para informar, é não literário — mesmo com imagens bonitas no meio.' },
+    { p: '"O rio transbordou e atingiu 320 casas no bairro." Esse trecho é:', alt: ['Literário, por descrever uma cena','Não literário, por informar dado verificável','Literário, por usar metáfora','Não literário, por estar em prosa'], certa: 1, porque: 'Dado objetivo e verificável, com função referencial — típico de notícia.' },
+    { p: 'O compromisso com a verossimilhança (e não com a verdade dos fatos) é próprio do texto:', alt: ['Literário','Não literário','Científico','Jornalístico'], certa: 0, porque: 'A literatura cria um mundo que precisa ser coerente consigo mesmo, não comprovável.' }
+  ]
+}
+];
+
+/* ---------- Motor do quiz por tema ---------- */
+const elAbas     = document.getElementById('abasQuiz');
+const elTema     = document.getElementById('quizTema');
+const elPos      = document.getElementById('quizPos');
+const elAcertos  = document.getElementById('quizAcertos');
+const elBarra    = document.getElementById('quizBarra');
+const elCorpo    = document.getElementById('quizCorpo');
+const btnProxima = document.getElementById('btnProxima');
+const btnReinicia= document.getElementById('btnReiniciar');
+const elDica     = document.getElementById('quizDica');
+
+let temaAtual = 0, qAtual = 0, acertosTema = 0, respondida = false;
+
+elAbas.innerHTML = BANCO.map((t, i) => `
+  <button data-tema="${i}" class="aba-quiz border-2 border-tinta bg-white px-3 py-3 text-left caneta-sm transition">
+    <span class="block font-mono text-[10px] uppercase tracking-[.14em] leading-none opacity-70">${t.curto.split(' · ')[0]}</span>
+    <span class="block font-display font-bold text-base leading-tight mt-1">${t.curto.split(' · ')[1]}</span>
+  </button>`).join('');
+
+elAbas.querySelectorAll('.aba-quiz').forEach(b => {
+  b.addEventListener('click', () => abreTema(Number(b.dataset.tema)));
+});
+
+function abreTema(i) {
+  temaAtual = i; qAtual = 0; acertosTema = 0;
+  elAbas.querySelectorAll('.aba-quiz').forEach(b => {
+    const ativo = Number(b.dataset.tema) === i;
+    b.className = 'aba-quiz border-2 border-tinta px-3 py-3 text-left caneta-sm transition ' +
+                  (ativo ? BANCO[i].faixa + ' text-white' : 'bg-white');
+  });
+  elTema.textContent = BANCO[i].tema;
+  desenhaQuestao();
+}
+
+function desenhaQuestao() {
+  const t = BANCO[temaAtual];
+  const q = t.questoes[qAtual];
+  respondida = false;
+  btnProxima.disabled = true;
+  elDica.textContent = '';
+
+  elPos.textContent = `questão ${qAtual + 1} de ${t.questoes.length}`;
+  elAcertos.textContent = `${acertosTema} acerto${acertosTema === 1 ? '' : 's'}`;
+  elBarra.style.width = ((qAtual) / t.questoes.length * 100) + '%';
+
+  elCorpo.innerHTML = `
+    <p class="font-display font-bold text-xl sm:text-2xl leading-snug">${q.p}</p>
+    <div class="mt-5 grid gap-2">
+      ${q.alt.map((a, i) => `
+        <button type="button" data-i="${i}"
+          class="alt text-left border-2 border-tinta bg-white px-4 py-3 text-lg caneta-sm hover:-translate-y-[1px] transition flex gap-3 items-baseline">
+          <span class="font-mono text-xs uppercase shrink-0 ${t.texto}">${String.fromCharCode(97 + i)})</span>
+          <span>${a}</span>
+        </button>`).join('')}
+    </div>
+    <p class="explica mt-5 hidden border-l-4 pl-4 text-base leading-relaxed"></p>
+  `;
+
+  const explica = elCorpo.querySelector('.explica');
+  elCorpo.querySelectorAll('.alt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (respondida) return;
+      respondida = true;
+      const escolha = Number(btn.dataset.i);
+      const acertou = escolha === q.certa;
+      if (acertou) acertosTema++;
+
+      elCorpo.querySelectorAll('.alt').forEach(b => {
+        const i = Number(b.dataset.i);
+        b.disabled = true;
+        b.classList.remove('bg-white', 'hover:-translate-y-[1px]');
+        if (i === q.certa) b.classList.add('bg-mata', 'text-white', 'border-mata');
+        else if (i === escolha) b.classList.add('bg-imper', 'text-white', 'border-imper');
+        else b.classList.add('bg-papel', 'opacity-60');
+      });
+
+      explica.classList.remove('hidden');
+      explica.classList.add(acertou ? 'border-mata' : 'border-imper');
+      explica.innerHTML = `<b>${acertou ? 'Correto.' : 'Resposta certa: letra ' + String.fromCharCode(97 + q.certa) + '.'}</b> ${q.porque}`;
+
+      elAcertos.textContent = `${acertosTema} acerto${acertosTema === 1 ? '' : 's'}`;
+      elBarra.style.width = ((qAtual + 1) / BANCO[temaAtual].questoes.length * 100) + '%';
+      btnProxima.disabled = false;
+      btnProxima.textContent = (qAtual + 1 === BANCO[temaAtual].questoes.length) ? 'Ver resultado' : 'Próxima questão';
+      btnProxima.focus();
+    });
+  });
+}
+
+function mostraResultado() {
+  const t = BANCO[temaAtual];
+  const total = t.questoes.length;
+  const pct = Math.round(acertosTema / total * 100);
+  const recado = pct === 100 ? 'Tema dominado.'
+               : pct >= 70  ? 'Base firme. Revise só os erros.'
+               : pct >= 40  ? 'Meio caminho. Releia a seção do tema e refaça.'
+               :              'Volte à seção do tema antes de repetir o quiz.';
+  elPos.textContent = 'resultado';
+  elBarra.style.width = '100%';
+  elCorpo.innerHTML = `
+    <p class="font-mono text-[11px] uppercase tracking-[.2em] text-tinta2">${t.tema}</p>
+    <p class="font-display font-extrabold text-6xl sm:text-7xl leading-none mt-2">${acertosTema}<span class="text-tinta2 text-4xl">/${total}</span></p>
+    <p class="text-xl mt-3">${recado}</p>
+    <div class="flex flex-wrap gap-3 mt-6">
+      <button id="btnRefazer" class="border-2 border-tinta ${t.faixa} text-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm">Refazer este tema</button>
+      <a href="#quiz" id="linkProxTema" class="border-2 border-tinta bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm">Ir para o próximo tema</a>
+    </div>`;
+  btnProxima.disabled = true;
+  btnProxima.textContent = 'Próxima questão';
+  document.getElementById('btnRefazer').addEventListener('click', () => abreTema(temaAtual));
+  document.getElementById('linkProxTema').addEventListener('click', () => abreTema((temaAtual + 1) % BANCO.length));
+}
+
+btnProxima.addEventListener('click', () => {
+  if (qAtual + 1 < BANCO[temaAtual].questoes.length) { qAtual++; desenhaQuestao(); }
+  else { mostraResultado(); }
+});
+btnReinicia.addEventListener('click', () => abreTema(temaAtual));
+
+abreTema(0);
+</script>
+
+
+<script>
+/* ==========================================================
+   ATIVIDADES — cinco flexões, regularidade, tempos e modos
+   Bloco independente: não altera nada do que já existia acima.
+   ========================================================== */
+(function () {
+  'use strict';
+
+  /* ---------- utilidades ---------- */
+  const lista  = nome => document.querySelector('[data-lista="'  + nome + '"]');
+  const placar = nome => document.querySelector('[data-placar="' + nome + '"]');
+  const resumo = nome => document.querySelector('[data-resumo="' + nome + '"]');
+  const acao = (attr, nome, fn) => {
+    const b = document.querySelector('[data-' + attr + '="' + nome + '"]');
+    if (b) b.addEventListener('click', fn);
+  };
+  const num = i => String(i).padStart(2, '0');
+
+  const norm  = s => String(s == null ? '' : s).toLowerCase().trim().replace(/\s+/g, ' ');
+  const plain = s => norm(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[.!?,;:]$/, '');
+
+  function confereTexto(valor, aceitas) {
+    const v = norm(valor);
+    if (!v) return 'vazio';
+    if (aceitas.some(a => norm(a) === v)) return 'exato';
+    if (aceitas.some(a => plain(a) === plain(valor))) return 'quase';
+    return 'errado';
   }
 
-  /* =========================================================
-     DADOS — SEÇÃO 1: AS CINCO FLEXÕES
-     ========================================================= */
+  /* ==========================================================
+     MOTOR 1 — quiz de múltipla escolha agrupado por tópico
+     ========================================================== */
+  function montaQuiz(nome, grupos) {
+    const alvo = lista(nome);
+    const itens = grupos.reduce((acc, g) => acc.concat(g.itens), []);
+    const total = itens.length;
+    let acertos = 0, feitas = 0;
 
-  var FLEX_OPTS   = ["Número","Pessoa","Modo","Tempo","Voz"];
-  var EXPR_OPTS   = ["Ação","Estado","Mudança de estado","Fenômeno da natureza"];
-  var CONJ_OPTS   = ["1ª conjugação (-ar)","2ª conjugação (-er)","3ª conjugação (-ir)"];
-  var NOM_OPTS    = ["Infinitivo","Gerúndio","Particípio"];
+    function marcaPlacar() {
+      placar(nome).textContent = acertos + ' de ' + total;
+      const r = resumo(nome);
+      if (r) r.textContent = feitas === total ? 'tema concluído' : (total - feitas) + ' em aberto';
+    }
 
-  var QUIZ_FLEXOES = [
-    { topic:"Tópico 1 — Qual flexão o verbo sofreu?",
-      items:[
-        { stem:"De <em>“Tu cantavas”</em> para <em>“Ele cantava”</em>, qual flexão do verbo mudou?",
-          opts:FLEX_OPTS, ans:1,
-          why:"Continua no singular, no pretérito imperfeito do indicativo e na voz ativa: mudou apenas a <strong>pessoa</strong> (2ª → 3ª)." },
-        { stem:"De <em>“Eu canto”</em> para <em>“Eu cantei”</em>, qual flexão mudou?",
-          opts:FLEX_OPTS, ans:3,
-          why:"Mesma pessoa e mesmo número: mudou o <strong>tempo</strong> (presente → pretérito perfeito)." },
-        { stem:"De <em>“O pedreiro construiu a casa”</em> para <em>“A casa foi construída pelo pedreiro”</em>, qual flexão mudou?",
-          opts:FLEX_OPTS, ans:4,
-          why:"O sujeito passou a receber a ação: mudou a <strong>voz</strong> (ativa → passiva)." },
-        { stem:"De <em>“Ele viaja amanhã”</em> para <em>“Talvez ele viaje amanhã”</em>, qual flexão mudou?",
-          opts:FLEX_OPTS, ans:2,
-          why:"O fato deixou de ser certo e passou a ser duvidoso: mudou o <strong>modo</strong> (indicativo → subjuntivo)." },
-        { stem:"De <em>“O menino corre”</em> para <em>“Os meninos correm”</em>, qual flexão mudou?",
-          opts:FLEX_OPTS, ans:0,
-          why:"Permanece na 3ª pessoa, no presente do indicativo: mudou o <strong>número</strong> (singular → plural)." }
-      ]},
-    { topic:"Tópico 2 — O que o verbo quer expressar?",
-      items:[
-        { stem:"<em>“Choveu muito ontem à noite.”</em> O verbo destacado expressa:",
-          opts:EXPR_OPTS, ans:3,
-          why:"<strong>Choveu</strong> indica um fenômeno da natureza — por isso é um verbo impessoal, sem sujeito." },
-        { stem:"<em>“Ana correu até a escola.”</em> O verbo destacado expressa:",
-          opts:EXPR_OPTS, ans:0,
-          why:"<strong>Correu</strong> indica uma ação praticada pelo sujeito." },
-        { stem:"<em>“O menino está triste.”</em> O verbo destacado expressa:",
-          opts:EXPR_OPTS, ans:1,
-          why:"<strong>Está</strong> liga o sujeito a uma característica: expressa estado." },
-        { stem:"<em>“Ele ficou nervoso com a notícia.”</em> O verbo destacado expressa:",
-          opts:EXPR_OPTS, ans:2,
-          why:"<strong>Ficou</strong> mostra a passagem de um estado para outro: mudança de estado." },
-        { stem:"<em>“Amanheceu nublado na serra.”</em> O verbo destacado expressa:",
-          opts:EXPR_OPTS, ans:3,
-          why:"<strong>Amanheceu</strong> indica fenômeno da natureza." }
-      ]},
-    { topic:"Tópico 3 — Escolha o verbo na flexão indicada",
-      items:[
-        { stem:"Verbo <em>CANTAR</em> na 1ª pessoa do <em>plural</em> do <em>presente do indicativo</em>:",
-          opts:["cantamos","cantávamos","cantaremos","cantássemos"], ans:0,
-          why:"Nós <strong>cantamos</strong> — presente do indicativo. “Cantávamos” é pretérito imperfeito." },
-        { stem:"Verbo <em>VENDER</em> na 3ª pessoa do <em>singular</em> do <em>pretérito perfeito do indicativo</em>:",
-          opts:["vende","vendeu","venderá","vendia"], ans:1,
-          why:"Ele <strong>vendeu</strong> — ação concluída no passado." },
-        { stem:"Verbo <em>PARTIR</em> no <em>gerúndio</em>:",
-          opts:["partir","partido","partindo","partiria"], ans:2,
-          why:"O gerúndio termina em <strong>-ndo</strong>: partindo." },
-        { stem:"Verbo <em>FAZER</em> na 1ª pessoa do <em>singular</em> do <em>futuro do presente</em>:",
-          opts:["fiz","fazia","faria","farei"], ans:3,
-          why:"Eu <strong>farei</strong>. “Faria” é futuro do pretérito." },
-        { stem:"Verbo <em>SER</em> na 3ª pessoa do <em>plural</em> do <em>pretérito imperfeito do indicativo</em>:",
-          opts:["são","foram","eram","serão"], ans:2,
-          why:"Eles <strong>eram</strong> — pretérito imperfeito. “Foram” é pretérito perfeito." }
-      ]},
-    { topic:"Tópico 4 — Em qual conjugação está o verbo?",
-      items:[
-        { stem:"O verbo <em>brincar</em> pertence à:", opts:CONJ_OPTS, ans:0,
-          why:"Termina em <strong>-ar</strong>: 1ª conjugação." },
-        { stem:"O verbo <em>beber</em> pertence à:", opts:CONJ_OPTS, ans:1,
-          why:"Termina em <strong>-er</strong>: 2ª conjugação." },
-        { stem:"O verbo <em>dividir</em> pertence à:", opts:CONJ_OPTS, ans:2,
-          why:"Termina em <strong>-ir</strong>: 3ª conjugação." },
-        { stem:"O verbo <em>pôr</em> (e derivados, como <em>repor</em>) pertence à:", opts:CONJ_OPTS, ans:1,
-          why:"Apesar da terminação <strong>-or</strong>, vem do antigo <em>poer</em>: pertence à 2ª conjugação." },
-        { stem:"O verbo <em>sorrir</em> pertence à:", opts:CONJ_OPTS, ans:2,
-          why:"Termina em <strong>-ir</strong>: 3ª conjugação (ainda que seja irregular)." }
-      ]},
-    { topic:"Tópico 5 — Em qual forma nominal está o verbo?",
-      items:[
-        { stem:"<em>“Cantar</em> é o meu passatempo favorito.” A forma destacada é:",
-          opts:NOM_OPTS, ans:0, why:"Termina em <strong>-r</strong> e funciona como substantivo: infinitivo." },
-        { stem:"“Está <em>chovendo</em> desde cedo.” A forma destacada é:",
-          opts:NOM_OPTS, ans:1, why:"Termina em <strong>-ndo</strong>: gerúndio, indica ação em curso." },
-        { stem:"“Ele tinha <em>comido</em> antes de sair.” A forma destacada é:",
-          opts:NOM_OPTS, ans:2, why:"Termina em <strong>-do</strong> e acompanha o auxiliar: particípio." },
-        { stem:"“<em>Correndo</em>, ela chegou a tempo.” A forma destacada é:",
-          opts:NOM_OPTS, ans:1, why:"Termina em <strong>-ndo</strong>: gerúndio, com valor de modo." },
-        { stem:"“<em>Terminada</em> a prova, todos saíram.” A forma destacada é:",
-          opts:NOM_OPTS, ans:2, why:"Particípio (flexionado em gênero e número), indicando ação concluída." }
-      ]}
-  ];
+    function desenha() {
+      acertos = 0; feitas = 0;
+      let n = 0;
+      alvo.innerHTML = grupos.map(g => (
+        (g.topico ? '<div class="bg-papel px-4 sm:px-5 py-2 border-b-2 border-papel2"><p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">' + g.topico + '</p></div>' : '') +
+        g.itens.map(q => {
+          n++;
+          return '<div class="px-4 sm:px-5 py-4" data-item>' +
+            '<p class="text-lg leading-relaxed"><span class="font-mono text-xs text-tinta2 mr-2">' + num(n) + '</span>' + q.p + '</p>' +
+            '<div class="mt-3 grid gap-2 ' + (q.alt.length > 3 ? 'sm:grid-cols-2' : '') + '">' +
+              q.alt.map((a, i) =>
+                '<button type="button" data-i="' + i + '" class="alt text-left border-2 border-tinta bg-white px-3 py-2 caneta-sm hover:-translate-y-[1px] transition flex gap-2 items-baseline">' +
+                  '<span class="font-mono text-xs uppercase shrink-0 text-tinta2">' + String.fromCharCode(97 + i) + ')</span>' +
+                  '<span>' + a + '</span>' +
+                '</button>').join('') +
+            '</div>' +
+            '<p class="explica mt-3 hidden border-l-4 pl-4 leading-relaxed"></p>' +
+          '</div>';
+        }).join('')
+      )).join('');
 
-  var WRITE_FLEXOES = [
-    { topic:"Tópico 1 — Escreva qual flexão mudou",
-      hint:"Responda com uma palavra: número, pessoa, modo, tempo ou voz.",
-      items:[
-        { stem:"Compare: <em>“Eu falo”</em> → <em>“Eu falei”</em>. Qual flexão mudou?",
-          accept:["tempo"], why:"Presente → pretérito perfeito: mudou o tempo." },
-        { stem:"Compare: <em>“Ela dança”</em> → <em>“Elas dançam”</em>. Qual flexão mudou?",
-          accept:["número"], why:"Singular → plural: mudou o número." },
-        { stem:"Compare: <em>“Tu cantas”</em> → <em>“Ele canta”</em>. Qual flexão mudou?",
-          accept:["pessoa"], why:"2ª pessoa → 3ª pessoa: mudou a pessoa." },
-        { stem:"Compare: <em>“Ele viaja”</em> → <em>“Talvez ele viaje”</em>. Qual flexão mudou?",
-          accept:["modo"], why:"Indicativo → subjuntivo: mudou o modo." },
-        { stem:"Compare: <em>“O time venceu o jogo”</em> → <em>“O jogo foi vencido pelo time”</em>. Qual flexão mudou?",
-          accept:["voz"], why:"Voz ativa → voz passiva." }
-      ]},
-    { topic:"Tópico 2 — Escreva o que o verbo expressa",
-      hint:"Responda com: ação, estado, mudança de estado ou fenômeno da natureza.",
-      items:[
-        { stem:"“<em>Ventou</em> forte durante a noite.”",
-          accept:["fenômeno","fenômeno da natureza"],
-          why:"Verbo impessoal que indica fenômeno da natureza." },
-        { stem:"“Marina <em>desenhou</em> um mapa do bairro.”",
-          accept:["ação"], why:"O sujeito pratica a ação de desenhar." },
-        { stem:"“O bebê <em>parece</em> tranquilo hoje.”",
-          accept:["estado"], why:"Verbo de ligação: atribui um estado ao sujeito." },
-        { stem:"“A lagarta <em>virou</em> borboleta.”",
-          accept:["mudança","mudança de estado"],
-          why:"Indica a passagem de um estado para outro." },
-        { stem:"“<em>Trovejou</em> durante a madrugada.”",
-          accept:["fenômeno","fenômeno da natureza"],
-          why:"Fenômeno da natureza — verbo impessoal." }
-      ]},
-    { topic:"Tópico 3 — Escreva o verbo na flexão indicada",
-      hint:"Escreva apenas a forma verbal pedida.",
-      items:[
-        { stem:"<em>(correr)</em> — 3ª pessoa do plural do presente do indicativo:",
-          accept:["correm"], why:"Eles <strong>correm</strong>." },
-        { stem:"<em>(estudar)</em> — 1ª pessoa do singular do pretérito perfeito do indicativo:",
-          accept:["estudei"], why:"Eu <strong>estudei</strong>." },
-        { stem:"<em>(partir)</em> — 2ª pessoa do singular do futuro do presente do indicativo:",
-          accept:["partirás"], why:"Tu <strong>partirás</strong>." },
-        { stem:"<em>(ser)</em> — 3ª pessoa do singular do pretérito imperfeito do indicativo:",
-          accept:["era"], why:"Ele <strong>era</strong>." },
-        { stem:"<em>(vender)</em> — particípio:",
-          accept:["vendido"], why:"Particípio: <strong>vendido</strong>." }
-      ]},
-    { topic:"Tópico 4 — Escreva a conjugação do verbo",
-      hint:"Responda com 1, 2 ou 3.",
-      items:[
-        { stem:"O verbo <em>amar</em> pertence a qual conjugação?",
-          accept:["1","1a","primeira","1ª"], why:"Termina em -ar: 1ª conjugação." },
-        { stem:"O verbo <em>escrever</em> pertence a qual conjugação?",
-          accept:["2","2a","segunda","2ª"], why:"Termina em -er: 2ª conjugação." },
-        { stem:"O verbo <em>sorrir</em> pertence a qual conjugação?",
-          accept:["3","3a","terceira","3ª"], why:"Termina em -ir: 3ª conjugação." },
-        { stem:"O verbo <em>repor</em> pertence a qual conjugação?",
-          accept:["2","2a","segunda","2ª"], why:"Derivado de <em>pôr</em> (antigo poer): 2ª conjugação." },
-        { stem:"O verbo <em>cozinhar</em> pertence a qual conjugação?",
-          accept:["1","1a","primeira","1ª"], why:"Termina em -ar: 1ª conjugação." }
-      ]},
-    { topic:"Tópico 5 — Escreva a forma nominal do verbo destacado",
-      hint:"Responda com: infinitivo, gerúndio ou particípio.",
-      items:[
-        { stem:"“<em>Viver</em> é aprender todos os dias.”",
-          accept:["infinitivo"], why:"Termina em -r: infinitivo." },
-        { stem:"“Ele saiu <em>correndo</em> pela porta.”",
-          accept:["gerúndio"], why:"Termina em -ndo: gerúndio." },
-        { stem:"“A porta foi <em>fechada</em> pelo vento.”",
-          accept:["particípio"], why:"Particípio, na voz passiva." },
-        { stem:"“<em>Sorrindo</em>, ela respondeu à pergunta.”",
-          accept:["gerúndio"], why:"Termina em -ndo: gerúndio." },
-        { stem:"“É preciso <em>partir</em> bem cedo.”",
-          accept:["infinitivo"], why:"Termina em -r: infinitivo." }
-      ]}
-  ];
+      alvo.querySelectorAll('[data-item]').forEach((bloco, idx) => {
+        const q = itens[idx];
+        const explica = bloco.querySelector('.explica');
+        let respondida = false;
 
-  /* =========================================================
-     DADOS — SEÇÃO 2: REGULARES E IRREGULARES (20 verbos)
-     ========================================================= */
-  var REG_IRREG = [
-    { v:"cantar",     reg:true,  why:"Radical CANT- constante: canto, cantei, cantarei." },
-    { v:"fazer",      reg:false, why:"Radical muda: faço, fiz, farei, fizesse." },
-    { v:"estudar",    reg:true,  why:"Radical ESTUD- constante: estudo, estudei, estudarei." },
-    { v:"ser",        reg:false, why:"Verbo anômalo: sou, fui, era, serei." },
-    { v:"vender",     reg:true,  why:"Radical VEND- constante: vendo, vendi, venderei." },
-    { v:"ir",         reg:false, why:"Verbo anômalo: vou, fui, irei." },
-    { v:"partir",     reg:true,  why:"Radical PART- constante: parto, parti, partirei." },
-    { v:"ter",        reg:false, why:"Radical muda: tenho, tive, terei." },
-    { v:"falar",      reg:true,  why:"Radical FAL- constante: falo, falei, falarei." },
-    { v:"dizer",      reg:false, why:"Radical muda: digo, disse, direi." },
-    { v:"comer",      reg:true,  why:"Radical COM- constante: como, comi, comerei." },
-    { v:"poder",      reg:false, why:"Radical muda: posso, pude, poderei." },
-    { v:"beber",      reg:true,  why:"Radical BEB- constante: bebo, bebi, beberei." },
-    { v:"querer",     reg:false, why:"Radical muda: quero, quis, quisesse." },
-    { v:"decidir",    reg:true,  why:"Radical DECID- constante: decido, decidi, decidirei." },
-    { v:"estar",      reg:false, why:"Radical muda: estou, estive, esteja." },
-    { v:"aprender",   reg:true,  why:"Radical APRENDE- regular: aprendo, aprendi, aprenderei." },
-    { v:"trazer",     reg:false, why:"Radical muda: trago, trouxe, trarei." },
-    { v:"trabalhar",  reg:true,  why:"Radical TRABALH- constante: trabalho, trabalhei, trabalharei." },
-    { v:"saber",      reg:false, why:"Radical muda: sei, soube, saiba." }
-  ];
+        bloco.querySelectorAll('.alt').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (respondida) return;
+            respondida = true; feitas++;
 
-  /* =========================================================
-     DADOS — SEÇÃO 3: LIGAR COLUNAS
-     ========================================================= */
-  var MATCH_LEFT = [
-    { id:"m1", label:"cantei",    ans:"passado",  why:"Pretérito perfeito do indicativo." },
-    { id:"m2", label:"estuda",    ans:"presente", why:"Presente do indicativo." },
-    { id:"m3", label:"viajarei",  ans:"futuro",   why:"Futuro do presente do indicativo." },
-    { id:"m4", label:"brincava",  ans:"passado",  why:"Pretérito imperfeito do indicativo." },
-    { id:"m5", label:"venderá",   ans:"futuro",   why:"Futuro do presente do indicativo." },
-    { id:"m6", label:"dormem",    ans:"presente", why:"Presente do indicativo." }
-  ];
-  var MATCH_RIGHT = [
-    { id:"passado",  label:"Passado" },
-    { id:"presente", label:"Presente" },
-    { id:"futuro",   label:"Futuro" }
-  ];
+            const escolha = Number(btn.dataset.i);
+            const acertou = escolha === q.certa;
+            if (acertou) acertos++;
 
-  /* =========================================================
-     DADOS — SEÇÃO 4: OS TRÊS MODOS
-     ========================================================= */
-  var GAPS = [
-    { pre:"Todos os dias, eu", post:"para a prova de português.", tag:"estudar – indicativo",
-      accept:["estudo"], why:"Presente do indicativo: eu <strong>estudo</strong>." },
-    { pre:"Espero que você", post:"toda a comida do prato.", tag:"comer – subjuntivo",
-      accept:["coma"], why:"Presente do subjuntivo: que você <strong>coma</strong>." },
-    { pre:"", post:"cedo hoje, menino!", tag:"dormir – imperativo",
-      accept:["durma","dorme"], why:"Imperativo afirmativo: <strong>Durma</strong> (você) / <strong>Dorme</strong> (tu)." },
-    { pre:"Se eu", post:"tempo, viajaria com vocês.", tag:"ter – subjuntivo",
-      accept:["tivesse"], why:"Pretérito imperfeito do subjuntivo: se eu <strong>tivesse</strong>." },
-    { pre:"Ontem nós", post:"atrasados à reunião.", tag:"chegar – indicativo",
-      accept:["chegamos"], why:"Pretérito perfeito do indicativo: nós <strong>chegamos</strong>." },
-    { pre:"Quando você", post:"em casa, me avise.", tag:"chegar – subjuntivo",
-      accept:["chegar"], why:"Futuro do subjuntivo: quando você <strong>chegar</strong>." },
-    { pre:"", post:"a porta com cuidado, por favor.", tag:"fechar – imperativo",
-      accept:["feche","fecha"], why:"Imperativo afirmativo: <strong>Feche</strong> (você) / <strong>Fecha</strong> (tu)." },
-    { pre:"Ela", post:"minha melhor amiga desde a infância.", tag:"ser – indicativo",
-      accept:["é"], why:"Presente do indicativo: ela <strong>é</strong>." },
-    { pre:"Talvez ele", post:"para o litoral amanhã.", tag:"viajar – subjuntivo",
-      accept:["viaje"], why:"Presente do subjuntivo: talvez ele <strong>viaje</strong>." },
-    { pre:"Não", post:"alto dentro da biblioteca.", tag:"falar – imperativo",
-      accept:["fale","fales"], why:"Imperativo negativo: não <strong>fale</strong> (você) / não <strong>fales</strong> (tu)." }
-  ];
+            bloco.querySelectorAll('.alt').forEach(b => {
+              const i = Number(b.dataset.i);
+              b.disabled = true;
+              b.classList.remove('bg-white', 'hover:-translate-y-[1px]');
+              if (i === q.certa) b.classList.add('bg-mata', 'text-white', 'border-mata');
+              else if (i === escolha) b.classList.add('bg-imper', 'text-white', 'border-imper');
+              else b.classList.add('bg-papel', 'opacity-60');
+            });
 
-  var MODO_OPTS = ["Indicativo","Subjuntivo","Imperativo"];
-  var MODOS = [
-    { stem:"“Nós <em>viajamos</em> para a praia todo verão.”", ans:0, why:"Fato real e habitual: indicativo." },
-    { stem:"“Quero que você <em>venha</em> comigo ao teatro.”", ans:1, why:"Fato desejado, dependente de outro: subjuntivo." },
-    { stem:"“<em>Traga</em> o livro amanhã, por favor.”", ans:2, why:"Pedido dirigido ao interlocutor: imperativo." },
-    { stem:"“Se eu <em>fosse</em> rico, ajudaria mais pessoas.”", ans:1, why:"Hipótese: pretérito imperfeito do subjuntivo." },
-    { stem:"“<em>Chegue</em> mais perto para enxergar melhor.”", ans:2, why:"Ordem/conselho: imperativo afirmativo." },
-    { stem:"“Ela <em>estuda</em> todos os dias pela manhã.”", ans:0, why:"Fato certo: presente do indicativo." },
-    { stem:"“Talvez <em>chova</em> no fim da tarde.”", ans:1, why:"Dúvida/possibilidade: presente do subjuntivo." },
-    { stem:"“Não <em>saia</em> de casa sem casaco.”", ans:2, why:"Ordem negativa: imperativo negativo." },
-    { stem:"“Amanhã eu <em>farei</em> todo o trabalho.”", ans:0, why:"Fato tido como certo no futuro: indicativo." },
-    { stem:"“Quando ele <em>voltar</em>, avisaremos todos.”", ans:1, why:"Fato futuro e eventual: futuro do subjuntivo." }
-  ];
-
-  /* =========================================================
-     MOTOR 1 — QUIZ (múltipla escolha, agrupado por tópico)
-     ========================================================= */
-  function buildQuiz(mount, groups, scoreId, scoreLabel){
-    var qs = [], n = 0, total = 0;
-    groups.forEach(function(g){ total += g.items.length; });
-    var setScore = registerScore(scoreId, scoreLabel, total);
-
-    groups.forEach(function(g){
-      mount.appendChild(el("p","topic-title", g.topic));
-      g.items.forEach(function(it){
-        n++;
-        var q = el("div","q");
-        q.appendChild(el("p","stem", '<span class="n">'+n+'</span>'+it.stem));
-        var opts = el("div","opts" + (it.opts.length > 3 ? " two" : ""));
-        var name = scoreId + "-q" + n;
-        it.opts.forEach(function(txt, i){
-          var lab = el("label","opt");
-          var inp = document.createElement("input");
-          inp.type = "radio"; inp.name = name; inp.value = String(i);
-          inp.addEventListener("change", function(){
-            Array.prototype.forEach.call(opts.children, function(c){ c.classList.remove("sel"); });
-            lab.classList.add("sel");
+            explica.classList.remove('hidden');
+            explica.classList.add(acertou ? 'border-mata' : 'border-imper');
+            explica.innerHTML = '<b>' + (acertou ? 'Isso.' : 'A resposta é a letra ' + String.fromCharCode(97 + q.certa) + '.') + '</b> ' + q.porque;
+            marcaPlacar();
           });
-          lab.appendChild(inp);
-          lab.appendChild(el("span",null,txt));
-          opts.appendChild(lab);
         });
-        q.appendChild(opts);
-        q.appendChild(el("div","fb"));
-        q._data = it; q._opts = opts; q._name = name;
-        mount.appendChild(q);
-        qs.push(q);
       });
-    });
 
-    addToolbar(mount, function check(){
-      var got = 0;
-      qs.forEach(function(q){
-        var sel = q.querySelector('input[name="'+q._name+'"]:checked');
-        var fb = q.querySelector(".fb");
-        var kids = q._opts.children;
-        Array.prototype.forEach.call(kids, function(c){ c.classList.remove("right","wrong","sel"); });
-        kids[q._data.ans].classList.add("right");
-        fb.className = "fb show";
-        if(sel && Number(sel.value) === q._data.ans){
-          got++;
-          fb.classList.add("ok");
-          fb.innerHTML = "✔ Correto! " + q._data.why;
-        }else{
-          if(sel) kids[Number(sel.value)].classList.add("wrong");
-          fb.classList.add("no");
-          fb.innerHTML = "✘ Resposta correta: <strong>" + q._data.opts[q._data.ans] + "</strong>. " + q._data.why;
-        }
-      });
-      setScore(got);
-      return {got:got, total:total};
-    }, function reset(){
-      qs.forEach(function(q){
-        q.querySelectorAll("input").forEach(function(i){ i.checked = false; });
-        Array.prototype.forEach.call(q._opts.children, function(c){ c.classList.remove("right","wrong","sel"); });
-        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
-      });
-      setScore(null);
-    });
+      marcaPlacar();
+    }
+
+    acao('refazer', nome, desenha);
+    desenha();
   }
 
-  /* =========================================================
-     MOTOR 2 — ESCRITA (campo de texto, agrupado por tópico)
-     ========================================================= */
-  function checkText(value, accept){
-    var v = norm(value);
-    if(!v) return "empty";
-    for(var i=0;i<accept.length;i++){ if(v === norm(accept[i])) return "exact"; }
-    var p = plain(value);
-    for(var j=0;j<accept.length;j++){ if(p === plain(accept[j])) return "almost"; }
-    return "wrong";
-  }
+  /* ==========================================================
+     MOTOR 2 — atividade de escrita agrupada por tópico
+     ========================================================== */
+  function montaEscrita(nome, grupos) {
+    const alvo = lista(nome);
+    const itens = grupos.reduce((acc, g) => acc.concat(g.itens), []);
+    const total = itens.length;
+    let acertos = 0;
+    const respondidas = new Set();
 
-  function buildWrite(mount, groups, scoreId, scoreLabel){
-    var qs = [], n = 0, total = 0;
-    groups.forEach(function(g){ total += g.items.length; });
-    var setScore = registerScore(scoreId, scoreLabel, total);
+    const marcaPlacar = () => { placar(nome).textContent = acertos + ' de ' + total; };
 
-    groups.forEach(function(g){
-      mount.appendChild(el("p","topic-title", g.topic));
-      if(g.hint) mount.appendChild(el("p","hint", g.hint));
-      g.items.forEach(function(it){
-        n++;
-        var q = el("div","q");
-        q.appendChild(el("p","stem", '<span class="n">'+n+'</span>'+it.stem));
-        var inp = document.createElement("input");
-        inp.type = "text"; inp.className = "txt"; inp.autocomplete = "off";
-        inp.placeholder = "sua resposta";
-        q.appendChild(inp);
-        q.appendChild(el("div","fb"));
-        q._data = it; q._inp = inp;
-        mount.appendChild(q);
-        qs.push(q);
+    function desenha() {
+      acertos = 0; respondidas.clear();
+      let n = 0;
+      alvo.innerHTML = grupos.map(g => (
+        '<div class="bg-papel px-4 sm:px-5 py-2 border-b-2 border-papel2">' +
+          '<p class="font-mono text-[11px] uppercase tracking-[.15em] text-tinta2">' + g.topico + '</p>' +
+          (g.dica ? '<p class="text-sm mt-1">' + g.dica + '</p>' : '') +
+        '</div>' +
+        g.itens.map(q => {
+          n++;
+          return '<div class="px-4 sm:px-5 py-4" data-item>' +
+            '<p class="text-lg leading-relaxed"><span class="font-mono text-xs text-tinta2 mr-2">' + num(n) + '</span>' + q.p + '</p>' +
+            '<div class="mt-3 flex flex-wrap gap-2 items-center">' +
+              '<input type="text" autocomplete="off" spellcheck="false" placeholder="sua resposta" class="resp border-2 border-tinta bg-papel px-3 py-2 font-display text-lg caneta-sm w-full sm:w-72">' +
+              '<button type="button" class="conf border-2 border-tinta bg-grifo px-3 py-2 font-mono text-[11px] uppercase tracking-[.12em] caneta-sm hover:-translate-y-[1px] transition">Conferir</button>' +
+            '</div>' +
+            '<p class="explica mt-3 hidden border-l-4 pl-4 leading-relaxed"></p>' +
+          '</div>';
+        }).join('')
+      )).join('');
+
+      alvo.querySelectorAll('[data-item]').forEach((bloco, idx) => {
+        const q = itens[idx];
+        const campo = bloco.querySelector('.resp');
+        const botao = bloco.querySelector('.conf');
+        const explica = bloco.querySelector('.explica');
+
+        bloco._confere = function () {
+          if (respondidas.has(idx)) return;
+          const r = confereTexto(campo.value, q.aceitas);
+          if (r === 'vazio') return;
+
+          respondidas.add(idx);
+          const certa = q.aceitas[q.aceitas.length - 1];
+          campo.disabled = true; botao.disabled = true;
+          botao.classList.remove('bg-grifo'); botao.classList.add('bg-papel2', 'opacity-60');
+          campo.classList.remove('bg-papel');
+          explica.classList.remove('hidden');
+
+          if (r === 'exato') {
+            acertos++;
+            campo.classList.add('border-mata', 'bg-white');
+            explica.classList.add('border-mata');
+            explica.innerHTML = '<b>Isso.</b> ' + q.porque;
+          } else if (r === 'quase') {
+            acertos++;
+            campo.classList.add('border-tinta', 'bg-grifo');
+            explica.classList.add('border-tinta');
+            explica.innerHTML = '<b>Vale o ponto — atenção à acentuação:</b> escreve-se <b>' + certa + '</b>. ' + q.porque;
+          } else {
+            campo.classList.add('border-imper', 'bg-white');
+            explica.classList.add('border-imper');
+            explica.innerHTML = '<b>A resposta é ' + certa + '.</b> ' + q.porque;
+          }
+          marcaPlacar();
+        };
+
+        botao.addEventListener('click', bloco._confere);
+        campo.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); bloco._confere(); } });
+      });
+
+      marcaPlacar();
+    }
+
+    acao('corrigir', nome, () => {
+      alvo.querySelectorAll('[data-item]').forEach(b => {
+        const campo = b.querySelector('.resp');
+        if (!campo.value.trim()) campo.value = '—';
+        b._confere();
       });
     });
-
-    addToolbar(mount, function check(){
-      var got = 0;
-      qs.forEach(function(q){
-        var res = checkText(q._inp.value, q._data.accept);
-        var fb = q.querySelector(".fb");
-        q._inp.classList.remove("right","wrong","almost");
-        fb.className = "fb show";
-        if(res === "exact"){
-          got++; q._inp.classList.add("right");
-          fb.classList.add("ok"); fb.innerHTML = "✔ Correto! " + q._data.why;
-        }else if(res === "almost"){
-          got++; q._inp.classList.add("almost");
-          fb.classList.add("al");
-          fb.innerHTML = "✔ Aceito, mas atenção à grafia/acentuação: o correto é <strong>" + q._data.accept[q._data.accept.length-1] + "</strong>. " + q._data.why;
-        }else{
-          q._inp.classList.add("wrong");
-          fb.classList.add("no");
-          fb.innerHTML = "✘ Resposta esperada: <strong>" + q._data.accept[q._data.accept.length-1] + "</strong>. " + q._data.why;
-        }
-      });
-      setScore(got);
-      return {got:got, total:total};
-    }, function reset(){
-      qs.forEach(function(q){
-        q._inp.value = ""; q._inp.classList.remove("right","wrong","almost");
-        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
-      });
-      setScore(null);
-    });
+    acao('refazer', nome, desenha);
+    desenha();
   }
 
-  /* =========================================================
-     MOTOR 3 — REGULAR x IRREGULAR
-     ========================================================= */
-  function buildRegIrreg(mount){
-    var total = REG_IRREG.length;
-    var setScore = registerScore("regirreg","Regular ou irregular", total);
-    var grid = el("div","verbgrid");
-    var cards = [];
+  /* ==========================================================
+     MOTOR 3 — regular ou irregular
+     ========================================================== */
+  function montaRegIrreg(nome, verbos) {
+    const alvo = lista(nome);
+    const total = verbos.length;
+    let acertos = 0, feitas = 0;
 
-    REG_IRREG.forEach(function(item, i){
-      var card = el("div","verbcard");
-      card.appendChild(el("span","vb", '<span class="idx">'+(i+1)+'.</span>'+item.v));
-      var choice = el("div","choice");
-      ["Regular","Irregular"].forEach(function(txt, k){
-        var b = document.createElement("button");
-        b.type = "button"; b.textContent = txt;
-        b.addEventListener("click", function(){
-          Array.prototype.forEach.call(choice.children, function(c){ c.classList.remove("sel"); });
-          b.classList.add("sel");
-          card._pick = (k === 0);
+    function marcaPlacar() {
+      placar(nome).textContent = acertos + ' de ' + total;
+      const r = resumo(nome);
+      if (r) r.textContent = feitas === total ? 'todos classificados' : (total - feitas) + ' verbos em aberto';
+    }
+
+    function desenha() {
+      acertos = 0; feitas = 0;
+      alvo.innerHTML = verbos.map((v, i) =>
+        '<div class="bg-white px-4 py-3" data-item>' +
+          '<div class="flex flex-wrap items-center justify-between gap-3">' +
+            '<p class="font-display font-bold text-xl"><span class="font-mono text-xs text-tinta2 mr-2">' + num(i + 1) + '</span>' + v.v + '</p>' +
+            '<div class="flex gap-2">' +
+              '<button type="button" data-r="1" class="opc border-2 border-tinta bg-white px-3 py-1 font-mono text-[11px] uppercase tracking-[.12em] caneta-sm hover:-translate-y-[1px] transition">Regular</button>' +
+              '<button type="button" data-r="0" class="opc border-2 border-tinta bg-white px-3 py-1 font-mono text-[11px] uppercase tracking-[.12em] caneta-sm hover:-translate-y-[1px] transition">Irregular</button>' +
+            '</div>' +
+          '</div>' +
+          '<p class="explica mt-2 hidden border-l-4 pl-3 text-base leading-relaxed"></p>' +
+        '</div>').join('');
+
+      alvo.querySelectorAll('[data-item]').forEach((bloco, idx) => {
+        const v = verbos[idx];
+        const explica = bloco.querySelector('.explica');
+        let respondida = false;
+
+        bloco.querySelectorAll('.opc').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (respondida) return;
+            respondida = true; feitas++;
+
+            const escolha = btn.dataset.r === '1';
+            const acertou = escolha === v.reg;
+            if (acertou) acertos++;
+
+            bloco.querySelectorAll('.opc').forEach(b => {
+              b.disabled = true;
+              b.classList.remove('bg-white', 'hover:-translate-y-[1px]');
+              const ehCerta = (b.dataset.r === '1') === v.reg;
+              if (ehCerta) b.classList.add('bg-mata', 'text-white', 'border-mata');
+              else b.classList.add('bg-papel', 'opacity-60');
+            });
+            if (!acertou) btn.classList.remove('bg-papel', 'opacity-60'), btn.classList.add('bg-imper', 'text-white', 'border-imper');
+
+            explica.classList.remove('hidden');
+            explica.classList.add(acertou ? 'border-mata' : 'border-imper');
+            explica.innerHTML = '<b>' + (v.reg ? 'Regular.' : 'Irregular.') + '</b> ' + v.porque;
+            marcaPlacar();
+          });
         });
-        choice.appendChild(b);
       });
-      card.appendChild(choice);
-      card.appendChild(el("div","note"));
-      card._data = item; card._pick = null;
-      grid.appendChild(card);
-      cards.push(card);
-    });
-    mount.appendChild(grid);
 
-    addToolbar(mount, function check(){
-      var got = 0;
-      cards.forEach(function(c){
-        c.classList.remove("right","wrong");
-        c.classList.add("done");
-        var ok = (c._pick !== null && c._pick === c._data.reg);
-        if(ok){ got++; c.classList.add("right"); }
-        else{ c.classList.add("wrong"); }
-        c.querySelector(".note").innerHTML =
-          (ok ? "✔ " : "✘ ") + "<strong>" + (c._data.reg ? "Regular" : "Irregular") + "</strong> — " + c._data.why;
-      });
-      setScore(got);
-      return {got:got, total:total};
-    }, function reset(){
-      cards.forEach(function(c){
-        c.classList.remove("right","wrong","done");
-        c._pick = null;
-        Array.prototype.forEach.call(c.querySelector(".choice").children, function(b){ b.classList.remove("sel"); });
-        c.querySelector(".note").innerHTML = "";
-      });
-      setScore(null);
-    });
+      marcaPlacar();
+    }
+
+    acao('refazer', nome, desenha);
+    desenha();
   }
 
-  /* =========================================================
-     MOTOR 4 — LIGAR COLUNAS
-     ========================================================= */
-  function buildMatch(mount){
-    var total = MATCH_LEFT.length;
-    var setScore = registerScore("ligar","Ligar colunas", total);
+  /* ==========================================================
+     MOTOR 4 — ligar colunas
+     ========================================================== */
+  function montaLigar(nome, esquerda, direita) {
+    const alvo = lista(nome);
+    const total = esquerda.length;
+    const CORES = { neutro: '#131C33', certo: '#1F7A5A', errado: '#E0523F' };
+    let ligacoes = {}, ativo = null, nosE = {}, nosD = {};
 
-    mount.appendChild(el("p","hint",
-      "Toque em um verbo da coluna da esquerda e depois no tempo verbal correspondente à direita. Para trocar, basta ligar de novo."));
+    const marcaPlacar = (n) => { placar(nome).textContent = (n == null ? 0 : n) + ' de ' + total; };
 
-    var box = el("div","match");
-    var svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-    box.appendChild(svg);
+    function desenha() {
+      ligacoes = {}; ativo = null; nosE = {}; nosD = {};
+      alvo.innerHTML =
+        '<div class="relative flex gap-4 sm:gap-10 justify-between" data-quadro>' +
+          '<svg class="absolute inset-0 w-full h-full pointer-events-none" data-linhas></svg>' +
+          '<div class="flex flex-col gap-3 flex-1 relative z-10" data-col-e></div>' +
+          '<div class="flex flex-col gap-3 justify-center w-32 sm:w-44 relative z-10" data-col-d></div>' +
+        '</div>';
 
-    var colL = el("div","col left"), colR = el("div","col right");
-    var links = {}, active = null, leftNodes = {}, rightNodes = {};
+      const colE = alvo.querySelector('[data-col-e]');
+      const colD = alvo.querySelector('[data-col-d]');
 
-    function redraw(){
-      while(svg.firstChild) svg.removeChild(svg.firstChild);
-      var b = box.getBoundingClientRect();
-      Object.keys(links).forEach(function(lid){
-        var a = leftNodes[lid].getBoundingClientRect();
-        var c = rightNodes[links[lid].to].getBoundingClientRect();
-        var line = document.createElementNS("http://www.w3.org/2000/svg","line");
-        line.setAttribute("x1", a.right - b.left);
-        line.setAttribute("y1", a.top + a.height/2 - b.top);
-        line.setAttribute("x2", c.left - b.left);
-        line.setAttribute("y2", c.top + c.height/2 - b.top);
-        line.setAttribute("stroke-width","3");
-        line.setAttribute("stroke-linecap","round");
-        var st = links[lid].state;
-        line.setAttribute("stroke",
-          st === "ok" ? getComputedStyle(document.body).getPropertyValue("--ok") :
-          st === "no" ? getComputedStyle(document.body).getPropertyValue("--bad") :
-          getComputedStyle(document.body).getPropertyValue("--accent"));
-        svg.appendChild(line);
+      esquerda.forEach(it => {
+        const no = document.createElement('button');
+        no.type = 'button';
+        no.className = 'no border-2 border-tinta bg-white px-3 py-3 font-display font-bold text-lg caneta-sm text-center hover:-translate-y-[1px] transition';
+        no.textContent = it.rotulo;
+        no.addEventListener('click', () => {
+          Object.keys(nosE).forEach(k => nosE[k].classList.remove('bg-grifo'));
+          ativo = it.id;
+          no.classList.add('bg-grifo');
+        });
+        nosE[it.id] = no;
+        colE.appendChild(no);
+      });
+
+      direita.forEach(it => {
+        const no = document.createElement('button');
+        no.type = 'button';
+        no.className = 'no border-2 border-tinta bg-tinta text-papel px-3 py-3 font-mono text-[11px] uppercase tracking-[.15em] caneta-sm hover:-translate-y-[1px] transition';
+        no.textContent = it.rotulo;
+        no.addEventListener('click', () => {
+          if (!ativo) return;
+          ligacoes[ativo] = { para: it.id, estado: 'neutro' };
+          nosE[ativo].classList.remove('bg-grifo');
+          ativo = null;
+          traca();
+        });
+        nosD[it.id] = no;
+        colD.appendChild(no);
+      });
+
+      traca();
+      marcaPlacar(0);
+    }
+
+    function traca() {
+      const quadro = alvo.querySelector('[data-quadro]');
+      const svg = alvo.querySelector('[data-linhas]');
+      if (!quadro || !svg) return;
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const base = quadro.getBoundingClientRect();
+
+      Object.keys(ligacoes).forEach(id => {
+        const a = nosE[id].getBoundingClientRect();
+        const b = nosD[ligacoes[id].para].getBoundingClientRect();
+        const linha = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        linha.setAttribute('x1', a.right - base.left);
+        linha.setAttribute('y1', a.top + a.height / 2 - base.top);
+        linha.setAttribute('x2', b.left - base.left);
+        linha.setAttribute('y2', b.top + b.height / 2 - base.top);
+        linha.setAttribute('stroke', CORES[ligacoes[id].estado]);
+        linha.setAttribute('stroke-width', '3');
+        linha.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(linha);
       });
     }
 
-    MATCH_LEFT.forEach(function(it){
-      var node = el("div","node", it.label);
-      node.addEventListener("click", function(){
-        Object.keys(leftNodes).forEach(function(k){ leftNodes[k].classList.remove("active"); });
-        active = it.id; node.classList.add("active");
+    acao('corrigir', nome, () => {
+      let acertos = 0;
+      esquerda.forEach(it => {
+        const no = nosE[it.id];
+        const lig = ligacoes[it.id];
+        const acertou = !!lig && lig.para === it.certa;
+        if (acertou) acertos++;
+        if (lig) lig.estado = acertou ? 'certo' : 'errado';
+        no.classList.remove('bg-white', 'bg-grifo');
+        no.classList.add(acertou ? 'border-mata' : 'border-imper', 'bg-white');
+        const certa = direita.filter(d => d.id === it.certa)[0].rotulo;
+        no.innerHTML = it.rotulo +
+          '<span class="block font-corpo font-normal text-sm mt-1 ' + (acertou ? 'text-mata' : 'text-imper') + '">' +
+          (acertou ? '✓ ' : '✕ ' + certa + ' — ') + it.porque + '</span>';
       });
-      leftNodes[it.id] = node;
-      colL.appendChild(node);
+      traca();
+      marcaPlacar(acertos);
+      const r = resumo(nome);
+      if (r) r.textContent = acertos === total ? 'todas certas' : 'confira as marcadas em vermelho';
     });
 
-    MATCH_RIGHT.forEach(function(it){
-      var node = el("div","node", it.label);
-      node.addEventListener("click", function(){
-        if(!active) return;
-        links[active] = {to:it.id, state:"idle"};
-        leftNodes[active].classList.add("linked");
-        leftNodes[active].classList.remove("active");
-        active = null;
-        redraw();
-      });
-      rightNodes[it.id] = node;
-      colR.appendChild(node);
-    });
-
-    box.appendChild(colL); box.appendChild(colR);
-    mount.appendChild(box);
-    window.addEventListener("resize", redraw);
-
-    addToolbar(mount, function check(){
-      var got = 0;
-      MATCH_LEFT.forEach(function(it){
-        var node = leftNodes[it.id];
-        node.classList.remove("right-ans","wrong-ans");
-        var lk = links[it.id];
-        if(lk && lk.to === it.ans){
-          got++; lk.state = "ok"; node.classList.add("right-ans");
-          node.innerHTML = it.label + '<div style="font-size:.76rem;font-weight:400;color:var(--muted)">✔ ' + it.why + "</div>";
-        }else{
-          if(lk) lk.state = "no";
-          node.classList.add("wrong-ans");
-          var cert = MATCH_RIGHT.filter(function(r){ return r.id === it.ans; })[0].label;
-          node.innerHTML = it.label + '<div style="font-size:.76rem;font-weight:400;color:var(--muted)">✘ ' + cert + " — " + it.why + "</div>";
-        }
-      });
-      redraw();
-      setScore(got);
-      return {got:got, total:total};
-    }, function reset(){
-      links = {}; active = null;
-      MATCH_LEFT.forEach(function(it){
-        var node = leftNodes[it.id];
-        node.className = "node";
-        node.textContent = it.label;
-      });
-      redraw();
-      setScore(null);
-    });
-
-    setTimeout(redraw, 60);
+    acao('refazer', nome, desenha);
+    window.addEventListener('resize', traca);
+    desenha();
+    setTimeout(traca, 200);
   }
 
-  /* =========================================================
-     MOTOR 5 — FRASES COM LACUNA (os três modos)
-     ========================================================= */
-  function buildGaps(mount){
-    var total = GAPS.length;
-    var setScore = registerScore("lacunas","Complete com o modo indicado", total);
-    mount.appendChild(el("p","hint",
-      "Escreva, na lacuna, o verbo entre parênteses conjugado no modo indicado."));
+  /* ==========================================================
+     MOTOR 5 — frases com lacuna
+     ========================================================== */
+  function montaLacunas(nome, frases) {
+    const alvo = lista(nome);
+    const total = frases.length;
+    let acertos = 0;
+    const respondidas = new Set();
 
-    var qs = [];
-    GAPS.forEach(function(it, i){
-      var q = el("div","q");
-      var stem = el("p","stem");
-      stem.innerHTML = '<span class="n">'+(i+1)+'</span>';
-      if(it.pre) stem.appendChild(document.createTextNode(it.pre + " "));
-      var inp = document.createElement("input");
-      inp.type = "text"; inp.className = "txt gap"; inp.autocomplete = "off"; inp.placeholder = "…";
-      stem.appendChild(inp);
-      stem.appendChild(document.createTextNode(" " + it.post + " "));
-      stem.appendChild(el("em", null, "(" + it.tag + ")"));
-      q.appendChild(stem);
-      q.appendChild(el("div","fb"));
-      q._data = it; q._inp = inp;
-      mount.appendChild(q);
-      qs.push(q);
-    });
+    const marcaPlacar = () => { placar(nome).textContent = acertos + ' de ' + total; };
 
-    addToolbar(mount, function check(){
-      var got = 0;
-      qs.forEach(function(q){
-        var res = checkText(q._inp.value, q._data.accept);
-        var fb = q.querySelector(".fb");
-        q._inp.classList.remove("right","wrong","almost");
-        fb.className = "fb show";
-        if(res === "exact"){
-          got++; q._inp.classList.add("right");
-          fb.classList.add("ok"); fb.innerHTML = "✔ Correto! " + q._data.why;
-        }else if(res === "almost"){
-          got++; q._inp.classList.add("almost");
-          fb.classList.add("al");
-          fb.innerHTML = "✔ Aceito, mas atenção à acentuação. " + q._data.why;
-        }else{
-          q._inp.classList.add("wrong");
-          fb.classList.add("no");
-          fb.innerHTML = "✘ " + q._data.why;
-        }
+    function desenha() {
+      acertos = 0; respondidas.clear();
+      alvo.innerHTML = frases.map((f, i) =>
+        '<div class="px-4 sm:px-5 py-4" data-item>' +
+          '<p class="text-lg leading-loose">' +
+            '<span class="font-mono text-xs text-tinta2 mr-2">' + num(i + 1) + '</span>' +
+            (f.pre ? f.pre + ' ' : '') +
+            '<input type="text" autocomplete="off" spellcheck="false" placeholder="…" class="resp border-2 border-tinta bg-papel px-2 py-1 font-display text-lg text-center caneta-sm w-40 align-middle">' +
+            ' ' + f.pos + ' ' +
+            '<span class="font-mono text-sm bg-papel border border-papel2 px-2 py-1 whitespace-nowrap">(' + f.marca + ')</span>' +
+          '</p>' +
+          '<p class="explica mt-3 hidden border-l-4 pl-4 leading-relaxed"></p>' +
+        '</div>').join('');
+
+      alvo.querySelectorAll('[data-item]').forEach((bloco, idx) => {
+        const f = frases[idx];
+        const campo = bloco.querySelector('.resp');
+        const explica = bloco.querySelector('.explica');
+
+        bloco._confere = function () {
+          if (respondidas.has(idx)) return;
+          const r = confereTexto(campo.value, f.aceitas);
+          if (r === 'vazio') return;
+
+          respondidas.add(idx);
+          campo.disabled = true;
+          campo.classList.remove('bg-papel');
+          explica.classList.remove('hidden');
+
+          if (r === 'exato') {
+            acertos++;
+            campo.classList.add('border-mata', 'bg-white');
+            explica.classList.add('border-mata');
+            explica.innerHTML = '<b>Isso.</b> ' + f.porque;
+          } else if (r === 'quase') {
+            acertos++;
+            campo.classList.add('border-tinta', 'bg-grifo');
+            explica.classList.add('border-tinta');
+            explica.innerHTML = '<b>Vale o ponto — atenção à acentuação.</b> ' + f.porque;
+          } else {
+            campo.classList.add('border-imper', 'bg-white');
+            explica.classList.add('border-imper');
+            explica.innerHTML = '<b>Não é essa forma.</b> ' + f.porque;
+          }
+          marcaPlacar();
+        };
+
+        campo.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); bloco._confere(); } });
+        campo.addEventListener('blur', () => { if (campo.value.trim()) bloco._confere(); });
       });
-      setScore(got);
-      return {got:got, total:total};
-    }, function reset(){
-      qs.forEach(function(q){
-        q._inp.value = ""; q._inp.classList.remove("right","wrong","almost");
-        var fb = q.querySelector(".fb"); fb.className = "fb"; fb.innerHTML = "";
+
+      marcaPlacar();
+    }
+
+    acao('corrigir', nome, () => {
+      alvo.querySelectorAll('[data-item]').forEach(b => {
+        const campo = b.querySelector('.resp');
+        if (!campo.value.trim()) campo.value = '—';
+        b._confere();
       });
-      setScore(null);
     });
+    acao('refazer', nome, desenha);
+    desenha();
   }
 
-  /* =========================================================
-     BARRA DE AÇÕES (verificar / refazer / resultado)
-     ========================================================= */
-  function addToolbar(mount, onCheck, onReset){
-    var bar = el("div","toolbar");
-    var bCheck = document.createElement("button");
-    bCheck.type = "button"; bCheck.textContent = "Verificar respostas";
-    var bReset = document.createElement("button");
-    bReset.type = "button"; bReset.className = "ghost"; bReset.textContent = "Refazer";
-    var out = el("span","result");
-    bar.appendChild(bCheck); bar.appendChild(bReset); bar.appendChild(out);
-    mount.appendChild(bar);
+  /* ==========================================================
+     CONTEÚDO — quiz das cinco flexões (5 questões por tópico)
+     ========================================================== */
+  const FLEX = ['Número', 'Pessoa', 'Modo', 'Tempo', 'Voz'];
+  const EXPR = ['Ação', 'Estado', 'Mudança de estado', 'Fenômeno da natureza'];
+  const CONJ = ['1ª conjugação (-ar)', '2ª conjugação (-er)', '3ª conjugação (-ir)'];
+  const NOMI = ['Infinitivo', 'Gerúndio', 'Particípio'];
 
-    bCheck.addEventListener("click", function(){
-      var r = onCheck();
-      var pct = Math.round(r.got / r.total * 100);
-      out.className = "result " + (pct >= 60 ? "ok" : "no");
-      out.textContent = "Pontos: " + r.got + " / " + r.total + " (" + pct + "%)";
-    });
-    bReset.addEventListener("click", function(){
-      onReset();
-      out.className = "result"; out.textContent = "";
-    });
-  }
+  montaQuiz('flexQuiz', [
+    { topico: 'Tópico 1 · qual flexão o verbo sofreu', itens: [
+      { p: 'De <i>"Tu cantavas"</i> para <i>"Ele cantava"</i>, o que mudou no verbo?', alt: FLEX, certa: 1,
+        porque: 'Continua no singular, no mesmo tempo e na voz ativa: mudou só a <b>pessoa</b> (2ª → 3ª).' },
+      { p: 'De <i>"Eu canto"</i> para <i>"Eu cantei"</i>, o que mudou no verbo?', alt: FLEX, certa: 3,
+        porque: 'Mesma pessoa e mesmo número: mudou o <b>tempo</b> (presente → pretérito perfeito).' },
+      { p: 'De <i>"O pedreiro construiu a casa"</i> para <i>"A casa foi construída pelo pedreiro"</i>:', alt: FLEX, certa: 4,
+        porque: 'O sujeito passou a receber a ação: mudou a <b>voz</b> (ativa → passiva).' },
+      { p: 'De <i>"Ele viaja amanhã"</i> para <i>"Talvez ele viaje amanhã"</i>:', alt: FLEX, certa: 2,
+        porque: 'O fato deixou de ser certo e virou possibilidade: mudou o <b>modo</b> (indicativo → subjuntivo).' },
+      { p: 'De <i>"O menino corre"</i> para <i>"Os meninos correm"</i>:', alt: FLEX, certa: 0,
+        porque: 'Continua na 3ª pessoa do presente: mudou o <b>número</b> (singular → plural).' }
+    ]},
+    { topico: 'Tópico 2 · o que o verbo quer expressar', itens: [
+      { p: '<i>"<b>Choveu</b> muito ontem à noite."</i>', alt: EXPR, certa: 3,
+        porque: 'Fenômeno da natureza — por isso é verbo impessoal, sem sujeito.' },
+      { p: '<i>"Ana <b>correu</b> até a escola."</i>', alt: EXPR, certa: 0,
+        porque: 'O sujeito pratica a ação de correr.' },
+      { p: '<i>"O menino <b>está</b> triste."</i>', alt: EXPR, certa: 1,
+        porque: 'Verbo de ligação: atribui um estado ao sujeito.' },
+      { p: '<i>"Ele <b>ficou</b> nervoso com a notícia."</i>', alt: EXPR, certa: 2,
+        porque: 'Mostra a passagem de um estado a outro: mudança de estado.' },
+      { p: '<i>"<b>Amanheceu</b> nublado na serra."</i>', alt: EXPR, certa: 3,
+        porque: 'Amanhecer, anoitecer, ventar e trovejar indicam fenômenos da natureza.' }
+    ]},
+    { topico: 'Tópico 3 · escolha o verbo na flexão indicada', itens: [
+      { p: 'Verbo <b>CANTAR</b> na 1ª pessoa do plural do presente do indicativo:',
+        alt: ['cantamos', 'cantávamos', 'cantaremos', 'cantássemos'], certa: 0,
+        porque: 'Nós <b>cantamos</b>. "Cantávamos" é pretérito imperfeito.' },
+      { p: 'Verbo <b>VENDER</b> na 3ª pessoa do singular do pretérito perfeito do indicativo:',
+        alt: ['vende', 'vendeu', 'venderá', 'vendia'], certa: 1,
+        porque: 'Ele <b>vendeu</b> — ação concluída no passado.' },
+      { p: 'Verbo <b>PARTIR</b> no gerúndio:',
+        alt: ['partir', 'partido', 'partindo', 'partiria'], certa: 2,
+        porque: 'O gerúndio termina em <b>-ndo</b>.' },
+      { p: 'Verbo <b>FAZER</b> na 1ª pessoa do singular do futuro do presente:',
+        alt: ['fiz', 'fazia', 'faria', 'farei'], certa: 3,
+        porque: 'Eu <b>farei</b>. "Faria" é futuro do pretérito.' },
+      { p: 'Verbo <b>SER</b> na 3ª pessoa do plural do pretérito imperfeito do indicativo:',
+        alt: ['são', 'foram', 'eram', 'serão'], certa: 2,
+        porque: 'Eles <b>eram</b>. "Foram" é pretérito perfeito.' }
+    ]},
+    { topico: 'Tópico 4 · em qual conjugação o verbo está', itens: [
+      { p: 'O verbo <b>brincar</b> pertence à:', alt: CONJ, certa: 0, porque: 'Termina em -ar.' },
+      { p: 'O verbo <b>beber</b> pertence à:', alt: CONJ, certa: 1, porque: 'Termina em -er.' },
+      { p: 'O verbo <b>dividir</b> pertence à:', alt: CONJ, certa: 2, porque: 'Termina em -ir.' },
+      { p: 'O verbo <b>pôr</b> (e derivados, como <b>repor</b>) pertence à:', alt: CONJ, certa: 1,
+        porque: 'Apesar da terminação -or, vem do antigo <i>poer</i>: 2ª conjugação.' },
+      { p: 'O verbo <b>sorrir</b> pertence à:', alt: CONJ, certa: 2,
+        porque: 'Termina em -ir — 3ª conjugação, ainda que seja irregular.' }
+    ]},
+    { topico: 'Tópico 5 · em qual forma nominal o verbo está', itens: [
+      { p: '<i>"<b>Cantar</b> é o meu passatempo favorito."</i>', alt: NOMI, certa: 0,
+        porque: 'Termina em -r e nomeia a ação: infinitivo.' },
+      { p: '<i>"Está <b>chovendo</b> desde cedo."</i>', alt: NOMI, certa: 1,
+        porque: 'Termina em -ndo: gerúndio, ação em curso.' },
+      { p: '<i>"Ele tinha <b>comido</b> antes de sair."</i>', alt: NOMI, certa: 2,
+        porque: 'Acompanha o auxiliar e indica ação concluída: particípio.' },
+      { p: '<i>"<b>Correndo</b>, ela chegou a tempo."</i>', alt: NOMI, certa: 1,
+        porque: 'Termina em -ndo: gerúndio, aqui com valor de modo.' },
+      { p: '<i>"<b>Terminada</b> a prova, todos saíram."</i>', alt: NOMI, certa: 2,
+        porque: 'Particípio flexionado em gênero e número, indicando ação concluída.' }
+    ]}
+  ]);
 
-  /* =========================================================
-     INICIALIZAÇÃO
-     ========================================================= */
-  buildQuiz(document.querySelector('[data-quiz="flexoes"]'), QUIZ_FLEXOES, "quizflex", "Quiz das cinco flexões");
-  buildWrite(document.querySelector('[data-write="flexoes"]'), WRITE_FLEXOES, "escrflex", "Escrita das cinco flexões");
-  buildRegIrreg(document.querySelector("[data-regirreg]"));
-  buildMatch(document.querySelector("[data-match]"));
-  buildGaps(document.querySelector("[data-gaps]"));
-  buildQuiz(document.querySelector("[data-modos]"),
-    [{ topic:"Classifique o modo do verbo destacado", items: MODOS.map(function(m){
-        return { stem:m.stem, opts:MODO_OPTS, ans:m.ans, why:m.why };
-      })}],
-    "modos", "Classificação dos modos");
+  /* ==========================================================
+     CONTEÚDO — escrita das cinco flexões
+     ========================================================== */
+  montaEscrita('flexEscrita', [
+    { topico: 'Tópico 1 · escreva qual flexão mudou', dica: 'Responda com uma palavra: número, pessoa, modo, tempo ou voz.', itens: [
+      { p: '<i>"Eu falo"</i> → <i>"Eu falei"</i>', aceitas: ['tempo'], porque: 'Presente → pretérito perfeito.' },
+      { p: '<i>"Ela dança"</i> → <i>"Elas dançam"</i>', aceitas: ['número'], porque: 'Singular → plural.' },
+      { p: '<i>"Tu cantas"</i> → <i>"Ele canta"</i>', aceitas: ['pessoa'], porque: '2ª pessoa → 3ª pessoa.' },
+      { p: '<i>"Ele viaja"</i> → <i>"Talvez ele viaje"</i>', aceitas: ['modo'], porque: 'Indicativo → subjuntivo.' },
+      { p: '<i>"O time venceu o jogo"</i> → <i>"O jogo foi vencido pelo time"</i>', aceitas: ['voz'], porque: 'Voz ativa → voz passiva.' }
+    ]},
+    { topico: 'Tópico 2 · escreva o que o verbo expressa', dica: 'Responda com: ação, estado, mudança de estado ou fenômeno da natureza.', itens: [
+      { p: '<i>"<b>Ventou</b> forte durante a noite."</i>', aceitas: ['fenômeno', 'fenômeno da natureza'], porque: 'Verbo impessoal de fenômeno da natureza.' },
+      { p: '<i>"Marina <b>desenhou</b> um mapa do bairro."</i>', aceitas: ['ação'], porque: 'O sujeito pratica a ação.' },
+      { p: '<i>"O bebê <b>parece</b> tranquilo hoje."</i>', aceitas: ['estado'], porque: 'Verbo de ligação: atribui estado ao sujeito.' },
+      { p: '<i>"A lagarta <b>virou</b> borboleta."</i>', aceitas: ['mudança', 'mudança de estado'], porque: 'Passagem de um estado a outro.' },
+      { p: '<i>"<b>Trovejou</b> durante a madrugada."</i>', aceitas: ['fenômeno', 'fenômeno da natureza'], porque: 'Fenômeno da natureza — verbo impessoal.' }
+    ]},
+    { topico: 'Tópico 3 · escreva o verbo na flexão indicada', dica: 'Escreva apenas a forma verbal pedida.', itens: [
+      { p: '<b>(correr)</b> — 3ª pessoa do plural do presente do indicativo', aceitas: ['correm'], porque: 'Eles correm.' },
+      { p: '<b>(estudar)</b> — 1ª pessoa do singular do pretérito perfeito', aceitas: ['estudei'], porque: 'Eu estudei.' },
+      { p: '<b>(partir)</b> — 2ª pessoa do singular do futuro do presente', aceitas: ['partirás'], porque: 'Tu partirás.' },
+      { p: '<b>(ser)</b> — 3ª pessoa do singular do pretérito imperfeito', aceitas: ['era'], porque: 'Ele era.' },
+      { p: '<b>(vender)</b> — particípio', aceitas: ['vendido'], porque: 'Particípio: vendido.' }
+    ]},
+    { topico: 'Tópico 4 · escreva a conjugação do verbo', dica: 'Responda com 1, 2 ou 3.', itens: [
+      { p: 'O verbo <b>amar</b> pertence a qual conjugação?', aceitas: ['1', '1a', 'primeira', '1ª'], porque: 'Termina em -ar.' },
+      { p: 'O verbo <b>escrever</b> pertence a qual conjugação?', aceitas: ['2', '2a', 'segunda', '2ª'], porque: 'Termina em -er.' },
+      { p: 'O verbo <b>sorrir</b> pertence a qual conjugação?', aceitas: ['3', '3a', 'terceira', '3ª'], porque: 'Termina em -ir.' },
+      { p: 'O verbo <b>repor</b> pertence a qual conjugação?', aceitas: ['2', '2a', 'segunda', '2ª'], porque: 'Derivado de pôr (antigo poer): 2ª conjugação.' },
+      { p: 'O verbo <b>cozinhar</b> pertence a qual conjugação?', aceitas: ['1', '1a', 'primeira', '1ª'], porque: 'Termina em -ar.' }
+    ]},
+    { topico: 'Tópico 5 · escreva a forma nominal do verbo em destaque', dica: 'Responda com: infinitivo, gerúndio ou particípio.', itens: [
+      { p: '<i>"<b>Viver</b> é aprender todos os dias."</i>', aceitas: ['infinitivo'], porque: 'Termina em -r.' },
+      { p: '<i>"Ele saiu <b>correndo</b> pela porta."</i>', aceitas: ['gerúndio'], porque: 'Termina em -ndo.' },
+      { p: '<i>"A porta foi <b>fechada</b> pelo vento."</i>', aceitas: ['particípio'], porque: 'Particípio, aqui na voz passiva.' },
+      { p: '<i>"<b>Sorrindo</b>, ela respondeu à pergunta."</i>', aceitas: ['gerúndio'], porque: 'Termina em -ndo.' },
+      { p: '<i>"É preciso <b>partir</b> bem cedo."</i>', aceitas: ['infinitivo'], porque: 'Termina em -r.' }
+    ]}
+  ]);
 
-  paintScoreboard();
+  /* ==========================================================
+     CONTEÚDO — regular ou irregular (20 verbos)
+     ========================================================== */
+  montaRegIrreg('regIrreg', [
+    { v: 'cantar',    reg: true,  porque: 'canto / cantei / cantarei — radical CANT- estável.' },
+    { v: 'estudar',   reg: true,  porque: 'estudo / estudei / estudarei — segue o modelo de falar.' },
+    { v: 'fazer',     reg: false, porque: 'faço / fiz / farei — três radicais diferentes.' },
+    { v: 'vender',    reg: true,  porque: 'vendo / vendi / venderei — modelo de comer.' },
+    { v: 'ser',       reg: false, porque: 'sou / fui / era / serei — irregularidade extrema (anômalo).' },
+    { v: 'ir',        reg: false, porque: 'vou / fui / irei — anômalo, muda de radical por completo.' },
+    { v: 'partir',    reg: true,  porque: 'parto / parti / partirei — modelo da 3ª conjugação.' },
+    { v: 'falar',     reg: true,  porque: 'falo / falei / falarei — o modelo da 1ª conjugação.' },
+    { v: 'ter',       reg: false, porque: 'tenho / tive / terei — o radical quebra.' },
+    { v: 'comer',     reg: true,  porque: 'como / comi / comerei — modelo da 2ª conjugação.' },
+    { v: 'dizer',     reg: false, porque: 'digo / disse / direi — o radical quebra.' },
+    { v: 'poder',     reg: false, porque: 'posso / pude / poderei — o radical quebra.' },
+    { v: 'beber',     reg: true,  porque: 'bebo / bebi / beberei — segue comer.' },
+    { v: 'decidir',   reg: true,  porque: 'decido / decidi / decidirei — segue partir.' },
+    { v: 'querer',    reg: false, porque: 'quero / quis / quisesse — o radical quebra.' },
+    { v: 'trazer',    reg: false, porque: 'trago / trouxe / trarei — o teste dos três tempos denuncia.' },
+    { v: 'aprender',  reg: true,  porque: 'aprendo / aprendi / aprenderei — radical estável.' },
+    { v: 'estar',     reg: false, porque: 'estou / estive / esteja — o radical quebra.' },
+    { v: 'trabalhar', reg: true,  porque: 'trabalho / trabalhei / trabalharei — radical estável.' },
+    { v: 'saber',     reg: false, porque: 'sei / soube / saiba — o radical quebra.' }
+  ]);
+
+  /* ==========================================================
+     CONTEÚDO — ligar colunas (tempos verbais)
+     ========================================================== */
+  montaLigar('ligar',
+    [
+      { id: 'a', rotulo: 'cantei',   certa: 'passado',  porque: 'pretérito perfeito do indicativo.' },
+      { id: 'b', rotulo: 'estuda',   certa: 'presente', porque: 'presente do indicativo.' },
+      { id: 'c', rotulo: 'viajarei', certa: 'futuro',   porque: 'futuro do presente do indicativo.' },
+      { id: 'd', rotulo: 'brincava', certa: 'passado',  porque: 'pretérito imperfeito do indicativo.' },
+      { id: 'e', rotulo: 'venderá',  certa: 'futuro',   porque: 'futuro do presente do indicativo.' },
+      { id: 'f', rotulo: 'dormem',   certa: 'presente', porque: 'presente do indicativo.' }
+    ],
+    [
+      { id: 'passado',  rotulo: 'Passado' },
+      { id: 'presente', rotulo: 'Presente' },
+      { id: 'futuro',   rotulo: 'Futuro' }
+    ]
+  );
+
+  /* ==========================================================
+     CONTEÚDO — frases com lacuna (os três modos)
+     ========================================================== */
+  montaLacunas('lacunas', [
+    { pre: 'Todos os dias, eu', pos: 'para a prova de português.', marca: 'estudar – indicativo',
+      aceitas: ['estudo'], porque: 'Presente do indicativo: eu <b>estudo</b>.' },
+    { pre: 'Espero que você', pos: 'toda a comida do prato.', marca: 'comer – subjuntivo',
+      aceitas: ['coma'], porque: 'Presente do subjuntivo: que você <b>coma</b>.' },
+    { pre: '', pos: 'cedo hoje, menino!', marca: 'dormir – imperativo',
+      aceitas: ['dorme', 'durma'], porque: 'Imperativo afirmativo: <b>durma</b> você / <b>dorme</b> tu.' },
+    { pre: 'Se eu', pos: 'tempo, viajaria com vocês.', marca: 'ter – subjuntivo',
+      aceitas: ['tivesse'], porque: 'Pretérito imperfeito do subjuntivo: se eu <b>tivesse</b>.' },
+    { pre: 'Ontem nós', pos: 'atrasados à reunião.', marca: 'chegar – indicativo',
+      aceitas: ['chegamos'], porque: 'Pretérito perfeito do indicativo: nós <b>chegamos</b>.' },
+    { pre: 'Quando você', pos: 'em casa, me avise.', marca: 'chegar – subjuntivo',
+      aceitas: ['chegar'], porque: 'Futuro do subjuntivo: quando você <b>chegar</b>.' },
+    { pre: '', pos: 'a porta com cuidado, por favor.', marca: 'fechar – imperativo',
+      aceitas: ['fecha', 'feche'], porque: 'Imperativo afirmativo: <b>feche</b> você / <b>fecha</b> tu.' },
+    { pre: 'Ela', pos: 'minha melhor amiga desde a infância.', marca: 'ser – indicativo',
+      aceitas: ['é'], porque: 'Presente do indicativo: ela <b>é</b>.' },
+    { pre: 'Talvez ele', pos: 'para o litoral amanhã.', marca: 'viajar – subjuntivo',
+      aceitas: ['viaje'], porque: 'Presente do subjuntivo: talvez ele <b>viaje</b>.' },
+    { pre: 'Não', pos: 'alto dentro da biblioteca.', marca: 'falar – imperativo',
+      aceitas: ['fales', 'fale'], porque: 'Imperativo negativo: não <b>fale</b> você / não <b>fales</b> tu.' }
+  ]);
+
+  /* ==========================================================
+     CONTEÚDO — classificar o modo (10 frases)
+     ========================================================== */
+  const MODOS3 = ['Indicativo', 'Subjuntivo', 'Imperativo'];
+  montaQuiz('classModo', [
+    { topico: '', itens: [
+      { p: '<i>"Nós <b>viajamos</b> para a praia todo verão."</i>', alt: MODOS3, certa: 0, porque: 'Fato real e habitual: presente do indicativo.' },
+      { p: '<i>"Quero que você <b>venha</b> comigo ao teatro."</i>', alt: MODOS3, certa: 1, porque: 'Desejo dependente de outro verbo: presente do subjuntivo.' },
+      { p: '<i>"<b>Traga</b> o livro amanhã, por favor."</i>', alt: MODOS3, certa: 2, porque: 'Pedido dirigido ao interlocutor: imperativo afirmativo.' },
+      { p: '<i>"Se eu <b>fosse</b> rico, ajudaria mais pessoas."</i>', alt: MODOS3, certa: 1, porque: 'Hipótese: pretérito imperfeito do subjuntivo.' },
+      { p: '<i>"<b>Chegue</b> mais perto para enxergar melhor."</i>', alt: MODOS3, certa: 2, porque: 'Ordem/conselho ao interlocutor: imperativo.' },
+      { p: '<i>"Ela <b>estuda</b> todos os dias pela manhã."</i>', alt: MODOS3, certa: 0, porque: 'Fato apresentado como certo: indicativo.' },
+      { p: '<i>"Talvez <b>chova</b> no fim da tarde."</i>', alt: MODOS3, certa: 1, porque: '"Talvez" marca dúvida: presente do subjuntivo.' },
+      { p: '<i>"Não <b>saia</b> de casa sem casaco."</i>', alt: MODOS3, certa: 2, porque: 'Imperativo negativo, formado do presente do subjuntivo.' },
+      { p: '<i>"Amanhã eu <b>farei</b> todo o trabalho."</i>', alt: MODOS3, certa: 0, porque: 'Futuro tido como certo: futuro do presente do indicativo.' },
+      { p: '<i>"Quando ele <b>voltar</b>, avisaremos todos."</i>', alt: MODOS3, certa: 1, porque: 'Fato futuro e eventual: futuro do subjuntivo.' }
+    ]}
+  ]);
 })();
 </script>
+
+<!-- lista de segurança das classes usadas pelas atividades -->
+<div class="hidden bg-mata bg-imper bg-grifo bg-papel bg-papel2 bg-white bg-tinta text-white text-mata text-imper text-tinta2 text-papel border-mata border-imper border-grifo border-tinta border-papel2 opacity-60 sm:grid-cols-2" aria-hidden="true"></div>
+<!-- lista de segurança para as classes geradas via JS -->
+<div class="hidden bg-tinta bg-mata bg-indic bg-subj bg-imper border-tinta border-mata border-indic border-subj border-imper text-tinta text-mata text-indic text-subj text-imper bg-papel bg-papel2 text-white" aria-hidden="true"></div>
 </body>
 </html>
